@@ -23,17 +23,17 @@
                 </div>
                 <div class="card-body border border-secondary bg-princ-escuro">
                     <form>
-                    <div class="form-group">
-                        <label for="loginEmail" class="text-white">Email</label>
-                        <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="exemplo@gmail.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPwd" class="text-white">Senha</label>
-                        <input type="password" class="form-control" id="loginPwd" placeholder="********">
-                    </div>
-                    
+                        <div class="form-group">
+                            <label for="loginEmail" class="text-white">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="exemplo@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPwd" class="text-white">Senha</label>
+                            <input type="password" class="form-control" id="loginPwd" placeholder="********">
+                        </div>
+                        
                         <button type="submit" class="btn btn-primary float-right">Entrar</button>
-                        <a href="" class="text-white">Cadastrar-se</a>
+                        <a href="../Cadastro/cadastro.php" class="text-white">Cadastrar-se</a>
                     
                     </form>
                 </div>

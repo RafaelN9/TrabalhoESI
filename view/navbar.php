@@ -11,20 +11,20 @@
 <body>
     <nav class="navbar navbar-light bg-princ-escuro">
         <div class="dropdown">
-            <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <button class="dropdown-item" type="button">Item 1</button>
                 <button class="dropdown-item" type="button">Item 2</button>
                 <button class="dropdown-item" type="button">Item 3</button>
             </div>
         </div>
         <a class="navbar-brand brand-pos" href="#">
-            <img src="https://lh3.googleusercontent.com/proxy/CJ-gdbswPV8_ymdQVnQ6mY4HxdGUcFFrEOGYoy0b3AUr_WsLWoPR1o2r7-28Rcc4oL0_81QV0FGZbMVWQpgYU9yeaRPzNPSByLutYyPMCcLjSBWJaO14rJvcS_IHESwLkykS1zvrp8WOC5s" width="106" height="43" class="rounded mx-auto d-block" alt="">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Webysther_20160310_-_Logo_USP.svg" width="106" height="43" class="rounded mx-auto d-block" alt="">
         </a>
-        <di class="btn-toolbar" role="toolbar">
-            <div class="btn-lg" role="group" aria-label="Notifications">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="dropdown btn" role="group" aria-label="Notifications">
                 <button class="btn btn-secondary btn-lg" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bell" width="100" height="100"></i>
                 </button>
@@ -34,7 +34,16 @@
                     <button class="dropdown-item" type="button">Item 3</button>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-lg btn-bg-color">Logout</button>
+            <?php if(true){?>
+            <form action="../Login/login.php" class="align-self-center">
+                <input type="submit" class="btn-lg btn-bg-color text-white" name="submit" value="Login">
+            </form>
+            <?php }else{?>
+            <form action="../Login/logout.php" class="align-self-center">
+                <button type="submit" class="btn-lg btn-bg-color text-white" name="submit" value="Cadastro">
+            </form>
+            <?php }?>
+            
         </div>
     </nav>
 </body>
