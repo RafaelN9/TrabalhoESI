@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="colors.css">
+    <link rel="stylesheet" href="../styles/main.css">
     <title></title>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-color">
+    <nav class="navbar navbar-light bg-princ-escuro">
         <div class="dropdown">
             <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bars"></i>
@@ -24,7 +24,7 @@
             <img src="https://lh3.googleusercontent.com/proxy/CJ-gdbswPV8_ymdQVnQ6mY4HxdGUcFFrEOGYoy0b3AUr_WsLWoPR1o2r7-28Rcc4oL0_81QV0FGZbMVWQpgYU9yeaRPzNPSByLutYyPMCcLjSBWJaO14rJvcS_IHESwLkykS1zvrp8WOC5s" width="106" height="43" class="rounded mx-auto d-block" alt="">
         </a>
         <di class="btn-toolbar" role="toolbar">
-            <div class="btn-group mr-2" role="group" aria-label="Notifications">
+            <div class="btn-lg" role="group" aria-label="Notifications">
                 <button class="btn btn-secondary btn-lg" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bell" width="100" height="100"></i>
                 </button>
@@ -34,9 +34,7 @@
                     <button class="dropdown-item" type="button">Item 3</button>
                 </div>
             </div>
-            <div class="btn-group" role="group" aria-label="actions">
-                <button type="button" class="btn btn-primary btn-lg btn-bg-color">Logout</button>
-            </div>
+            <button type="button" class="btn btn-primary btn-lg btn-bg-color">Logout</button>
         </div>
     </nav>
 </body>

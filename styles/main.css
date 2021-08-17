@@ -1,7 +1,3 @@
-.bg-color{
-    background-color: #3C4E90;
-}
-
 .btn-bg-color{
     background-color: #4F8AC1;
     border-color: #4F8AC1;
@@ -11,4 +7,34 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.bg-secundaria{
+    /* Secundaria */
+    background: rgba(205, 205, 205, 0.69);
+}
+
+.bg-principal{
+    /* Principal */
+    background: #4F8AC1;
+}
+
+.bg-princ-escuro{
+    /* Principal Escuro */
+    background: #3C4E91;
+}
+
+.bg-claro{
+    /* Principal Escuro */
+    background: #3C4E91;
+}
+
+.bg-secund-claro{
+    /* Principal Escuro */
+    background: rgba(255, 199, 0, 0.81);
+}
+
+.bg-second-escuro{
+    /* Principal Escuro */
+    background: #FFBE17;
 }

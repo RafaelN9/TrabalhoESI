@@ -10,17 +10,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../styles/main.css"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="container" style="height: 100vh;">
+    <div class="container-fluid bg-secundaria" style="height: 100vh;">
         <div class="d-flex justify-content-center align-self-center">
             <div class="card w-50" style="margin-top: 15%; ">
-                <div class="card-header border border-secondary" style="background-color: darkblue;">
-                    <h3 class="text-white">Login</h3>
+                <div class="card-header border border-secondary bg-princ-escuro">
+                    <h3 class="text-dark">Login</h3>
                 </div>
-                <div class="card-body border border-secondary" style="background-color: darkblue;">
+                <div class="card-body border border-secondary bg-princ-escuro">
                     <form>
                     <div class="form-group">
                         <label for="loginEmail" class="text-white">Email</label>
