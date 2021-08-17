@@ -1,0 +1,14 @@
+.bg-color{
+    background-color: #3C4E90;
+}
+
+.btn-bg-color{
+    background-color: #4F8AC1;
+    border-color: #4F8AC1;
+}
+
+.brand-pos{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
