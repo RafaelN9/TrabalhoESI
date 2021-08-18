@@ -1,3 +1,61 @@
+<?php
+session_start();
+unset($_SESSION['tipo_usuario']);
+//$_SESSION['tipo_usuario'] = 'aluno';
+//$_SESSION['tipo_usuario'] = 'professor';
+//$_SESSION['tipo_usuario'] = 'ccp';
+$dropdown = '<div></div>';
+$dropNotifica ='<div></div>';
+if(isset($_SESSION['tipo_usuario'])){
+    $dropNotifica = '<div class="dropdown btn" role="group" aria-label="Notifications">
+    <button class="btn btn-secondary btn-lg" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-bell" width="100" height="100"></i>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button">Item 1</button>
+        <button class="dropdown-item" type="button">Item 2</button>
+        <button class="dropdown-item" type="button">Item 3</button>
+    </div>
+    </div>';
+
+if($_SESSION['tipo_usuario'] == 'aluno') 
+    $dropdown = '<div class="dropdown">
+                <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <button class="dropdown-item" type="button">aluno</button>
+                    <button class="dropdown-item" type="button">Item 2</button>
+                    <button class="dropdown-item" type="button">Item 3</button>
+                </div>
+            </div>';
+elseif($_SESSION['tipo_usuario'] == 'professor')
+    $dropdown = '<div class="dropdown">
+    <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <button class="dropdown-item" type="button">professor</button>
+        <button class="dropdown-item" type="button">Item 2</button>
+        <button class="dropdown-item" type="button">Item 3</button>
+    </div>
+    </div>';
+elseif($_SESSION['tipo_usuario'] == 'ccp')
+    $dropdown = '<div class="dropdown">
+    <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <button class="dropdown-item" type="button">CCP</button>
+        <button class="dropdown-item" type="button">Item 2</button>
+        <button class="dropdown-item" type="button">Item 3</button>
+    </div>
+    </div>';
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,31 +68,17 @@
 </head>
 <body>
     <nav class="navbar navbar-light bg-princ-escuro">
-        <div class="dropdown">
-            <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <button class="dropdown-item" type="button">Item 1</button>
-                <button class="dropdown-item" type="button">Item 2</button>
-                <button class="dropdown-item" type="button">Item 3</button>
-            </div>
-        </div>
+        <?php
+            echo $dropdown;
+        ?>
         <a class="navbar-brand brand-pos" href="#">
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Webysther_20160310_-_Logo_USP.svg" width="106" height="auto" class="rounded mx-auto d-block" alt="">
         </a>
-        <div class="btn-toolbar" role="toolbar">
-            <div class="dropdown btn" role="group" aria-label="Notifications">
-                <button class="btn btn-secondary btn-lg" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bell" width="100" height="100"></i>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button">Item 1</button>
-                    <button class="dropdown-item" type="button">Item 2</button>
-                    <button class="dropdown-item" type="button">Item 3</button>
-                </div>
-            </div>
-            <?php if(true){?>
+        <div class="btn-toolbar float-right" role="toolbar">
+            <?php
+                echo $dropNotifica;
+                if(true){
+            ?>
             <form action="../Login/login.php" class="align-self-center">
                 <input type="submit" class="btn-lg btn-bg-color text-white" name="submit" value="Login">
             </form>
