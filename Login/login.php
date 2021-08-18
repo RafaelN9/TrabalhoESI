@@ -7,9 +7,9 @@ include_once('../view/header.php');
         <div class="container-fluid">
             <div class="row h-100 align-items-center justify-content-center">
                 <div class="col-sm-12 col-md-10 col-lg-6 col-xl-4 bg-princ-escuro h-100 rounded">
-                    <div class="d-flex justify-content-center h-100 align-items-center p-2">
+                    <div class="d-flex justify-content-center h-100 pb-5 pt-5 align-items-center p-2">
                         <form style="width: 80%;" action="">
-                        <div class="form-group">
+                        <div class="form-group">    
                             <label for="loginEmail" class="text-white">Email</label>
                             <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="exemplo@gmail.com">
                         </div>
