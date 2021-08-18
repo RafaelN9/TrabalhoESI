@@ -67,29 +67,31 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
     <title></title>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-princ-escuro">
-        <?php
-            echo $dropdown;
-        ?>
-        <a class="navbar-brand brand-pos" href="#">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Webysther_20160310_-_Logo_USP.svg" width="106" height="auto" class="rounded mx-auto d-block" alt="">
-        </a>
-        <div class="btn-toolbar float-right" role="toolbar">
+    <div class="container-fluid h-100 bg-secundaria p-0">
+        <nav class="navbar navbar-light bg-princ-escuro">
             <?php
-                echo $dropNotifica;
-                if(true){
+                echo $dropdown;
             ?>
-            <form action="../Login/login.php" class="align-self-center">
-                <input type="submit" class="btn-lg btn-bg-color text-white" name="submit" value="Login">
-            </form>
-            <?php }else{?>
-            <form action="../Login/logout.php" class="align-self-center">
-                <button type="submit" class="btn-lg btn-bg-color text-white" name="submit" value="Cadastro">
-            </form>
-            <?php }?>
-            
-        </div>
-    </nav>
+            <a class="navbar-brand brand-pos" href="#">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Webysther_20160310_-_Logo_USP.svg" width="106" height="auto" class="rounded mx-auto d-block" alt="">
+            </a>
+            <div class="btn-toolbar float-right" role="toolbar">
+                <?php
+                    echo $dropNotifica;
+                    if(true){
+                ?>
+                <form action="../Login/login.php" class="align-self-center">
+                    <input type="submit" class="btn-lg btn-bg-color text-white" name="submit" value="Login">
+                </form>
+                <?php }else{?>
+                <form action="../Login/logout.php" class="align-self-center">
+                    <button type="submit" class="btn-lg btn-bg-color text-white" name="submit" value="Cadastro">
+                </form>
+                <?php }?>
+                
+            </div>
+        </nav>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

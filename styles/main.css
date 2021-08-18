@@ -1,3 +1,7 @@
+html, body{
+    height: 100%;
+}
+
 .btn-bg-color{
     background-color: #4F8AC1;
     border-color: #4F8AC1;
@@ -37,6 +41,13 @@
 .bg-second-escuro{
     /* Principal Escuro */
     background: #FFBE17;
+}
+
+.container-fluid{
+    background-image: url(http://www5.each.usp.br/wp-content/uploads/2015/11/logoeach2.png);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 @media screen and (max-width:320px) {
