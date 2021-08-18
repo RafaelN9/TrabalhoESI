@@ -38,3 +38,19 @@
     /* Principal Escuro */
     background: #FFBE17;
 }
+
+@media screen and (max-width:320px) {
+    
+    .brand-pos{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width:425px) {
+    
+    .brand-pos{
+        display: none;
+    }
+
+}

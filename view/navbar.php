@@ -20,7 +20,7 @@
                 <button class="dropdown-item" type="button">Item 3</button>
             </div>
         </div>
-        <a class="navbar-brand justify-self-center" href="#">
+        <a class="navbar-brand brand-pos" href="#">
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Webysther_20160310_-_Logo_USP.svg" width="106" height="auto" class="rounded mx-auto d-block" alt="">
         </a>
         <div class="btn-toolbar" role="toolbar">
