@@ -72,7 +72,7 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
             <?php
                 echo $dropdown;
             ?>
-            <a class="navbar-brand brand-pos" href="#">
+            <a class="navbar-brand brand-pos" href="../view/index.php">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Webysther_20160310_-_Logo_USP.svg" width="106" height="auto" class="rounded mx-auto d-block" alt="">
             </a>
             <div class="btn-toolbar float-right" role="toolbar">
