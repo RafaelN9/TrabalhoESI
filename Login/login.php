@@ -18,9 +18,6 @@
     <div class="container-fluid bg-secundaria" style="height: 100vh;">
         <div class="d-flex justify-content-center align-self-center">
             <div class="card w-50" style="margin-top: 15%; ">
-                <div class="card-header border border-secondary bg-princ-escuro">
-                    <h3 class="text-dark">Login</h3>
-                </div>
                 <div class="card-body border border-secondary bg-princ-escuro">
                     <form>
                         <div class="form-group">
