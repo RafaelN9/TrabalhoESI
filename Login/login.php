@@ -15,11 +15,12 @@
 </head>
 
 <body>
-    <div class="container-fluid bg-secundaria" style="height: 100vh;">
-        <div class="d-flex justify-content-center align-self-center">
-            <div class="card w-50" style="margin-top: 15%; ">
-                <div class="card-body border border-secondary bg-princ-escuro">
-                    <form>
+    <div class="container-fluid bg-secundaria d-flex align-items-center" style="height: 100vh;">
+        <div class="container-fluid">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-6 col-xl-4 bg-princ-escuro h-100 rounded">
+                    <div class="d-flex justify-content-center h-100 align-items-center p-2">
+                        <form style="width: 80%;" action="">
                         <div class="form-group">
                             <label for="loginEmail" class="text-white">Email</label>
                             <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="exemplo@gmail.com">
@@ -28,11 +29,12 @@
                             <label for="loginPwd" class="text-white">Senha</label>
                             <input type="password" class="form-control" id="loginPwd" placeholder="********">
                         </div>
-                        
-                        <button type="submit" class="btn btn-primary float-right">Entrar</button>
+                        <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
                         <a href="../Cadastro/cadastro.php" class="text-white">Cadastrar-se</a>
-                    
-                    </form>
+                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
