@@ -8,7 +8,7 @@
     <div class="container-fluid bg-secundaria" style="height: 100vh;">
         <div class="container-fluid h-100">
             <div class="row h-100 align-items-center p-5 justify-content-center">
-                <div class="col-sm-12 col-md-10 col-lg-6 col-xl-4 bg-princ-escuro h-100">
+                <div class="col-sm-12 col-md-10 col-lg-6 col-xl-4 bg-princ-escuro h-100 rounded">
                     <div class="d-flex justify-content-center h-100 align-items-center">
                         <form style="width: 80%;" action="db.php">
                             
