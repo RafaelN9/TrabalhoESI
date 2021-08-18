@@ -67,7 +67,7 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
     <title></title>
 </head>
 <body>
-    <div class="container-fluid h-100 bg-secundaria p-0">
+    <div class="container-fluid h-100 bg-secundaria p-0 bg-img">
         <nav class="navbar navbar-light bg-princ-escuro">
             <?php
                 echo $dropdown;

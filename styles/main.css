@@ -43,7 +43,7 @@ html, body{
     background: #FFBE17;
 }
 
-.container-fluid{
+.bg-img{
     background-image: url(http://www5.each.usp.br/wp-content/uploads/2015/11/logoeach2.png);
     background-blend-mode: multiply;
     background-repeat: no-repeat;
