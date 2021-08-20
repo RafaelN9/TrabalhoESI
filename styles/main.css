@@ -15,7 +15,7 @@ html, body{
 
 .bg-secundaria{
     /* Secundaria */
-    background: rgba(205, 205, 205, 0.69);
+    background: rgba(205, 205, 205, .5);
 }
 
 .bg-principal{
@@ -46,8 +46,10 @@ html, body{
 .bg-img{
     background-image: url(http://www5.each.usp.br/wp-content/uploads/2015/11/logoeach2.png);
     background-blend-mode: multiply;
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-height: 100vh;
 }
 
 @media screen and (max-width:320px) {
@@ -55,7 +57,6 @@ html, body{
     .brand-pos{
         display: none;
     }
-
 }
 
 @media screen and (max-width:425px) {
@@ -63,5 +64,4 @@ html, body{
     .brand-pos{
         display: none;
     }
-
 }

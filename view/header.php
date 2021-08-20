@@ -67,7 +67,8 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
     <title></title>
 </head>
 <body>
-    <div class="container-fluid h-100 bg-secundaria p-0 bg-img">
+    <div class="container-fluid h-100 bg-img p-0">
+        
         <nav class="navbar navbar-light bg-princ-escuro">
             <?php
                 echo $dropdown;
@@ -75,19 +76,22 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
             <a class="navbar-brand brand-pos" href="../view/index.php">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Webysther_20160310_-_Logo_USP.svg" width="106" height="auto" class="rounded mx-auto d-block" alt="">
             </a>
-            <div class="btn-toolbar float-right" role="toolbar">
+            <div class="float-right">
                 <?php
                     echo $dropNotifica;
                     if(true){
                 ?>
                 <form action="../Login/login.php" class="align-self-center">
-                    <input type="submit" class="btn-lg btn-bg-color text-white" name="submit" value="Login">
+                    <input type="submit" class="btn-lg btn-primary btn-bg-color text-white" name="submit" value="Login">
                 </form>
                 <?php }else{?>
                 <form action="../Login/logout.php" class="align-self-center">
-                    <button type="submit" class="btn-lg btn-bg-color text-white" name="submit" value="Cadastro">
+                    <button type="submit" class="btn-lg btn-primary btn-bg-color text-white" name="submit" value="Cadastro">
                 </form>
                 <?php }?>
                 
             </div>
         </nav>
+        <div class="bg-secundaria">
+        
+       
