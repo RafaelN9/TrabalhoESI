@@ -92,6 +92,6 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
                 
             </div>
         </nav>
-        <div class="bg-secundaria">
+        <div class="bg-secundaria h-100">
         
        
