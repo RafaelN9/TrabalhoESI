@@ -1,4 +1,4 @@
 <?php
     session_start();
-    unset($_SESSION["login"]);
-    header("Location: ../index.php");
+    unset($_SESSION["tipo_usuario"]);
+    header("Location: http://localhost/trabalhoESI/view/index.php");
