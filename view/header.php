@@ -1,12 +1,15 @@
 <?php
 session_start();
-unset($_SESSION['tipo_usuario']);
+//unset($_SESSION['tipo_usuario']);
 //$_SESSION['tipo_usuario'] = 'aluno';
 //$_SESSION['tipo_usuario'] = 'professor';
 //$_SESSION['tipo_usuario'] = 'ccp';
+//$_SESSION['tipo_usuario'] = 'erro';
 $dropdown = '<div></div>';
 $dropNotifica ='<div></div>';
+$botaoLogin = '';
 if(isset($_SESSION['tipo_usuario'])){
+    if($_SESSION['tipo_usuario'] != 'erro')
     $dropNotifica = '<div class="dropdown btn" role="group" aria-label="Notifications">
     <button class="btn btn-secondary btn-lg" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-bell" width="100" height="100"></i>
@@ -51,8 +54,14 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
         <button class="dropdown-item" type="button">Item 3</button>
     </div>
     </div>';
+elseif($_SESSION['tipo_usuario'] == 'erro')
+    $botaoLogin = '<form action="../Login/login.php" class="align-self-center">
+                    <input type="submit" class="btn-lg btn-primary btn-bg-color text-white" name="submit" value="Login">
+                </form>';
 
-}
+}else  $botaoLogin = '<form action="../Login/login.php" class="align-self-center">
+<input type="submit" class="btn-lg btn-primary btn-bg-color text-white" name="submit" value="Login">
+</form>';
 ?>
 
 
@@ -80,11 +89,8 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
                 <?php
                     echo $dropNotifica;
                     if(true){
-                ?>
-                <form action="../Login/login.php" class="align-self-center">
-                    <input type="submit" class="btn-lg btn-primary btn-bg-color text-white" name="submit" value="Login">
-                </form>
-                <?php }else{?>
+                        echo $botaoLogin;
+                    }else{?>
                 <form action="../Login/logout.php" class="align-self-center">
                     <button type="submit" class="btn-lg btn-primary btn-bg-color text-white" name="submit" value="Cadastro">
                 </form>
