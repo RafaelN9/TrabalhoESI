@@ -10,7 +10,7 @@
                             <input type="email" class="form-control mb-4 p-4" name="cadastroEmail"  aria-describedby="emailHelp" placeholder="Email" required>
                             <input type="text"  class="form-control mb-4 p-4" name="cadastroCPF"    placeholder="CPF" required>
                             <input type="password" class="form-control mb-4 p-4" name="cadastroSenha" aria-describedby="pwdHelp" placeholder="Senha" required>
-                            <input type="submit" class="btn btn-primary p-3 float-right" name="submit" value="Cadastrar">
+                            <input type="submit" class="btn btn-primary p-3 float-right" name="cadastro" value="Cadastrar">
                         </form>
                     </div>
                 </div>

@@ -36,7 +36,7 @@ CREATE TABLE Aluno(
 	Numero_USP varchar(20) NOT NULL PRIMARY KEY,
     Nome varchar(100) Not null,
     Email varchar(100) not null,
-    Senha varchar(16) not null,
+    Senha varchar(50) not null,
     Link_Curriculo varchar(256) not null,
     Cod_Curso int(11) not null,
     FOREIGN KEY (Cod_Curso) REFERENCES Cursos(Codigo),
@@ -102,5 +102,7 @@ Create table AvaliacaoCCP(
 insert into Nota(Nome) values("ADEQUADO"),("ADEQUADO COM RESSALVAS"), ("INSATISFATÓRIO");
 
 insert into Cursos(Nome) values("Mestrado"),("Doutorado");
+    
+insert into Aluno values('123123', 'Zé Silva', 'ze@gmail.com', MD5('12345678'), 'curriculo', 1, '111.111.111-22');
 
 
