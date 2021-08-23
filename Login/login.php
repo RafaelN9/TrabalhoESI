@@ -1,6 +1,5 @@
 <?php
 include_once('../view/simple_header.php');
-session_start();
 ?>
 
 

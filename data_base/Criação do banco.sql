@@ -36,7 +36,7 @@ CREATE TABLE Aluno(
 	Numero_USP varchar(20) NOT NULL PRIMARY KEY,
     Nome varchar(100) Not null,
     Email varchar(100) not null,
-    Senha varchar(50) not null,
+    Senha varbinary(128) not null,
     Link_Curriculo varchar(256) not null,
     Cod_Curso int(11) not null,
     FOREIGN KEY (Cod_Curso) REFERENCES Cursos(Codigo),
@@ -56,7 +56,7 @@ CREATE TABLE Professor(
 	CPF varchar(14) NOT NULL PRIMARY KEY,
     Nome varchar(100) Not null,
     Email varchar(100) not null,
-    Senha varchar(16) not null
+    Senha varbinary(128) not null
 );
 
 Create table Nota(
