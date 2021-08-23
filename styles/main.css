@@ -52,6 +52,10 @@ html, body{
     min-height: 100vh;
 }
 
+::-webkit-scrollbar{
+    width: 0;
+}
+
 @media screen and (max-width:320px) {
     
     .brand-pos{
