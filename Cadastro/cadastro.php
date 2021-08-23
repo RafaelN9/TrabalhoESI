@@ -11,9 +11,9 @@
         <div class="container-fluid ">
             <div class="row h-100 p-md-5 justify-content-center">
                 <div class="col-sm-12 col-md-10 col-lg-6 col-xl-5 bg-princ-escuro h-100 rounded">
-                    <div class="d-flex justify-content-around h-100 mt-2">
+                    <div class="d-flex justify-content-around mt-2">
                         <div class="btn-group" role="group">
-                            <button id="cadastroAluno" class="btn btn-success active p-3" >Aluno</button>
+                            <button id="cadastroAluno" class="btn btn-success active p-3">Aluno</button>
                             <button id="cadastroProf" class="btn btn-success p-3">Professor</button>
                             <button id="cadastroCCP" class="btn btn-success p-3">CCP</button>
                         </div>
