@@ -12,7 +12,7 @@
         return $result;
     }
 
-    //var_dump($_POST);
+    var_dump($_POST);
     if(isset($_POST["login"]) && $_POST["login"] == "Entrar"){
         if(isset($_POST["loginEmail"]) && isset($_POST["loginPwd"])){
             $queryAluno = "SELECT Email FROM aluno WHERE Email = '$_POST[loginEmail]' AND Senha = MD5('$_POST[loginPwd]') LIMIT 1";
