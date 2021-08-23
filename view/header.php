@@ -84,7 +84,7 @@ elseif($_SESSION['tipo_usuario'] == 'erro')
     <title></title>
 </head>
 <body>
-    <div class="container-fluid h-100 bg-img p-0">
+    <div class="container-fluid bg-img p-0" style="min-height: 100vh">
         
         <nav class="navbar navbar-light bg-princ-escuro">
             <?php

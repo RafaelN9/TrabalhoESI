@@ -9,8 +9,8 @@
             <p class='text-break'>$content</p>
         </div>";
 ?>
-<div class="container-fluid h-100 m-0 p-0 pl-5 pr-5" style="background-color: #FFFFFF;">
-    <div class="container-fluid h-100 bg-principal p-5 overflow-auto text-light">
+<div class="container-fluid p-5" style="height: 50%;">
+    <div class="container h-100 bg-principal p-5 overflow-auto text-light">
         <?php echo $section ?>
         <?php echo $section ?>
         <?php echo $section ?>
@@ -21,5 +21,11 @@
         <a class="btn-lg btn-primary float-right pl-4 pr-4">Avaliar</a>
     </div>
 </div>
+
+<style>
+    ::-webkit-scrollbar{
+        width: 0;
+    }
+</style>
 
 <?php include_once('../view/footer.php'); ?>
