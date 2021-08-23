@@ -39,7 +39,5 @@
             }
         }
     }
-    if(isset($_POST['cadastro'])){
-        false;
-    }
+    
     $_SESSION["from_code"] = false;
