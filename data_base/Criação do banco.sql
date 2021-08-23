@@ -105,4 +105,28 @@ insert into Cursos(Nome) values("Mestrado"),("Doutorado");
     
 insert into Aluno values('123123', 'Zé Silva', 'ze@gmail.com', MD5('12345678'), 'curriculo', 1, '111.111.111-22');
 
+INSERT INTO `aluno` (`Numero_USP`, `Nome`, `Email`, `Senha`, `Link_Curriculo`, `Cod_Curso`, `CPF`) VALUES
+('12345678901234567890', 'Rafael Coréia', 'rafael@gmail.com', 'senha123', 'https://www.google.com', 1, '123.456.789-10');
 
+INSERT INTO `avaliacaoccp` (`Cod_FormEnv`, `CPF_CCP`, `Parecer`, `Cod_Nota`) VALUES
+(1, '123.456.789-02', 'Ta uma merda', 3);
+
+INSERT INTO `avaliacaoprof` (`Cod_FormEnv`, `CPF_Prof`, `Parecer`, `Cod_Nota`) VALUES
+(1, '123.456.789-01', 'Foi bom', 1);
+
+INSERT INTO `ccp` (`CPF_prof`) VALUES
+('123.456.789-02');
+
+INSERT INTO `formulario` (`Codigo`, `Questao_6`, `Questao_7`, `Questao_8`, `Questao_9`, `Questao_10`, `Questao_11`, `Questao_12`, `Questao_13`, `Questao_14`, `Questao_15`, `Questao_16`, `Questao_17`, `Questao_18`, `Questao_19`, `Questao_20`, `Questao_21`, `Questao_22`, `Questao_23`, `Questao_24`, `Questao_25`, `Questao_26`, `Questao_27`, `Questao_28`) VALUES
+(1, 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q1', 'q1', 'q17', 'q18', 'q19', 'q20', 'q21', 'q22', 'q23'),
+(2, 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q1', 'q1', 'q17', 'q18', 'q19', '0', '1', 'q22', 'q23');
+
+INSERT INTO `formularioenviado` (`Numero_USP`, `Cod_Formulario`, `Data`) VALUES
+('12345678901234567890', 1, '2021-08-23'), ('12345678901234567890', 2, '2021-08-23');
+
+INSERT INTO `professor` (`CPF`, `Nome`, `Email`, `Senha`) VALUES
+('123.456.789-01', 'José Alves da Silva', 'jose_alves@usp.br', 'senha321'),
+('123.456.789-02', 'Carlos Silva', 'carlos_silva@usp.br', 'senha321');
+
+INSERT INTO `professorresp` (`Numero_USP`, `CPF_Prof`) VALUES
+('12345678901234567890', '123.456.789-01');
