@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once('../data_base/functions.php');
 //unset($_SESSION['tipo_usuario']);
 //$_SESSION['tipo_usuario'] = 'aluno';
 //$_SESSION['tipo_usuario'] = 'professor';
@@ -10,22 +10,23 @@ $dropNotifica ='<div></div>';
 $botaoLogin = '';
 if(isset($_SESSION['tipo_usuario'])){
     if($_SESSION['tipo_usuario'] != 'erro'){
-        $dropNotifica = '<div class="dropdown btn" role="group" aria-label="Notifications">
-        <button class="btn btn-secondary btn-lg" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-bell" width="100" height="100"></i>
+        $user = $_SESSION['tipo_usuario'];
+        $dropNotifica = "<div class='dropdown btn' role='group' aria-label='Notifications'>
+        <button class='btn btn-secondary btn-lg' type='button' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+            <i class='fas fa-bell' width='100' height='100'></i>
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button">Item 1</button>
-            <button class="dropdown-item" type="button">Item 2</button>
-            <button class="dropdown-item" type="button">Item 3</button>
+        <div class='dropdown-menu' aria-labelledby='dropdownMenu2'>
+            <button class='dropdown-item' type='button'>$user</button>
+            <button class='dropdown-item' type='button'>Item 2</button>
+            <button class='dropdown-item' type='button'>Item 3</button>
         </div>
-        </div>';
-        $botaoLogin = '
-        <div class="d-flex align-items-center">
-        <a style="min-width: 35px; min-height: 35px;" href="../Login/logout.php" class="btn btn-danger p-2 w-100 align-content-center">
-            <i class="fas fa-sign-out-alt"></i>
+        </div>";
+        $botaoLogin = "
+        <div class='d-flex align-items-center'>
+        <a style='min-width: 35px; min-height: 35px;' href='../Login/logout.php' class='btn btn-danger p-2 w-100 align-content-center'>
+            <i class='fas fa-sign-out-alt'></i>
         </a>
-        </div>'
+        </div>"
        ;
     }
 
@@ -46,12 +47,13 @@ elseif($_SESSION['tipo_usuario'] == 'professor')
         <i class="fas fa-bars"></i>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <button class="dropdown-item" type="button">professor</button>
+        <button class="dropdown-item" type="button"><a href="../Relatorios/relatorios_pendentes.php">Relatórios Pendentes</a></button>
         <button class="dropdown-item" type="button">Item 2</button>
         <button class="dropdown-item" type="button">Item 3</button>
     </div>
     </div>';
 elseif($_SESSION['tipo_usuario'] == 'ccp')
+
     $dropdown = '<div class="dropdown">
     <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-bars"></i>

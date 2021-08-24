@@ -8,9 +8,12 @@ include_once('../view/simple_header.php');
         <div class="row h-100 align-items-center justify-content-center">
 
             <div class="col-sm-12 col-md-10 col-lg-6 col-xl-4 bg-princ-escuro h-100 rounded">
+                <h3 id="throwError" class="m-4" style="display: none;"></h3>
                 <?php
-                if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'erro')
-                    echo "<h3>Email e/ou senha incorretos</h3>";
+                if (isset($_SESSION['error'])){
+                    showError("throwError", $_SESSION['error']);
+                    unset($_SESSION["error"]);
+                }
                 ?>
                 <div class="d-flex justify-content-center h-100 pb-5 pt-5 align-items-center p-2">
 
