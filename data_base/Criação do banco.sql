@@ -35,12 +35,12 @@ CREATE TABLE Cursos(
 CREATE TABLE Aluno(
 	Numero_USP varchar(20) NOT NULL PRIMARY KEY,
     Nome varchar(100) Not null,
-    Email varchar(100) not null,
+    Email varchar(100) not null UNIQUE,
     Senha varbinary(128) not null,
     Link_Curriculo varchar(256) not null,
     Cod_Curso int(11) not null,
     FOREIGN KEY (Cod_Curso) REFERENCES Cursos(Codigo),
-    CPF varchar(14) not null
+    CPF varchar(14) not null UNIQUE
 );
 
 Create table FormularioEnviado(
@@ -55,7 +55,7 @@ Create table FormularioEnviado(
 CREATE TABLE Professor(
 	CPF varchar(14) NOT NULL PRIMARY KEY,
     Nome varchar(100) Not null,
-    Email varchar(100) not null,
+    Email varchar(100) not null UNIQUE,
     Senha varbinary(128) not null
 );
 

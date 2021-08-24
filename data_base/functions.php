@@ -46,6 +46,27 @@
         }
     }
 
+    if(isset($_POST["cadastroAluno"])){
+        $query = "INSERT INTO aluno values('$_POST[cadastroNumUsp]', '$_POST[cadastroNome]','$_POST[cadastroEmail]','$_POST[cadastroSenha]','$_POST[cadastroCurriculo]','$_POST[cadastroCurso]','$_POST[cadastroCPF]')";
+        $result = runSQL($query);
+        $_SESSION["result_cad"] = $result;
+        header("Location: http://localhost/trabalhoESI/Login/login.php");
+    }
+
+    if(isset($_POST["cadastroProf"])){
+        $query = "INSERT INTO professor values('$_POST[cadastroCPF]', '$_POST[cadastroNome]','$_POST[cadastroEmail]','$_POST[cadastroSenha]')";
+        $result = runSQL($query); 
+        $_SESSION["result_cad"] = $result;
+        header("Location: http://localhost/trabalhoESI/Login/login.php");
+    }
+
+    if(isset($_POST["cadastroCCP"])){
+        $query = "INSERT INTO ccp values('$_POST[cadastroCPF]')";
+        $result = runSQL($query); 
+        $_SESSION["result_cad"] = $result;
+        header("Location: http://localhost/trabalhoESI/Login/login.php");
+    }
+
     function showError($divToDisplay, $errorMsg){
         echo "<script>
             var divToDisplay = document.querySelector('#$divToDisplay');

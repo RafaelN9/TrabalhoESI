@@ -14,6 +14,13 @@ include_once('../view/simple_header.php');
                     showError("throwError", $_SESSION['error']);
                     unset($_SESSION["error"]);
                 }
+                if (isset($_SESSION['result_cad'])){
+                    if($_SESSION['result_cad'] == 1)
+                        showError("throwError", 'Cadastrado com sucesso');
+                    else
+                        showError("throwError", $_SESSION['result_cad']);
+                    unset($_SESSION["result_cad"]);
+                }
                 ?>
                 <div class="d-flex justify-content-center h-100 pb-5 pt-5 align-items-center p-2">
 
