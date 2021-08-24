@@ -1,5 +1,6 @@
 <?php
 require_once('../data_base/functions.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

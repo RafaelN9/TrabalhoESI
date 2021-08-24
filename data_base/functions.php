@@ -11,6 +11,8 @@
         
         return $result;
     }
+    if(isset($_SESSION["tipo_usuario"]) and $_SESSION["tipo_usuario"] === 'erro')
+        unset($_SESSION["tipo_usuario"]);
     
     if(isset($_POST["login"]) && $_POST["login"] == "Entrar"){
         if(isset($_POST["loginEmail"]) && isset($_POST["loginPwd"])){
