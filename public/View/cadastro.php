@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div id="formAluno" class="d-flex justify-content-center pt-5 pb-5 h-100 p-sm-3 p-md-5">
-                        <form class="w-100" method="POST" action="../data_base/functions.php">
+                        <form class="w-100" method="POST" action="../../data_base/functions.php">
                             <label for="cadastroNumUsp" class="text-white">Número USP</label>
                             <input type="text"  class="form-control mb-4 p-4" name="cadastroNumUsp" id="cadastroNumUsp" placeholder="N° USP" required>
 
@@ -51,7 +51,7 @@
 
 
                     <div id="formProfessor" class="d-none justify-content-center pt-5 pb-5 h-100 p-sm-3 p-md-5">
-                        <form class="w-100" method="POST" action="../data_base/functions.php">
+                        <form class="w-100" method="POST" action="../../data_base/functions.php">
                             <label for="cadastroNome" class="text-white">Nome</label>
                             <input type="text"  class="form-control mb-4 p-4" name="cadastroNome" id="cadastroNome" placeholder="Nome" required>
                             
@@ -70,7 +70,7 @@
 
 
                     <div id="formCCP" class="d-none justify-content-center pt-5 pb-5 h-100 p-sm-3 p-md-5">
-                        <form class="w-100" method="POST" action="../data_base/functions.php">
+                        <form class="w-100" method="POST" action="../../data_base/functions.php">
                             <label for="cadastroCPF" class="text-white">CPF Professor</label>
                             <input type="text"  class="form-control mb-4 p-4" name="cadastroCPF" id="cadastroCPF" placeholder="CPF" required>
                             
