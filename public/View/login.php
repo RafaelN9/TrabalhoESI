@@ -1,5 +1,5 @@
 <?php
-include_once('../view/simple_header.php');
+include_once('simple_header.php');
 ?>
 
 
