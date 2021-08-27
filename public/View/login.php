@@ -1,7 +1,20 @@
 <?php
 include_once('simple_header.php');
-?>
 
+
+if (isset($_REQUEST['result_cad'])){
+    if($_REQUEST['result_cad'] == 1)
+        echo '<script>setTimeout(function() {
+            alert("Cadastrado com sucesso");
+            }, 100);</script>';
+    else
+    echo '<script>setTimeout(function() {
+        alert("'.$_REQUEST['result_cad'].'");
+        }, 100);</script>';
+    unset($_REQUEST['result_cad']);
+}
+
+?>
 
 <div class="container-fluid h-100 pt-5 d-flex align-items-center">
     <div class="container-fluid">
@@ -9,19 +22,7 @@ include_once('simple_header.php');
 
             <div class="col-sm-12 col-md-10 col-lg-6 col-xl-4 bg-princ-escuro h-100 rounded">
                 <h3 id="throwError" class="m-4" style="display: none;"></h3>
-                <?php
-                if (isset($_SESSION['error'])){
-                    showError("throwError", $_SESSION['error']);
-                    unset($_SESSION["error"]);
-                }
-                if (isset($_SESSION['result_cad'])){
-                    if($_SESSION['result_cad'] == 1)
-                        showError("throwError", 'Cadastrado com sucesso');
-                    else
-                        showError("throwError", $_SESSION['result_cad']);
-                    unset($_SESSION["result_cad"]);
-                }
-                ?>
+               
                 <div class="d-flex justify-content-center h-100 pb-5 pt-5 align-items-center p-2">
 
                     <form style="width: 80%;" action="../data_base/functions.php" method="POST">
@@ -35,7 +36,7 @@ include_once('simple_header.php');
                         </div>
                         <div class="d-flex justify-content-between">
                             <input type="submit" value="Entrar" name="login" class="btn btn-primary">
-                            <a href="../Cadastro/cadastro.php" class="text-white">Cadastrar-se</a>
+                            <a href="cadastro.php" class="text-white">Cadastrar-se</a>
                         </div>
                     </form>
                 </div>
@@ -45,5 +46,5 @@ include_once('simple_header.php');
 </div>
 
 <?php
-include_once('../view/footer.php');
+include_once('footer.php');
 ?>

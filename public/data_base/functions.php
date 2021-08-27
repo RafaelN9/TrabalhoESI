@@ -11,6 +11,7 @@
         
         return $result;
     }
+    /*
     if(isset($_SESSION["tipo_usuario"]) and $_SESSION["tipo_usuario"] === 'erro')
         unset($_SESSION["tipo_usuario"]);
     
@@ -67,6 +68,17 @@
         header("Location: http://localhost/trabalhoESI/Login/login.php");
     }
 
+    
+
+    function runQuery($query){
+        $result = runSQL($query);
+        if ($result != null)
+            if(mysqli_num_rows($result) > 0)
+                return $result;
+    }    
+    
+    $_SESSION["from_code"] = false;*/
+
     function showError($divToDisplay, $errorMsg){
         echo "<script>
             var divToDisplay = document.querySelector('#$divToDisplay');
@@ -78,12 +90,3 @@
             }, 5000);
         </script>";
     }
-
-    function runQuery($query){
-        $result = runSQL($query);
-        if ($result != null)
-            if(mysqli_num_rows($result) > 0)
-                return $result;
-    }    
-    
-    $_SESSION["from_code"] = false;

@@ -19,21 +19,31 @@ class Aluno{
         $this->CPF = $cpf;
     }
 
-    public function imprime(){
-        echo $this->Numero_USP.'<br>';
-        echo $this->Nome.'<br>';
-        echo $this->Email.'<br>';
-        echo $this->Senha.'<br>';
-        echo $this->Link_Curriculo.'<br>';
-        echo $this->Cod_Curso.'<br>';
-        echo $this->CPF.'<br>';
-    }
-
     public function getNumero_USP(){
         return $this->Numero_USP;
     }
 
     public function getNome(){
         return $this->Nome;
+    }
+
+    public function getEmail(){
+        return $this->Email;
+    }
+
+    public function getSenha(){
+        return $this->Senha;
+    }
+
+    public function getLink_Curriculo(){
+        return $this->Link_Curriculo;
+    }
+
+    public function getCod_Curso(){
+        return $this->Cod_Curso;
+    }
+
+    public function getCPF(){
+        return $this->CPF;
     }
 }

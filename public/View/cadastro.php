@@ -1,4 +1,4 @@
-<?php include_once('../view/simple_header.php'); 
+<?php include_once('simple_header.php'); 
 
     $queryCurso = "SELECT * FROM Cursos";
     $resultCurso = runSQL($queryCurso);
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div id="formAluno" class="d-flex justify-content-center pt-5 pb-5 h-100 p-sm-3 p-md-5">
-                        <form class="w-100" method="POST" action="../../data_base/functions.php">
+                        <form class="w-100" method="POST" action="../index.php?c=CadastroAluno&a=cadastrarAluno">
                             <label for="cadastroNumUsp" class="text-white">Número USP</label>
                             <input type="text"  class="form-control mb-4 p-4" name="cadastroNumUsp" id="cadastroNumUsp" placeholder="N° USP" required>
 
@@ -45,7 +45,7 @@
                             ?>
                             </select>
 
-                            <input type="submit" class="btn btn-primary p-3 float-right" name="cadastroAluno" value="Cadastrar">
+                            <input type="submit" class="btn btn-primary p-3 float-right" name="CadastroAluno" value="Cadastrar">
                         </form>
                     </div>
 
@@ -83,6 +83,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="scritp.js"></script>
+    <script type="text/javascript" src="scripts/scritpCadastro.js"></script>
     
-<?php include_once('../view/footer.php');?>
+<?php include_once('footer.php');?>
