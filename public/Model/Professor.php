@@ -6,7 +6,7 @@ class Professor{
     private $Senha;
     private $CPF;
 
-    function __construct($nome, $email, $senha, $cpf) {
+    function __construct($cpf, $nome, $email, $senha) {
         $this->Nome = $nome;
         $this->Email = $email;
         $this->Senha = $senha;

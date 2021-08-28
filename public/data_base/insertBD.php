@@ -16,4 +16,20 @@ class insertBD{
         $result = runSQL($query);
         return $result;
     }
+
+    public function cadastrarProfessorDB(Professor $prof){
+        $nome = $prof->getNome();
+        $email = $prof->getEmail();
+        $senha = $prof->getSenha();
+        $cpf = $prof->getCPF();
+        $query = "INSERT INTO professor values('$cpf', '$nome', '$email', MD5('$senha'))";
+        $result = runSQL($query);
+        return $result;
+    }
+
+    public function cadastrarCCPDB($cpf){
+        $query = "INSERT INTO CCP values('$cpf')";
+        $result = runSQL($query);
+        return $result;
+    }
 }

@@ -13,7 +13,7 @@ class ControllerLogin{
 
     public function verificaCCP($email, $senha){
         require_once 'Model/Professor.php';
-        $prof = new Professor('', $email, $senha, '');
+        $prof = new Professor('', '', $email, $senha);
         $bd = new ConsultaLogin();
         $resultado = $bd->consultaCCP($prof);
         return $resultado;
@@ -21,7 +21,7 @@ class ControllerLogin{
 
     public function verificaProfessor($email, $senha){
         require_once 'Model/Professor.php';
-        $prof = new Professor('', $email, $senha, '');
+        $prof = new Professor('', '', $email, $senha);
         $bd = new ConsultaLogin();
         $resultado = $bd->consultaProfessor($prof);
         return $resultado;

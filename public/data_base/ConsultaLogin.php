@@ -10,10 +10,8 @@ class ConsultaLogin{
         $query = "SELECT Email FROM aluno WHERE Email = '$email' AND Senha = MD5('$senha') LIMIT 1";
         $result = runSQL($query);
         if(mysqli_fetch_assoc($result)){
-            $_SESSION["tipo_usuario"] = 'aluno';
             return true;
         }
-
         return false;
     }
 
@@ -21,13 +19,13 @@ class ConsultaLogin{
         $email = $prof->getEmail();
         $senha = $prof->getSenha();
 
-        $query = "SELECT Email FROM professor INNER JOIN ccp on professor.CPF = ccp.CPF_Prof WHERE Email = '$email' AND Senha = MD5('$senha') LIMIT 1";
+        $query = "SELECT professor.Nome, professor.CPF FROM professor INNER JOIN ccp on professor.CPF = ccp.CPF_Prof WHERE Email = '$email' AND Senha = MD5('$senha') LIMIT 1";
         $result = runSQL($query);
-        if(mysqli_fetch_assoc($result)){
-            $_SESSION["tipo_usuario"] = 'ccp';
+        if($row = mysqli_fetch_assoc($result)){
+            $prof->setNome("$row[Nome]");
+            $prof->setCPF("$row[CPF]");
             return true;
         }
-
         return false;
     }
 
@@ -35,10 +33,11 @@ class ConsultaLogin{
         $email = $prof->getEmail();
         $senha = $prof->getSenha();
 
-        $query = "SELECT Email FROM professor WHERE Email = '$email' AND Senha = MD5('$senha') LIMIT 1";
+        $query = "SELECT Nome, CPF FROM professor WHERE Email = '$email' AND Senha = MD5('$senha') LIMIT 1";
         $result = runSQL($query);
-        if(mysqli_fetch_assoc($result)){
-            $_SESSION["tipo_usuario"] = 'professor';
+        if($row = mysqli_fetch_assoc($result)){
+            $prof->setNome("$row[Nome]");
+            $prof->setCPF("$row[CPF]");
             return true;
         }
 
