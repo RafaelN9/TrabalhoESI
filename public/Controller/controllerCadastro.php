@@ -1,20 +1,12 @@
 <?php
 require_once 'Model/Aluno.php';
+require_once 'data_base/insertBD.php';
+class ControllerCadastro{
 
-class PessoaController {
-
- public function listar() {
-    $aluno = new Aluno("123", 'joao', 'joao@gmail.com', '13','link','mestrado','1515156161');
-    $alunos[] = $aluno;
-
-    $aluno = new Aluno("312", 'carlos', 'joao@gmail.com', '13','link','mestrado','1515156161');
-    $alunos[] = $aluno;
-
-
- $_REQUEST['alunos'] = $alunos;
-
- require_once 'View/listarAlunos.php';
- }
+    public function cadastrarAluno($nUSP, $nome, $email, $senha, $link, $Cod_Curso, $cpf){
+        $aluno = new Aluno($nUSP, $nome, $email, $senha, $link, $Cod_Curso, $cpf);
+        $bd = new insertBD();
+        $resultado = $bd->cadastrarAlunoDB($aluno);
+        return $resultado;
+    }
 }
-
-?>

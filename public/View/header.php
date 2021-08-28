@@ -1,5 +1,5 @@
 <?php
-require_once('../data_base/functions.php');
+require_once('data_base/functions.php');
 //unset($_SESSION['tipo_usuario']);
 //$_SESSION['tipo_usuario'] = 'aluno';
 //$_SESSION['tipo_usuario'] = 'professor';
@@ -9,7 +9,6 @@ $dropdown = '<div></div>';
 $dropNotifica ='<div></div>';
 $botaoLogin = '';
 if(isset($_SESSION['tipo_usuario'])){
-    if($_SESSION['tipo_usuario'] != 'erro'){
         $user = $_SESSION['tipo_usuario'];
         $dropNotifica = "<div class='dropdown btn' role='group' aria-label='Notifications'>
         <button class='btn btn-secondary btn-lg' type='button' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
@@ -23,12 +22,11 @@ if(isset($_SESSION['tipo_usuario'])){
         </div>";
         $botaoLogin = "
         <div class='d-flex align-items-center'>
-        <a style='min-width: 35px; min-height: 35px;' href='../../Login/logout.php' class='btn btn-danger p-2 w-100 align-content-center'>
+        <a style='min-width: 35px; min-height: 35px;' href='View/logout.php' class='btn btn-danger p-2 w-100 align-content-center'>
             <i class='fas fa-sign-out-alt'></i>
         </a>
         </div>"
        ;
-    }
 
 if($_SESSION['tipo_usuario'] == 'aluno') 
     $dropdown = '<div class="dropdown">
@@ -64,12 +62,8 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
         <button class="dropdown-item" type="button">Item 3</button>
     </div>
     </div>';
-elseif($_SESSION['tipo_usuario'] == 'erro')
-    $botaoLogin = '<form action="../../Login/login.php" class="align-self-center">
-                    <input type="submit" class="btn-lg btn-primary btn-bg-color text-white" name="submit" value="Login">
-                </form>';
 
-}else  $botaoLogin = '<form action="../../Login/login.php" class="align-self-center">
+}else  $botaoLogin = '<form action="View/login.php" class="align-self-center">
 <input type="submit" class="btn-lg btn-primary btn-bg-color text-white" name="submit" value="Login">
 </form>';
 ?>
@@ -82,7 +76,7 @@ elseif($_SESSION['tipo_usuario'] == 'erro')
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/main.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="View/styles/main.css?v=<?php echo time(); ?>">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <title></title>
 </head>
@@ -93,7 +87,7 @@ elseif($_SESSION['tipo_usuario'] == 'erro')
             <?php
                 echo $dropdown;
             ?>
-            <a class="navbar-brand brand-pos" href="../../view/index.php">
+            <a class="navbar-brand brand-pos" href="index.php">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Webysther_20160310_-_Logo_USP.svg" width="106" height="auto" class="rounded mx-auto d-block" alt="">
             </a>
             <div class="float-right d-flex">

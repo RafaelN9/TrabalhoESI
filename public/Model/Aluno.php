@@ -9,7 +9,7 @@ class Aluno{
     private $Cod_Curso;
     private $CPF;
 
-    function __construct($nUSP, $nome, $email, $senha, $link, $Cod_Curso, $cpf) {
+    function __construct($nUSP, $nome, $email, $senha, $link, $Cod_Curso, $cpf){
         $this->Numero_USP = $nUSP;
         $this->Nome = $nome;
         $this->Email = $email;
@@ -45,5 +45,33 @@ class Aluno{
 
     public function getCPF(){
         return $this->CPF;
+    }
+
+    public function setNumero_USP($numero_USP){
+        $this->Numero_USP = $numero_USP;
+    }
+
+    public function setNome($Nome){
+        $this->Nome = $Nome;
+    }
+
+    public function setEmail($Email){
+        $this->Email = $Email;
+    }
+
+    public function setSenha($Senha){
+        $this->Senha = $Senha;
+    }
+
+    public function setLink_Curriculo($Link_Curriculo){
+        $this->Link_Curriculo = $Link_Curriculo;
+    }
+
+    public function setCod_Curso($Cod_Curso){
+        $this->Cod_Curso = $Cod_Curso;
+    }
+
+    public function setCPF($CPF){
+        $this->CPF = $CPF;
     }
 }

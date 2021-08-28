@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div id="formAluno" class="d-flex justify-content-center pt-5 pb-5 h-100 p-sm-3 p-md-5">
-                        <form class="w-100" method="POST" action="../index.php?c=CadastroAluno&a=cadastrarAluno">
+                        <form class="w-100" method="POST" action="../index.php">
                             <label for="cadastroNumUsp" class="text-white">Número USP</label>
                             <input type="text"  class="form-control mb-4 p-4" name="cadastroNumUsp" id="cadastroNumUsp" placeholder="N° USP" required>
 
@@ -36,7 +36,7 @@
                             <input type="password" class="form-control mb-4 p-4" name="cadastroSenha" id="cadastroSenha" aria-describedby="pwdHelp" placeholder="Senha" required>
                             
                             <label for="cadastroCurriculo" class="text-white">Link do currículo</label>
-                            <input type="text"  class="form-control mb-4 p-4" name="cadastroCurriculo" id="cadastroCurriculo" placeholder="CPF" required>
+                            <input type="text"  class="form-control mb-4 p-4" name="cadastroCurriculo" id="cadastroCurriculo" placeholder="Link" required>
                             
                             <label for="cadastroCurso" class="text-white">Curso</label>
                             <select name="cadastroCurso" class="form-control mb-4" id="cadastroCurso">
