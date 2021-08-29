@@ -6,23 +6,28 @@ if(!isset($_SESSION['tipo_usuario']))
             require_once('Controller/ControllerLogin.php');
             $controller = new ControllerLogin();
             $result = $controller->verificaAluno($_POST["loginEmail"],$_POST["loginPwd"]);
-            if($result)
+            if($result){
+                $_SESSION['cod_usuario'] = $result;
                 $_SESSION['tipo_usuario'] = 'aluno';
-            else{
+            }else{
                 $result = $controller->verificaCCP($_POST["loginEmail"],$_POST["loginPwd"]);
-                if($result)
+                if($result){
+                    $_SESSION['cod_usuario'] = $result;
                     $_SESSION['tipo_usuario'] = 'ccp';
-                else{
+                }else{
                     $result = $controller->verificaProfessor($_POST["loginEmail"],$_POST["loginPwd"]);
-                    $_SESSION['tipo_usuario'] = 'professor';
+                    if($result){
+                        $_SESSION['cod_usuario'] = $result;
+                        $_SESSION['tipo_usuario'] = 'professor';
+                    }
                 }
             }
         }
 
     }
 
+    
 require_once('View/header.php');
-
 
 if(isset($_POST["CadastroAluno"])){
     require_once 'Controller/ControllerCadastro.php';
@@ -45,10 +50,13 @@ if(isset($_POST["cadastroCCP"])){
     header("Location: http://localhost/trabalhoESI/public/View/login.php");
 }
 
+/*
+require_once 'Controller/ControllerRelatorio.php';
 
-
-
-
+$controller = new ControllerRelatorio();
+$controller->ControllerRelatorio($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
+//if(isset($_GET[""]))
+*/
 
 require_once('View/footer.php');
 ?>

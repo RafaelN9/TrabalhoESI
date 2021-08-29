@@ -1,12 +1,8 @@
-<?php 
-    $search_bar = $_REQUEST["search_bar"];
-    $errorMessage = $_REQUEST["errorMessage"];
-    $tHead = $_REQUEST["tHead"];
-    $tBody = $_REQUEST["tBody"];
-    $btn_box = $_REQUEST["btn_box"];
+<?php
+    
 ?>
 
-    <div class="container-fluid h-100 d-flex" style="min-height: 100vh;">
+<div class="container-fluid h-100 d-flex" style="min-height: 100vh;">
         <div class="container-fluid ">
             <div class="row h-100 p-md-5 justify-content-center">
                 <div class="col-sm-12 col-md-10 h-100">
@@ -15,8 +11,7 @@
                             <?php echo $search_bar; ?>
                         </div>
                         <div class="col-12 mb-5">
-                            <h3><?php if($errorMessage != ""){ echo $errorMessage; ?></h3> 
-                            <?php }else{ ?>
+                            <h3><?php echo $errorMessage ?></h3>
                             <table class="table table-light rounded table-hover" id="tableRelatorio">
                                 <thead class='thead bg-warning'>
                                     <?php foreach($tHead as $key => $value){ ?>
@@ -38,7 +33,6 @@
                                     <?php } ?>
                                 <tbody>
                             </table>
-                            <?php } ?>
                         </div>
                         <div class="col-12 justify-content-center">
                             <div class="d-flex justify-content-between flex-wrap">

@@ -1,7 +1,6 @@
 <?php
 require_once('Model/Aluno.php');
 require_once('data_base/functions.php');
-
 class insertBD{
 
     public function cadastrarAlunoDB(Aluno $aluno){

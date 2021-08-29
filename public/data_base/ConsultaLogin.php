@@ -7,10 +7,10 @@ class ConsultaLogin{
         $email = $aluno->getEmail();
         $senha = $aluno->getSenha();
 
-        $query = "SELECT Email FROM aluno WHERE Email = '$email' AND Senha = MD5('$senha') LIMIT 1";
+        $query = "SELECT Numero_USP FROM aluno WHERE Email = '$email' AND Senha = MD5('$senha') LIMIT 1";
         $result = runSQL($query);
-        if(mysqli_fetch_assoc($result)){
-            return true;
+        if($row = mysqli_fetch_assoc($result)){
+            return $row["Numero_USP"];
         }
         return false;
     }
@@ -24,7 +24,7 @@ class ConsultaLogin{
         if($row = mysqli_fetch_assoc($result)){
             $prof->setNome("$row[Nome]");
             $prof->setCPF("$row[CPF]");
-            return true;
+            return $row["CPF"];
         }
         return false;
     }
@@ -38,7 +38,7 @@ class ConsultaLogin{
         if($row = mysqli_fetch_assoc($result)){
             $prof->setNome("$row[Nome]");
             $prof->setCPF("$row[CPF]");
-            return true;
+            return $row["CPF"];
         }
 
         return false;
