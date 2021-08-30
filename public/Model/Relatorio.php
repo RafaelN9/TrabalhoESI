@@ -10,4 +10,10 @@ class RelatorioProfessor{
         $this->codFormularioEnviado = $codFormularioEnviado;
         $this->dataEnvioForm = $dataEnvioForm;
     }
+    function getHead(){
+        return ["Nome do Aluno", "Código do Formulário Enviado", "Data de Envio do Formulário"];
+    }
+    function toMap($relatorio){
+        return [$relatorio->nomeAluno, $relatorio->codFormularioEnviado, $relatorio->dataEnvioForm];
+    }
 }

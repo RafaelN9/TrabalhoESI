@@ -1,9 +1,16 @@
 <?php 
-    $search_bar = $_REQUEST["search_bar"];
-    $errorMessage = $_REQUEST["errorMessage"];
-    $tHead = $_REQUEST["tHead"];
-    $tBody = $_REQUEST["tBody"];
-    $btn_box = $_REQUEST["btn_box"];
+    $search_bar = ""; $tHead = []; $tBody = []; $btn_box = ""; $errorMessage = "";
+    $errorMessage = $_REQUEST["relatorio"]["errorMessage"];
+    if($errorMessage === ""){
+        $search_bar = $_REQUEST["relatorio"]["search_bar"];
+        $tHead = $_REQUEST["relatorio"]["tHead"];
+        $tBody = $_REQUEST["relatorio"]["tBody"];
+        $btn_box = '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Acessar Relatório</button>';
+        $btn_box .= $_REQUEST["relatorio"]["btn_box"];
+    }elseif(count($tBody) > 0){
+        $tHead = $_REQUEST["relatorio"]["tHead"];
+        $tBody = $_REQUEST["relatorio"]["tBody"];
+    }
 ?>
 
     <div class="container-fluid h-100 d-flex" style="min-height: 100vh;">
@@ -15,15 +22,14 @@
                             <?php echo $search_bar; ?>
                         </div>
                         <div class="col-12 mb-5">
-                            <h3><?php if($errorMessage != ""){ echo $errorMessage; ?></h3> 
-                            <?php }else{ ?>
+                            <h3><?php echo $errorMessage; ?></h3> 
                             <table class="table table-light rounded table-hover" id="tableRelatorio">
                                 <thead class='thead bg-warning'>
-                                    <?php foreach($tHead as $key => $value){ ?>
-                                        <tr>
-                                            <th> <?php echo $key ?> </th>
-                                        </tr>
+                                    <tr>
+                                    <?php foreach($tHead[0] as $name){ ?>
+                                        <th> <?php echo $name ?> </th>
                                     <?php } ?>
+                                    </tr>
                                     
                                 </thead>
                                 <tbody>
@@ -38,11 +44,9 @@
                                     <?php } ?>
                                 <tbody>
                             </table>
-                            <?php } ?>
                         </div>
                         <div class="col-12 justify-content-center">
                             <div class="d-flex justify-content-between flex-wrap">
-                                <button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Acessar Relatório</button>
                                 <?php echo $btn_box; ?>
                             </div>
                         </div>

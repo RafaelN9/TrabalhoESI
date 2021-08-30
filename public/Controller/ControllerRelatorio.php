@@ -13,7 +13,10 @@ class ControllerRelatorio{
         function GetRelatoriosP($cpfProf){
             $bd = new GetRelatorios();
             $response = $bd->GetRelatoriosPendentesProfessor("", $cpfProf);
-            if(count($response) == 0){
+            if(gettype($response["body"]) == "string"){
+                return $response;
+            }
+            if(count($response["body"]) == 0){
                 return "Empty response";
             }
             return $response;
@@ -21,7 +24,10 @@ class ControllerRelatorio{
         function GetRelatoriosC($cpfCCP){
             $bd = new GetRelatorios();
             $response = $bd->GetRelatoriosPendentesCCP("", $cpfCCP);
-            if(count($response) == 0){
+            if(gettype($response["body"]) == "string"){
+                return $response;
+            }
+            if(count($response["body"]) == 0){
                 return "Empty response";
             }
             return $response;
@@ -29,50 +35,73 @@ class ControllerRelatorio{
         function GetRelatoriosA($cpfAluno){
             $bd = new GetRelatorios();
             $response = $bd->GetRelatoriosPendentesAluno("", $cpfAluno);
-            if(count($response) == 0){
+            if(gettype($response["body"]) == "string"){
+                return $response;
+            }
+            if(count($response["body"]) == 0){
                 return "Empty response";
             }
             return $response;
         }
-        $column = array();
+
+        function throwError($dbResponse){
+            if(gettype($dbResponse) == "string"){
+                $_REQUEST["relatorio"]["errorMessage"] = $dbResponse;
+                if(isset($_SESSION["prevRel"])){
+                    if($_SESSION["prevRel"]){
+                        $_REQUEST["relatorio"] = $_SESSION["relatorio"];
+                        $_SESSION["prevRel"] = false;
+                    }
+                } 
+                require_once 'View/relatorios_pendentes.php';
+                return true;
+            }
+            return false;
+        }
+
+        $relatorio = array();
         switch ($tipo_usuario) {
             case 'aluno':
-                # code...
-                break;
-            /*case 'ccp':
-                # code...
-                break;*/
-            case 'ccp':
-                $column = GetRelatoriosP($cpf);
-                if(gettype($column) == "string"){
-                    $_REQUEST["errorMessage"] = $column;
-                    require_once 'View/relatorios_pendentes.php';
+                $relatorio = GetRelatoriosA($cpf);
+                if (throwError($relatorio["body"]))
                     return;
-                }
-                
-                $this->tHead[] = array_values($column);
-                foreach($column as $row){
+                $this->tHead[] = $relatorio["head"];
+                foreach($relatorio["body"] as $row){
                     $this->tBody[] = $row;
                 }
-                // $filter = " and (('$filter' = aluno.CPF) 
-                //     or ('$filter' = professor.CPF) 
-                //     or ('$filter' = aluno.Numero_USP) 
-                //     or (UPPER(aluno.Nome) LIKE '%$filter%')
-                //     or (UPPER(professor.Nome) LIKE '%$filter%')) ";
+
+                break;
+            case 'professor':
+                $relatorio = GetRelatoriosP($cpf);
+                if (throwError($relatorio["body"]))
+                    return;
+                $this->tHead[] = $relatorio["head"];
+                foreach($relatorio["body"] as $row){
+                    $this->tBody[] = $row;
+                }
+                break;
+            case 'ccp':
+                $relatorio = GetRelatoriosC($cpf);
+                if (throwError($relatorio["body"]))
+                    return;
+                
+                $this->tHead[] = $relatorio["head"];
+                foreach($relatorio["body"] as $row){
+                    $this->tBody[] = $row;
+                }
                 break;
             default:
-                # code...
+                header("Location: http://localhost/trabalhoESI/public");
                 break;
         }
-        print_r($this->tHead);
-        print_r($this->tBody);
-        /*
-        $_REQUEST["errorMessage"] = '';
-        $_REQUEST["search_bar"]= $this->search_bar;
-        $_REQUEST["tHead"]= $this->tHead;
-        $_REQUEST["tBody"]= $this->tBody;
-        $_REQUEST["btn_box"]= $this->btn_box;
-        require_once 'View/relatorios_pendentes.php';*/
+        
+        $response = ["errorMessage" => "", "search_bar" => $this->search_bar,
+        "tHead" => $this->tHead, "tBody" => $this->tBody, "btn_box" => $this->btn_box];
+        $_REQUEST["relatorio"] = $response;
+
+        $_SESSION["prevRel"] = true;
+        $_SESSION["relatorio"] = $response;
+        require_once 'View/relatorios_pendentes.php';
         return;
     }
 }

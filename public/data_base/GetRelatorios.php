@@ -25,22 +25,24 @@ class GetRelatorios{
             (formularioenviado.Numero_USP = aluno.Numero_USP) and 
             (formularioenviado.Numero_USP = professorresp.Numero_USP) and 
             (professorresp.CPF_Prof = professor.CPF) and
-            (aluno.Numero_USP = $numUSPAluno) $filter
+            (aluno.Numero_USP = '$numUSPAluno') $filter
         group by formularioenviado.Numero_USP, formularioenviado.Cod_Formulario";
 
         $result = runSQL($query);
         $relatoriosArray = array();
+        if ( gettype($result) == "string"){
+            return $result;
+        }
         while($row = mysqli_fetch_assoc($result)){
             $relatorio = new RelatorioProfessor(
                 $row["nome"],
-                $row["nomeProfessoResp"],
                 $row["codFormularioEnviado"],
                 $row["dataEnvioForm"]
             );
-            $relatoriosArray[] = $relatorio;
+            $relatoriosArray[] = $relatorio->toMap($relatorio);
         }
         
-        return $relatoriosArray;
+        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
     }
 
     function GetRelatoriosPendentesCCP($filter, $cpfCCP){
@@ -61,22 +63,24 @@ class GetRelatorios{
             (formularioenviado.Numero_USP = professorresp.Numero_USP) and 
             (professorresp.CPF_Prof = professor.CPF) and
             (professor.CPF IN (SELECT * FROM ccp)) and
-            (professor.CPF = $cpfCCP) $filter
+            (professor.CPF = '$cpfCCP') $filter
         group by formularioenviado.Numero_USP, formularioenviado.Cod_Formulario";
 
         $result = runSQL($query);
         $relatoriosArray = array();
+        if ( gettype($result) == "string"){
+            return $result;
+        }
         while($row = mysqli_fetch_assoc($result)){
             $relatorio = new RelatorioProfessor(
                 $row["nome"],
-                $row["nomeProfessoResp"],
                 $row["codFormularioEnviado"],
                 $row["dataEnvioForm"]
             );
-            $relatoriosArray[] = $relatorio;
+            $relatoriosArray[] = $relatorio->toMap($relatorio);
         }
         
-        return $relatoriosArray;
+        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
     }
 
     function GetRelatoriosPendentesProfessor($filter, $cpfProf){
@@ -111,11 +115,11 @@ class GetRelatorios{
                     $row["codFormularioEnviado"],
                     $row["dataEnvioForm"]
                 );
-                $relatoriosArray[] = $relatorio;
+                $relatoriosArray[] = $relatorio->toMap($relatorio);
             }
         }
         
-        return $relatoriosArray;
+        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
     }
 
 }

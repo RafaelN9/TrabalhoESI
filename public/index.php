@@ -23,7 +23,6 @@ if(!isset($_SESSION['tipo_usuario']))
                 }
             }
         }
-
     }
 
     
@@ -50,13 +49,12 @@ if(isset($_POST["cadastroCCP"])){
     header("Location: http://localhost/trabalhoESI/public/View/login.php");
 }
 
-/*
-require_once 'Controller/ControllerRelatorio.php';
+if(isset($_GET["getRel"])){
+    require_once 'Controller/ControllerRelatorio.php';
+    $controller = new ControllerRelatorio();
+    $controller->ControllerRelatorio($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
+}
 
-$controller = new ControllerRelatorio();
-$controller->ControllerRelatorio($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
-//if(isset($_GET[""]))
-*/
 
 require_once('View/footer.php');
 ?>
