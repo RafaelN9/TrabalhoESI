@@ -35,7 +35,7 @@ while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
                             <input type="linkCurriculo" class="form-control mb-4 p-4" name="linkCurriculo" value="link.com" readonly required>
 
                             <label for="dataCurriculo">6. Data da última atualização do lattes<span class="text-danger">*</span></label>
-                            <input type="date" class="form-control mb-4 p-4" name="dataCurriculo" required>
+                            <input type="date" class="form-control mb-4 p-4" name="q6" required>
                         </div>
 
                         <label for="resultadoUltimaAvalicao">7. Qual foi o resultado da avaliação do seu último relatório?<span class="text-danger">*</span></label>
@@ -69,13 +69,13 @@ while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
                         <label for="curso">8. Qual é o seu curso?<span class="text-danger">*</span></label>
                         <div class="mb-4" name="curso">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q8" id="q8_1" value="Mestrado" required>
+                                <input class="form-check-input" type="radio" name="q8" id="q8_1" value="1" required>
                                 <label class="form-check-label" for="q8_1">
                                     Mestrado
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q8" id="q8_2" value="Doutorado" required>
+                                <input class="form-check-input" type="radio" name="q8" id="q8_2" value="2" required>
                                 <label class="form-check-label" for="q8_2">
                                     Doutorado
                                 </label>
@@ -181,7 +181,7 @@ while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
                             <input type="number" class="form-control mb-4 p-4 " name="q11" required>
 
                             <label for="q11">12. Em quantas disciplinas optativas você já obteve aprovação? <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control mb-4 p-4 " name="q11" required>
+                            <input type="number" class="form-control mb-4 p-4 " name="q12" required>
                         </div>
 
                         <label>13. Todos os conceitos em disciplinas cursadas no último semestre já foram

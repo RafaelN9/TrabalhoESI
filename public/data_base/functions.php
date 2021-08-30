@@ -1,5 +1,4 @@
 <?php
-    session_start();
     $_SESSION["from_code"] = false;
     function runSQL($sql){
         $_SESSION["from_code"] = true;

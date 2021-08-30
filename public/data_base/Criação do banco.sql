@@ -2,6 +2,9 @@ CREATE DATABASE sistema_de_avaliacao;
  
 CREATE TABLE Formulario(
     Codigo int(11) PRIMARY KEY NOT NULL auto_increment,
+    Numero_USP varchar(20) NOT NULL,
+    FOREIGN KEY (Numero_USP) REFERENCES Aluno(Numero_USP),
+    Data datetime not null,
     Questao_6 varchar(128) NOT NULL,
     Questao_7 varchar(128) NOT NULL,
     Questao_8 varchar(128) NOT NULL,
@@ -16,8 +19,8 @@ CREATE TABLE Formulario(
     Questao_17 varchar(128) NOT NULL,
     Questao_18 varchar(128),
     Questao_19 varchar(128),
-    Questao_20 varchar(2) NOT NULL,
-    Questao_21 varchar(2) NOT NULL,
+    Questao_20 varchar(128) NOT NULL,
+    Questao_21 varchar(128) NOT NULL,
     Questao_22 varchar(128) NOT NULL,
     Questao_23 text NOT NULL,
     Questao_24 text NOT NULL,
@@ -42,7 +45,7 @@ CREATE TABLE Aluno(
     FOREIGN KEY (Cod_Curso) REFERENCES Cursos(Codigo),
     CPF varchar(14) not null UNIQUE
 );
-
+/*
 Create table FormularioEnviado(
 	Numero_USP varchar(20) NOT NULL,
     FOREIGN KEY (Numero_USP) REFERENCES Aluno(Numero_USP),
@@ -51,6 +54,7 @@ Create table FormularioEnviado(
     Data date not null,
     Primary Key(Numero_USP, Cod_Formulario)
 );
+ */
 
 CREATE TABLE Professor(
 	CPF varchar(14) NOT NULL PRIMARY KEY,

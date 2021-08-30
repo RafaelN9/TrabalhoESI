@@ -1,5 +1,6 @@
 <?php
-
+date_default_timezone_set('America/Sao_Paulo');
+session_start();
 if(!isset($_SESSION['tipo_usuario']))
     if(isset($_POST["login"])){
         if(isset($_POST["loginEmail"]) && isset($_POST["loginPwd"])){
@@ -24,8 +25,7 @@ if(!isset($_SESSION['tipo_usuario']))
             }
         }
     }
-
-    
+$_SESSION['from'] = 'index';
 require_once('View/header.php');
 
 if(isset($_POST["CadastroAluno"])){
@@ -49,6 +49,22 @@ if(isset($_POST["cadastroCCP"])){
     header("Location: http://localhost/trabalhoESI/public/View/login.php");
 }
 
+if(isset($_POST["formulario"])){
+    require_once 'Controller/ControllerFormulario.php';
+    $controller = new ControllerFormulario();
+
+    $q13 = '';
+    if(isset($_POST['q13']))
+        $q13 = $_POST['q13'];
+
+    $q18 = '';
+    if(isset($_POST['q18']))
+        $q18 = $_POST['q18'];
+
+    $result = $controller->enviaForm($_SESSION['cod_usuario'],"$_POST[q6]","$_POST[q7]","$_POST[q8]","$_POST[q9]","$_POST[q10]","$_POST[q11]","$_POST[q12]","$q13","$_POST[q14]","$_POST[q15]","$_POST[q16]","$_POST[q17]","$q18","$_POST[q19]","$_POST[q20]","$_POST[q21]","$_POST[q22]","$_POST[q23]","$_POST[q24]","$_POST[q25]","$_POST[q26]","$_POST[q27]","$_POST[q28]");
+    echo $result;
+}
+
 if(isset($_GET["getRel"])){
     require_once 'Controller/ControllerRelatorio.php';
     $controller = new ControllerRelatorio();
@@ -57,4 +73,3 @@ if(isset($_GET["getRel"])){
 
 
 require_once('View/footer.php');
-?>

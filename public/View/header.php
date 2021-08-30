@@ -1,8 +1,7 @@
 <?php
-$_SESSION['from'] = "não";
-// if($_SESSION['from'] = 'preencher')
-//     require_once('../data_base/functions.php');
-// else
+if($_SESSION['from'] == 'preencher')
+     require_once('../data_base/functions.php');
+else
     require_once('data_base/functions.php');
 //unset($_SESSION['tipo_usuario']);
 //$_SESSION['tipo_usuario'] = 'aluno';
@@ -38,7 +37,8 @@ if($_SESSION['tipo_usuario'] == 'aluno')
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <a class="dropdown-item" href="index.php?getRel=aluno" type="button">Preencher formulário</a>
+                    <a class="dropdown-item" href="View/preencher.php" type="button">Preencher formulário</a>
+                    <a class="dropdown-item" href="index.php?getRel=aluno" type="button">Formulários</a>
                     <button class="dropdown-item" type="button">Item 2</button>
                     <button class="dropdown-item" type="button">Item 3</button>
                 </div>
@@ -81,9 +81,9 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <?php
-    // if($_SESSION['from'] = 'preencher')
-    //     echo '<link rel="stylesheet" href="styles/main.css?v=<?php echo time(); >">';
-    // else
+     if($_SESSION['from'] == 'preencher')
+         echo '<link rel="stylesheet" href="styles/main.css?v=<?php echo time(); >">';
+     else
         echo '<link rel="stylesheet" href="View/styles/main.css?v=<?php echo time(); ?>">';
     ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
