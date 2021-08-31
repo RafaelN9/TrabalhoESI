@@ -1,39 +1,33 @@
 <?php declare(strict_types=1);
 
-use PHPUnit\Framework\Assert;
-use PHPUnit\Framework\AssertionFailedError;
-
 require __DIR__ . "/../../public/Model/Aluno.php";
 
 final class AlunoTest extends PHPUnit\Framework\TestCase{
 
-    public function testaRetornoDosGetNomeDoAluno(): void{
-        $aluno = new Aluno( 123, 'joao', 'joao@gmail.com', '*******','www.test.net','mestrado',15151561610);
-        $this->assertEquals( 'joao', $aluno->getNome());
+    private $aluno;
+
+    protected function setUp(): void{
+        $this->aluno = new Aluno( 123, 'joao', 'joao@gmail.com', '*******','www.test.net','mestrado',15151561610);
     }
 
-    public function testaRetornoDosGetNumeroUSPDoAluno(): void{
-        $aluno = new Aluno( 123, 'joao', 'joao@gmail.com', '*******','www.test.net','mestrado',15151561610);
-        $this->assertEquals( 123 , $aluno->getNumero_USP());
+    public function testaRetornoDoGetNomeDoAluno(): void{
+        $this->assertEquals( 'joao', $this->aluno->getNome());
     }
 
-    public function testaRetornoDosGetEmailDoAluno(): void{
-        $aluno = new Aluno( 123, 'joao', 'joao@gmail.com', '*******','www.test.net','mestrado',15151561610);
-        $this->assertEquals( 'joao@gmail.com' , $aluno->getEmail());
+    public function testaRetornoDoGetNumeroUSPDoAluno(): void{
+        $this->assertEquals( 123 , $this->aluno->getNumero_USP());
     }
 
-    public function testaRetornoDosGetLinkDoAluno(): void{
-    
-        $aluno = new Aluno( 123, 'joao', 'joao@gmail.com', '*******','www.test.net','mestrado',15151561610);
-
-        $this->assertEquals( 'www.test.net' , $aluno->getLink_Curriculo());
+    public function testaRetornoDoGetEmailDoAluno(): void{
+        $this->assertEquals( 'joao@gmail.com' , $this->aluno->getEmail());
     }
 
-    public function testaRetornoDosGetCPFDoAluno(): void{
-    
-        $aluno = new Aluno( 123, 'joao', 'joao@gmail.com', '*******','www.test.net','mestrado', 15151561610);
+    public function testaRetornoDoGetLinkDoAluno(): void{
+        $this->assertEquals( 'www.test.net' , $this->aluno->getLink_Curriculo());
+    }
 
-        $this->assertEquals( 15151561610 , $aluno->getCPF());
+    public function testaRetornoDoGetCPFDoAluno(): void{
+        $this->assertEquals( 15151561610 , $this->aluno->getCPF());
     }
 
 }
