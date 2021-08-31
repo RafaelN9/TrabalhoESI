@@ -1,35 +1,47 @@
+$(document).ready(function () {
+    $('input[type=radio][name=q8]').change(function () {
+        if (this.value == '1') {
+            $("#q9").removeClass('d-none');
+            $("#q9_1").prop('required',true);
+            $("#q9_2").prop('required',true);
+            $("#q9_3").prop('required',true);
+            $("#q9_4").prop('required',true);
+            $("#q9_5").prop('required',true);
 
-var containerCursoRadio = document.querySelector("#formulario > form > div:nth-child(5)");
-containerCursoRadio.addEventListener('change', insereSemestresDeAcordoComOCurso);
+            $("#q10_1").prop('required',false);
+            $("#q10_2").prop('required',false);
+            $("#q10_3").prop('required',false);
+            $("#q10_4").prop('required',false);
+            $("#q10_5").prop('required',false);
+            $("#q10_6").prop('required',false);
+            $("#q10_7").prop('required',false);
+            $("#q10_8").prop('required',false);
 
-function insereSemestresDeAcordoComOCurso(){
-    var inputRadioCursoDoutorado = document.querySelector('#q8_2');
-    var container = document.querySelector("#semestre");
-    var numeroDeSemestres;
-    let divHolder = document.createElement('div');
+            $("#q10").addClass('d-none');
+        } else if (this.value == '2') {
+            $("#q10").removeClass('d-none');
+            $("#q10").prop('required',true);
+            $("#q10_1").prop('required',true);
+            $("#q10_2").prop('required',true);
+            $("#q10_3").prop('required',true);
+            $("#q10_4").prop('required',true);
+            $("#q10_5").prop('required',true);
+            $("#q10_6").prop('required',true);
+            $("#q10_7").prop('required',true);
+            $("#q10_8").prop('required',true);
 
-    if(inputRadioCursoDoutorado.checked){
-        container.innerHTML = "";
-        numeroDeSemestres = 10;
-        insereInputRadio(numeroDeSemestres, divHolder);
-        container.append(divHolder);
-    }else{
-        container.innerHTML = "";
-        numeroDeSemestres = 5;
-        insereInputRadio(numeroDeSemestres, divHolder);
-        container.append(divHolder);
-    }
-}
+            $("#q9_1").prop('required',false);
+            $("#q9_2").prop('required',false);
+            $("#q9_3").prop('required',false);
+            $("#q9_4").prop('required',false);
+            $("#q9_5").prop('required',false);
+            $("#q9").addClass('d-none');
 
-function insereInputRadio(numeroDeSemestres, divHolder){
-    for(i = 1; i <= numeroDeSemestres; i++){
-        divHolder.insertAdjacentHTML("beforeend", `
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="q8" id="q9_${i}" value="Doutorado">
-            <label class="form-check-label" for="q9_${i}">
-                ${i}o semestre do curso.
-            </label>
-        </div>
-        `);
-    }
-}
+        }
+    });
+
+
+    $('#confirmar').click(function () {
+        $('.modal').modal('show')
+    })
+});

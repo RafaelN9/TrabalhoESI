@@ -1,21 +1,55 @@
 <?php
-$_SESSION['from'] = 'preencher';
-include_once('header.php');
 
 $queryCurso = "SELECT * FROM Cursos";
 $resultCurso = runSQL($queryCurso);
 $optionCurso = '';
 while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
-    $optionCurso .= '<option value=' . $rowCurso['Codigo'] . '>' . $rowCurso['Nome'] . '</option>';
+    $optionCurso .= '<div class="form-check">
+                        <input class="form-check-input" type="radio" name="q8" id="q8_'.$rowCurso['Codigo'].'" value="'.$rowCurso['Codigo'].'" required>
+                        <label class="form-check-label" for="q8_'.$rowCurso['Codigo'].'">
+                        '.$rowCurso['Nome'].'
+                        </label>
+                     </div>';
+}
+
+$queryNota = "SELECT * FROM Nota";
+$resultNota = runSQL($queryNota);
+$optionNota = '';
+while ($rowNota = mysqli_fetch_assoc($resultNota)) {
+    $optionNota .= '<div class="form-check">
+                        <input class="form-check-input" type="radio" name="q7" id="q7_'.$rowNota['Codigo'].'" value="'.$rowNota['Codigo'].'" required>
+                        <label class="form-check-label" for="q7_'.$rowNota['Codigo'].'">
+                        '.$rowNota['Nome'].'
+                        </label>
+                     </div>';
 }
 
 ?>
+<title>Formulário</title>
+<style>
+    body{
+        overflow-y: scroll;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    ::-webkit-scrollbar{
+        width: auto;
+    }
+</style>
 <div class="container-fluid h-100 d-flex">
     <div class="container-fluid ">
         <div class="row h-100 w-100 mx-auto justify-content-center mt-2 mb-2">
             <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8 bg-white h-100 rounded">
                 <div id="formulario" class="d-flex justify-content-center pt-5 pb-5 h-100 p-sm-3 p-md-5">
-                    <form class="w-100 needs-validation" method="POST" action="../index.php">
+                    <form class="w-100 needs-validation" id="formularioRel" method="POST" action="index.php">
                         <div class="col-xl-7 col-lg-7 col-md-8 col-sm-8 m-0 p-0">
                             <label for="email">1. Email <span class="text-danger">*</span></label>
                             <input type="email" class="form-control mb-4 p-4 " name="email" value="Email@gmail.com" readonly required>
@@ -40,24 +74,9 @@ while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
 
                         <label for="resultadoUltimaAvalicao">7. Qual foi o resultado da avaliação do seu último relatório?<span class="text-danger">*</span></label>
                         <div class="mb-4" name="resultadoUltimaAvalicao">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q7" id="q7_1" value="Aprovado" required>
-                                <label class="form-check-label" for="q7_1">
-                                    Aprovado
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q7" id="q7_2" value="Aprovado com ressalvas" required>
-                                <label class="form-check-label" for="q7_2">
-                                    Aprovado com ressalvas
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q7" id="q7_3" value="Insatisfatório" required>
-                                <label class="form-check-label" for="q7_3">
-                                    Insatisfatório
-                                </label>
-                            </div>
+                            <?php
+                                echo $optionNota;
+                            ?>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="q7" id="q7_4" value="Não se aplica" required>
                                 <label class="form-check-label" for="q7_4">
@@ -68,112 +87,106 @@ while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
 
                         <label for="curso">8. Qual é o seu curso?<span class="text-danger">*</span></label>
                         <div class="mb-4" name="curso">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q8" id="q8_1" value="1" required>
-                                <label class="form-check-label" for="q8_1">
-                                    Mestrado
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q8" id="q8_2" value="2" required>
-                                <label class="form-check-label" for="q8_2">
-                                    Doutorado
-                                </label>
-                            </div>
+                            <?php
+                            echo $optionCurso;
+                            ?>
                         </div>
 
+                        <div id="q9" class="d-none">
                         <h6 class="bg-info p-3 rounded-top text-center">Este relatório é referente a que semestre do seu curso? (último semestre
                             concluído):</h6>
 
                         <label for="semestreMestrado">9. <span class="text-danger">*</span></label>
                         <div class="mb-4" name="semestre" id="semestreMestrado">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q9" id="q9_1" value="1" required>
+                                <input class="form-check-input" type="radio" name="q9" id="q9_1" value="1° semestre do curso" >
                                 <label class="form-check-label" for="q9_1">
                                     1° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q9" id="q9_2" value="2" required>
+                                <input class="form-check-input" type="radio" name="q9" id="q9_2" value="2° semestre do curso" >
                                 <label class="form-check-label" for="q9_2">
                                     2° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q9" id="q9_3" value="3" required>
+                                <input class="form-check-input" type="radio" name="q9" id="q9_3" value="3° semestre do curs" >
                                 <label class="form-check-label" for="q9_3">
                                     3° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q9" id="q9_4" value="4" required>
+                                <input class="form-check-input" type="radio" name="q9" id="q9_4" value="4° semestre do curs" >
                                 <label class="form-check-label" for="q9_4">
                                     4° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q9" id="q9_5" value="5" required>
+                                <input class="form-check-input" type="radio" name="q9" id="q9_5" value="5° semestre do curs" >
                                 <label class="form-check-label" for="q9_5">
                                     5° semestre do curso
                                 </label>
                             </div>
                         </div>
+                        </div>
 
+                        <div id="q10" class="d-none">
                         <h6 class="bg-info p-3 rounded-top text-center">Este relatório é referente a que semestre do seu curso? (último semestre
                             concluído):</h6>
 
                         <label for="semestreDoutorado">10. <span class="text-danger">*</span></label>
                         <div class="mb-4" name="semestre" id="semestreDoutorado">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_1" value="1" required>
+                                <input class="form-check-input" type="radio" name="q10" id="q10_1" value="1° semestre do curs" >
                                 <label class="form-check-label" for="q10_1">
                                     1° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_2" value="2" required>
+                                <input class="form-check-input" type="radio" name="q10" id="q10_2" value="2° semestre do curs" >
                                 <label class="form-check-label" for="q10_2">
                                     2° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_3" value="3" required>
+                                <input class="form-check-input" type="radio" name="q10" id="q10_3" value="3° semestre do curs" >
                                 <label class="form-check-label" for="q10_3">
                                     3° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_4" value="4" required>
+                                <input class="form-check-input" type="radio" name="q10" id="q10_4" value="4° semestre do curs" >
                                 <label class="form-check-label" for="q10_4">
                                     4° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_5" value="5" required>
+                                <input class="form-check-input" type="radio" name="q10" id="q10_5" value="5° semestre do curs" >
                                 <label class="form-check-label" for="q10_5">
                                     5° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_6" value="6" required>
+                                <input class="form-check-input" type="radio" name="q10" id="q10_6" value="6° semestre do curs" >
                                 <label class="form-check-label" for="q10_6">
                                     6° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_7" value="7" required>
+                                <input class="form-check-input" type="radio" name="q10" id="q10_7" value="7° semestre do curs" >
                                 <label class="form-check-label" for="q10_7">
                                     7° semestre do curso
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_8" value="8" required>
+                                <input class="form-check-input" type="radio" name="q10" id="q10_8" value="8° semestre do curs" >
                                 <label class="form-check-label" for="q10_8">
                                     8° semestre do curso
                                 </label>
                             </div>
                         </div>
-
+                        </div>
                         <h6 class="bg-info p-3 rounded-top text-center">Atividades didáticas</h6>
 
                         <div class="col-xl-7 col-lg-7 col-md-8 col-sm-8 m-0 p-0">
@@ -189,13 +202,13 @@ while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
                             do PPgSI para enviar o seu relatório.</label>
                         <div class="mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q13" id="q13_1" value="sim">
+                                <input class="form-check-input" type="radio" name="q13" id="q13_1" value="Sim">
                                 <label class="form-check-label" for="q13_1">
                                     Sim
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q13" id="q13_2" value="nao">
+                                <input class="form-check-input" type="radio" name="q13" id="q13_2" value="Não">
                                 <label class="form-check-label" for="q13_2">
                                     Não
                                 </label>
@@ -246,7 +259,7 @@ while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q15" id="q15_4" value="terminado" required>
+                                <input class="form-check-input" type="radio" name="q15" id="q15_4" value="Já terminei as disciplina" required>
                                 <label class="form-check-label" for="q15_4">
                                     Já terminei as disciplinas
                                 </label>
@@ -256,35 +269,35 @@ while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
                         <label>16. Você já foi aprovado no exame de proficiência em idiomas? <span class="text-danger">*</span></label>
                         <div class="mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q16" id="q16_1" value="sim" required>
+                                <input class="form-check-input" type="radio" name="q16" id="q16_1" value="Sim" required>
                                 <label class="form-check-label" for="q16_1">
                                     Sim
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q16" id="q16_2" value="nao" required>
+                                <input class="form-check-input" type="radio" name="q16" id="q16_2" value="Não" required>
                                 <label class="form-check-label" for="q16_2">
                                     Não
                                 </label>
                             </div>
                         </div>
 
-                        <label>17. Você já foi aprovado no exame de proficiência em idiomas? <span class="text-danger">*</span></label>
+                        <label>17. Você já realizou o exame de qualificação? <span class="text-danger">*</span></label>
                         <div class="mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q17" id="q17_1" value="aprovado" required>
+                                <input class="form-check-input" type="radio" name="q17" id="q17_1" value="Sim. Fui aprovado." required>
                                 <label class="form-check-label" for="q17_1">
                                     Sim. Fui aprovado.
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q17" id="q17_2" value="reprovado" required>
+                                <input class="form-check-input" type="radio" name="q17" id="q17_2" value="Sim. Fui reporvado." required>
                                 <label class="form-check-label" for="q17_2">
                                     Sim. Fui reporvado.
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q17" id="q17_3" value="nao" required>
+                                <input class="form-check-input" type="radio" name="q17" id="q17_3" value="Não." required>
                                 <label class="form-check-label" for="q17_3">
                                     Não.
                                 </label>
@@ -478,8 +491,30 @@ while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
                         <label for="q28">28. Comentários finais do ORIENTANDO sobre seu desempenho no último
                             semestre, considerando o relatório reapresentado:</label>
                         <textarea class="form-control mb-4 p-1" rows="5" name="q28" id="q28"></textarea>
+                        <button type="button" class="btn btn-primary p-3 float-right" id="confirmar">
+                            Enviar
+                        </button>
 
-                        <input type="submit" class="btn btn-primary p-3 float-right" name="formulario" value="Enviar">
+                        <div class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Título do modal</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Deseja confirmar o envio de email?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" class="btn btn-primary" name="formulario" id="envia" value="Confirmar">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
@@ -487,6 +522,4 @@ while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
     </div>
 </div>
 
-<script src="scripts/scriptPreencher.js" type="text/javascript"></script>
-
-<?php include_once('../view/footer.php'); ?>
+<script src="View/scripts/scriptPreencher.js" type="text/javascript"></script>

@@ -7,7 +7,8 @@ CREATE TABLE Formulario(
     Data datetime not null,
     Questao_6 varchar(128) NOT NULL,
     Questao_7 varchar(128) NOT NULL,
-    Questao_8 varchar(128) NOT NULL,
+    Questao_8 int(11) NOT NULL,
+    FOREIGN KEY (Questao_8) REFERENCES Cursos(Codigo),
     Questao_9 varchar(128),
     Questao_10 varchar(128),
     Questao_11 varchar(128) NOT NULL,
@@ -45,16 +46,6 @@ CREATE TABLE Aluno(
     FOREIGN KEY (Cod_Curso) REFERENCES Cursos(Codigo),
     CPF varchar(14) not null UNIQUE
 );
-/*
-Create table FormularioEnviado(
-	Numero_USP varchar(20) NOT NULL,
-    FOREIGN KEY (Numero_USP) REFERENCES Aluno(Numero_USP),
-    Cod_Formulario int(11) not null,
-    FOREIGN KEY (Cod_Formulario) REFERENCES Formulario(Codigo),
-    Data date not null,
-    Primary Key(Numero_USP, Cod_Formulario)
-);
- */
 
 CREATE TABLE Professor(
 	CPF varchar(14) NOT NULL PRIMARY KEY,

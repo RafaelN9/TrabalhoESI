@@ -61,8 +61,24 @@ if(isset($_POST["formulario"])){
     if(isset($_POST['q18']))
         $q18 = $_POST['q18'];
 
-    $result = $controller->enviaForm($_SESSION['cod_usuario'],"$_POST[q6]","$_POST[q7]","$_POST[q8]","$_POST[q9]","$_POST[q10]","$_POST[q11]","$_POST[q12]","$q13","$_POST[q14]","$_POST[q15]","$_POST[q16]","$_POST[q17]","$q18","$_POST[q19]","$_POST[q20]","$_POST[q21]","$_POST[q22]","$_POST[q23]","$_POST[q24]","$_POST[q25]","$_POST[q26]","$_POST[q27]","$_POST[q28]");
+    $q9 = '';
+    if(isset($_POST['q9']))
+        $q9 = $_POST['q9'];
+
+    $q10 = '';
+    if(isset($_POST['q10']))
+        $q10 = $_POST['q10'];
+
+    $q19 = '';
+    if(isset($_POST['q19']))
+        $q19 = $_POST['q19'];
+
+    $result = $controller->enviaForm($_SESSION['cod_usuario'],"$_POST[q6]","$_POST[q7]","$_POST[q8]","$q9","$q10","$_POST[q11]","$_POST[q12]","$q13","$_POST[q14]","$_POST[q15]","$_POST[q16]","$_POST[q17]","$q18","$q19","$_POST[q20]","$_POST[q21]","$_POST[q22]","$_POST[q23]","$_POST[q24]","$_POST[q25]","$_POST[q26]","$_POST[q27]","$_POST[q28]");
     echo $result;
+}
+
+if(isset($_GET["to"])){
+    require_once "View/$_GET[to].php";
 }
 
 if(isset($_GET["getRel"])){
