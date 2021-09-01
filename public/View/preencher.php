@@ -1,11 +1,14 @@
 <?php
-
 $queryCurso = "SELECT * FROM Cursos";
 $resultCurso = runSQL($queryCurso);
 $optionCurso = '';
 while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
     $optionCurso .= '<div class="form-check">
-                        <input class="form-check-input" type="radio" name="q8" id="q8_'.$rowCurso['Codigo'].'" value="'.$rowCurso['Codigo'].'" required>
+                        <input class="form-check-input" type="radio" name="q8" id="q8_'.$rowCurso['Codigo'].'" value="'.$rowCurso['Codigo'].'" disabled ';
+    if($rowCurso['Codigo'] == $_SESSION['curso'])
+        $optionCurso .= 'checked';
+
+    $optionCurso .= '>
                         <label class="form-check-label" for="q8_'.$rowCurso['Codigo'].'">
                         '.$rowCurso['Nome'].'
                         </label>
@@ -22,6 +25,14 @@ while ($rowNota = mysqli_fetch_assoc($resultNota)) {
                         '.$rowNota['Nome'].'
                         </label>
                      </div>';
+}
+
+$queryOrientador = "SELECT professor.Nome as Orientador FROM professor INNER JOIN professorresp on professor.CPF = professorresp.CPF_Prof WHERE professorresp.Numero_USP = '$_SESSION[cod_usuario]'";
+
+$resultOrientador = runSQL($queryOrientador);
+$optionOrientador = '';
+while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
+    $orientador = $rowOrientador['Orientador'];
 }
 
 ?>
@@ -52,21 +63,23 @@ while ($rowNota = mysqli_fetch_assoc($resultNota)) {
                     <form class="w-100 needs-validation" id="formularioRel" method="POST" action="index.php">
                         <div class="col-xl-7 col-lg-7 col-md-8 col-sm-8 m-0 p-0">
                             <label for="email">1. Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control mb-4 p-4 " name="email" value="Email@gmail.com" required>
+                            <input type="email" class="form-control mb-4 p-4 " name="email" value="<?php echo $_SESSION['email']; ?>" required readonly>
                         </div>
-                            <h6 class="bg-info p-3 rounded-top text-center">Dados gerais</h6>
+
+                        <h6 class="bg-info p-3 rounded-top text-center">Dados gerais</h6>
+
                         <div class="col-xl-7 col-lg-7 col-md-8 col-sm-8 m-0 p-0">
                             <label for="nome">2. Nome do aluno<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control mb-4 p-4" name="nome" id="nome" value="Nome" required>
+                            <input type="text" class="form-control mb-4 p-4" name="nome" id="nome" value="<?php echo $_SESSION['nome']; ?>" required readonly>
 
                             <label for="orientador">3. Nome do orientador<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control mb-4 p-4" name="orientador" id="orientador" value="orientador" required>
+                            <input type="text" class="form-control mb-4 p-4" name="orientador" id="orientador" value="<?php echo $orientador; ?>" required readonly>
 
                             <label for="NumUsp">4. Número USP<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control mb-4 p-4" name="NumUsp" id="NumUsp" value="N° USP" required>
+                            <input type="text" class="form-control mb-4 p-4" name="NumUsp" id="NumUsp" value="<?php echo $_SESSION['cod_usuario']; ?>" required readonly>
 
                             <label for="linkCurriculo">5. Link para o curriculum lattes<span class="text-danger">*</span></label>
-                            <input type="linkCurriculo" class="form-control mb-4 p-4" name="linkCurriculo" value="link.com" required>
+                            <input type="linkCurriculo" class="form-control mb-4 p-4" name="linkCurriculo" value="<?php echo $_SESSION['curriculo']; ?>" required readonly>
 
                             <label for="dataCurriculo">6. Data da última atualização do lattes<span class="text-danger">*</span></label>
                             <input type="date" class="form-control mb-4 p-4" name="q6" required>

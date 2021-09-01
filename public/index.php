@@ -28,7 +28,6 @@ if(!isset($_SESSION['tipo_usuario'])){
         header("Location: http://localhost/trabalhoESI/public/index.php");
     }
 }
-
 require_once('View/header.php');
 
 if(isset($_POST["cadastroAluno"])){

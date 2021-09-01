@@ -14,15 +14,16 @@ $(document).ready(function () {
         return divContainerInputRadio;
     }
 
-    $('input[type=radio][name=q8]').change(function () {
-        if (this.value == '1') {
+    let curso = $('input[name="q8"]:checked').val();
+    console.log(curso);
+        if (curso == '1') {
             $("#semestre").html('');
             for(i = 1; i <= 5 ; i++){
                 let content = templateInputRadio(i);
                 $("#semestre").append(content);
             }
 
-        } else if (this.value == '2') {
+        } else if (curso == '2') {
             $("#semestre").html('');
             for(i = 1; i <= 8 ; i++){
                 let content = templateInputRadio(i);
@@ -30,7 +31,6 @@ $(document).ready(function () {
             }
 
         }
-    });
 
 
     $('#confirmar').click(function () {

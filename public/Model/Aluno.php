@@ -19,6 +19,16 @@ class Aluno{
         $this->CPF = $cpf;
     }
 
+    public function imprime(){
+        echo $this->Numero_USP;
+        echo $this->Nome;
+        echo $this->Email;
+        echo $this->Senha ;
+        echo $this->Link_Curriculo;
+        echo $this->Cod_Curso;
+        echo $this->CPF;
+    }
+
     public function getNumero_USP(){
         return $this->Numero_USP;
     }

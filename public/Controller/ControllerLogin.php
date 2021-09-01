@@ -8,6 +8,11 @@ class ControllerLogin{
         $aluno = new Aluno('', '', $email, $senha, '', '', '');
         $bd = new ConsultaLogin();
         $resultado = $bd->consultaAluno($aluno);
+        $_SESSION['nome'] = $aluno->getNome();
+        $_SESSION['email'] = $aluno->getEmail();
+        $_SESSION['curriculo'] = $aluno->getLink_Curriculo();
+        $_SESSION['curso'] = $aluno->getCod_Curso();
+        $_SESSION['cpf'] = $aluno->getCPF();
         return $resultado;
     }
 
@@ -16,6 +21,9 @@ class ControllerLogin{
         $prof = new Professor('', '', $email, $senha);
         $bd = new ConsultaLogin();
         $resultado = $bd->consultaCCP($prof);
+        $_SESSION['nome'] = $prof->getNome();
+        $_SESSION['email'] = $prof->getEmail();
+        $_SESSION['cpf'] = $prof->getCPF();
         return $resultado;
     }
 
