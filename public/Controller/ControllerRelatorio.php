@@ -118,6 +118,115 @@ class ControllerRelatorio{
         require_once 'View/relatorios_pendentes.php';
         return;
     }
+
+    function HistoricoRelatorios($tipo_usuario, $cpf){
+        function GetRelatoriosP($cpfProf){
+            $bd = new GetRelatorios();
+            $response = $bd->GetHistoricoProfessor("", $cpfProf);
+            if(gettype($response) == "string"){
+                return $response;
+            }
+            if(count($response) == 0){
+                return "Empty response";
+            }
+            return $response;
+        }
+        function GetRelatoriosC($cpfCCP){
+            $bd = new GetRelatorios();
+            $response = $bd->GetHistoricoCCP("", $cpfCCP);
+            if(gettype($response) == "string"){
+                return $response;
+            }
+            if(count($response) == 0){
+                return "Empty response";
+            }
+            return $response;
+        }
+        function GetRelatoriosA($cpfAluno){
+            $bd = new GetRelatorios();
+            $response = $bd->GetHistoricoAluno("", $cpfAluno);
+            if(gettype($response) == "string"){
+                return $response;
+            }
+            if(count($response) == 0){
+                return "Empty response";
+            }
+            return $response;
+        }
+
+        function throwError($dbResponse){
+            if(gettype($dbResponse) == "string"){
+                $_REQUEST["relatorio"]["errorMessage"] = $dbResponse;
+                if(isset($_SESSION["prevRel"])){
+                    if($_SESSION["prevRel"]){
+                        $_REQUEST["relatorio"] = $_SESSION["relatorio"];
+                        $_SESSION["prevRel"] = false;
+                    }
+                }
+                require_once 'View/historico_relatorio.php';
+                return true;
+            }
+            return false;
+        }
+
+        $relatorio = array();
+        switch ($tipo_usuario) {
+            case 'aluno':
+                $relatorio = GetRelatoriosA($cpf);
+
+                if (throwError($relatorio)){
+                    $this->errorMessage = $relatorio;
+                    $this->tHead = [];
+                    $this->tBody = [];
+                    break;
+                }
+                $this->tHead[] = $relatorio["head"];
+                foreach($relatorio["body"] as $row){
+                    $this->tBody[] = $row;
+                }
+
+                break;
+            case 'professor':
+                $relatorio = GetRelatoriosP($cpf);
+                if (throwError($relatorio)){
+                    $this->errorMessage = $relatorio;
+                    $this->tHead = [];
+                    $this->tBody = [];
+                    break;
+                }
+                $this->tHead[] = $relatorio["head"];
+                foreach($relatorio["body"] as $row){
+                    $this->tBody[] = $row;
+                }
+                break;
+            case 'ccp':
+                $relatorio = GetRelatoriosC($cpf);
+                if (throwError($relatorio)){
+                    $this->errorMessage = $relatorio;
+                    $this->tHead = [];
+                    $this->tBody = [];
+                    break;
+                }
+                $this->tHead[] = $relatorio["head"];
+                foreach($relatorio["body"] as $row){
+                    $this->tBody[] = $row;
+                }
+                break;
+            default:
+                header("Location: http://localhost/trabalhoESI/public");
+                break;
+        }
+
+        $response = ["errorMessage" => $this->errorMessage, "search_bar" => $this->search_bar,
+            "tHead" => $this->tHead, "tBody" => $this->tBody, "btn_box" => $this->btn_box];
+
+        $_REQUEST["relatorio"] = $response;
+
+        $_SESSION["prevRel"] = true;
+        $_SESSION["relatorio"] = $response;
+        require_once 'View/historico_relatorio.php';
+        return;
+    }
 }
 
 /*
