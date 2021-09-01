@@ -10,7 +10,7 @@ class Formulario{
     function __construct($codigo_aluno, $data_envio, $q6, $q7, $q8, $q9, $q10,
             $q11, $q12, $q13, $q14, $q15, $q16, 
             $q17, $q18, $q19, $q20, $q21, $q22,
-            $q23, $q24, $q25, $q26, $q27, $q28)
+            $q23, $q24, $q25, $q26, $q27)
     {
         $this->codigo_aluno = $codigo_aluno;
         $this->data_envio = $data_envio;
@@ -36,7 +36,6 @@ class Formulario{
         $this->questoes[] = $q25;
         $this->questoes[] = $q26;
         $this->questoes[] = $q27;
-        $this->questoes[] = $q28;
     }
 
     public function getCodigoAluno(){ return $this->codigo_aluno;}

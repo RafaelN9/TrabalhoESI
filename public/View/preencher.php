@@ -52,21 +52,21 @@ while ($rowNota = mysqli_fetch_assoc($resultNota)) {
                     <form class="w-100 needs-validation" id="formularioRel" method="POST" action="index.php">
                         <div class="col-xl-7 col-lg-7 col-md-8 col-sm-8 m-0 p-0">
                             <label for="email">1. Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control mb-4 p-4 " name="email" value="Email@gmail.com" readonly required>
+                            <input type="email" class="form-control mb-4 p-4 " name="email" value="Email@gmail.com" required>
                         </div>
                             <h6 class="bg-info p-3 rounded-top text-center">Dados gerais</h6>
                         <div class="col-xl-7 col-lg-7 col-md-8 col-sm-8 m-0 p-0">
                             <label for="nome">2. Nome do aluno<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control mb-4 p-4" name="nome" id="nome" value="Nome" readonly required>
+                            <input type="text" class="form-control mb-4 p-4" name="nome" id="nome" value="Nome" required>
 
                             <label for="orientador">3. Nome do orientador<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control mb-4 p-4" name="orientador" id="orientador" value="orientador" readonly required>
+                            <input type="text" class="form-control mb-4 p-4" name="orientador" id="orientador" value="orientador" required>
 
                             <label for="NumUsp">4. Número USP<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control mb-4 p-4" name="NumUsp" id="NumUsp" value="N° USP" readonly required>
+                            <input type="text" class="form-control mb-4 p-4" name="NumUsp" id="NumUsp" value="N° USP" required>
 
                             <label for="linkCurriculo">5. Link para o curriculum lattes<span class="text-danger">*</span></label>
-                            <input type="linkCurriculo" class="form-control mb-4 p-4" name="linkCurriculo" value="link.com" readonly required>
+                            <input type="linkCurriculo" class="form-control mb-4 p-4" name="linkCurriculo" value="link.com" required>
 
                             <label for="dataCurriculo">6. Data da última atualização do lattes<span class="text-danger">*</span></label>
                             <input type="date" class="form-control mb-4 p-4" name="q6" required>
@@ -92,131 +92,67 @@ while ($rowNota = mysqli_fetch_assoc($resultNota)) {
                             ?>
                         </div>
 
-                        <div id="q9" class="d-none">
-                        <h6 class="bg-info p-3 rounded-top text-center">Este relatório é referente a que semestre do seu curso? (último semestre
-                            concluído):</h6>
+                        <div id="q9">
+                            <h6 class="bg-info p-3 rounded-top text-center">Selecione uma opção na questão 8<br>Este relatório é referente a que semestre do seu curso? (último semestre
+                                concluído):</h6>
 
-                        <label for="semestreMestrado">9. <span class="text-danger">*</span></label>
-                        <div class="mb-4" name="semestre" id="semestreMestrado">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q9" id="q9_1" value="1° semestre do curso" >
-                                <label class="form-check-label" for="q9_1">
-                                    1° semestre do curso
-                                </label>
+                            <label for="semestre">9. <span class="text-danger">*</span></label>
+                            <div class="mb-4" name="semestre" id="semestre">
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q9" id="q9_2" value="2° semestre do curso" >
-                                <label class="form-check-label" for="q9_2">
-                                    2° semestre do curso
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q9" id="q9_3" value="3° semestre do curs" >
-                                <label class="form-check-label" for="q9_3">
-                                    3° semestre do curso
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q9" id="q9_4" value="4° semestre do curs" >
-                                <label class="form-check-label" for="q9_4">
-                                    4° semestre do curso
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q9" id="q9_5" value="5° semestre do curs" >
-                                <label class="form-check-label" for="q9_5">
-                                    5° semestre do curso
-                                </label>
-                            </div>
-                        </div>
                         </div>
 
-                        <div id="q10" class="d-none">
-                        <h6 class="bg-info p-3 rounded-top text-center">Este relatório é referente a que semestre do seu curso? (último semestre
-                            concluído):</h6>
-
-                        <label for="semestreDoutorado">10. <span class="text-danger">*</span></label>
-                        <div class="mb-4" name="semestre" id="semestreDoutorado">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_1" value="1° semestre do curs" >
-                                <label class="form-check-label" for="q10_1">
-                                    1° semestre do curso
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_2" value="2° semestre do curs" >
-                                <label class="form-check-label" for="q10_2">
-                                    2° semestre do curso
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_3" value="3° semestre do curs" >
-                                <label class="form-check-label" for="q10_3">
-                                    3° semestre do curso
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_4" value="4° semestre do curs" >
-                                <label class="form-check-label" for="q10_4">
-                                    4° semestre do curso
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_5" value="5° semestre do curs" >
-                                <label class="form-check-label" for="q10_5">
-                                    5° semestre do curso
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_6" value="6° semestre do curs" >
-                                <label class="form-check-label" for="q10_6">
-                                    6° semestre do curso
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_7" value="7° semestre do curs" >
-                                <label class="form-check-label" for="q10_7">
-                                    7° semestre do curso
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q10" id="q10_8" value="8° semestre do curs" >
-                                <label class="form-check-label" for="q10_8">
-                                    8° semestre do curso
-                                </label>
-                            </div>
-                        </div>
-                        </div>
                         <h6 class="bg-info p-3 rounded-top text-center">Atividades didáticas</h6>
 
                         <div class="col-xl-7 col-lg-7 col-md-8 col-sm-8 m-0 p-0">
-                            <label for="q11">11. Em quantas disciplinas obrigatórias você já obteve aprovação? <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control mb-4 p-4 " name="q11" required>
+                            <label for="q10">10. Em quantas disciplinas obrigatórias você já obteve aprovação? <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control mb-4 p-4 " name="q10" required>
 
-                            <label for="q11">12. Em quantas disciplinas optativas você já obteve aprovação? <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control mb-4 p-4 " name="q12" required>
+                            <label for="q11">11. Em quantas disciplinas optativas você já obteve aprovação? <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control mb-4 p-4 " name="q11" required>
                         </div>
 
-                        <label>13. Todos os conceitos em disciplinas cursadas no último semestre já foram
+                        <label>12. Todos os conceitos em disciplinas cursadas no último semestre já foram
                             divulgados? Caso não, espere até 2 dias antes da data máxima definida no site
                             do PPgSI para enviar o seu relatório.</label>
                         <div class="mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q13" id="q13_1" value="Sim">
-                                <label class="form-check-label" for="q13_1">
+                                <input class="form-check-input" type="radio" name="q12" id="q12_1" value="Sim">
+                                <label class="form-check-label" for="q12_1">
                                     Sim
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q13" id="q13_2" value="Não">
-                                <label class="form-check-label" for="q13_2">
+                                <input class="form-check-input" type="radio" name="q12" id="q12_2" value="Não">
+                                <label class="form-check-label" for="q12_2">
                                     Não
                                 </label>
                             </div>
                         </div>
 
-                        <label>14. Em quantas disciplinas você foi reprovado desde o início do
+                        <label>13. Em quantas disciplinas você foi reprovado desde o início do
                             mestrado/doutorado? <span class="text-danger">*</span></label>
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="q13" id="q13_1" value="0" required>
+                                <label class="form-check-label" for="q13_1">
+                                    0
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="q13" id="q13_2" value="1" required>
+                                <label class="form-check-label" for="q13_2">
+                                    1
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="q13" id="q13_3" value="2" required>
+                                <label class="form-check-label" for="q13_3">
+                                    2
+                                </label>
+                            </div>
+                        </div>
+
+                        <label>14. Em quantas disciplinas você foi reprovado no último semestre cursado? <span class="text-danger">*</span></label>
                         <div class="mb-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="q14" id="q14_1" value="0" required>
@@ -236,75 +172,76 @@ while ($rowNota = mysqli_fetch_assoc($resultNota)) {
                                     2
                                 </label>
                             </div>
-                        </div>
-
-                        <label>15. Em quantas disciplinas você foi reprovado no último semestre cursado? <span class="text-danger">*</span></label>
-                        <div class="mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q15" id="q15_1" value="0" required>
-                                <label class="form-check-label" for="q15_1">
-                                    0
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q15" id="q15_2" value="1" required>
-                                <label class="form-check-label" for="q15_2">
-                                    1
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q15" id="q15_3" value="2" required>
-                                <label class="form-check-label" for="q15_3">
-                                    2
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q15" id="q15_4" value="Já terminei as disciplina" required>
-                                <label class="form-check-label" for="q15_4">
+                                <input class="form-check-input" type="radio" name="q14" id="q14_4" value="Já terminei as disciplina" required>
+                                <label class="form-check-label" for="q14_4">
                                     Já terminei as disciplinas
                                 </label>
                             </div>
                         </div>
 
-                        <label>16. Você já foi aprovado no exame de proficiência em idiomas? <span class="text-danger">*</span></label>
+                        <label>15. Você já foi aprovado no exame de proficiência em idiomas? <span class="text-danger">*</span></label>
                         <div class="mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q16" id="q16_1" value="Sim" required>
-                                <label class="form-check-label" for="q16_1">
+                                <input class="form-check-input" type="radio" name="q15" id="q15_1" value="Sim" required>
+                                <label class="form-check-label" for="q15_1">
                                     Sim
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q16" id="q16_2" value="Não" required>
-                                <label class="form-check-label" for="q16_2">
+                                <input class="form-check-input" type="radio" name="q15" id="q15_2" value="Não" required>
+                                <label class="form-check-label" for="q15_2">
                                     Não
                                 </label>
                             </div>
                         </div>
 
-                        <label>17. Você já realizou o exame de qualificação? <span class="text-danger">*</span></label>
+                        <label>16. Você já realizou o exame de qualificação? <span class="text-danger">*</span></label>
                         <div class="mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q17" id="q17_1" value="Sim. Fui aprovado." required>
-                                <label class="form-check-label" for="q17_1">
+                                <input class="form-check-input" type="radio" name="q16" id="q16_1" value="Sim. Fui aprovado." required>
+                                <label class="form-check-label" for="q16_1">
                                     Sim. Fui aprovado.
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q17" id="q17_2" value="Sim. Fui reporvado." required>
-                                <label class="form-check-label" for="q17_2">
+                                <input class="form-check-input" type="radio" name="q16" id="q16_2" value="Sim. Fui reporvado." required>
+                                <label class="form-check-label" for="q16_2">
                                     Sim. Fui reporvado.
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q17" id="q17_3" value="Não." required>
-                                <label class="form-check-label" for="q17_3">
+                                <input class="form-check-input" type="radio" name="q16" id="q16_3" value="Não." required>
+                                <label class="form-check-label" for="q16_3">
                                     Não.
                                 </label>
                             </div>
                         </div>
 
-                        <label>18. Se não qualificou, quanto tempo falta para o limite máximo de qualificação?</label>
+                        <label>17. Se não qualificou, quanto tempo falta para o limite máximo de qualificação?</label>
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="q17" id="q17_1" value="Menos de 3 meses" >
+                                <label class="form-check-label" for="q17_1">
+                                    Menos de 3 meses
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="q17" id="q17_2" value="Entre 3 e 6 meses" >
+                                <label class="form-check-label" for="q17_2">
+                                    Entre 3 e 6 meses
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="q17" id="q17_3" value="Mais de 6 meses" >
+                                <label class="form-check-label" for="q17_3">
+                                    Mais de 6 meses
+                                </label>
+                            </div>
+                        </div>
+
+                        <label>18. Se você já fez sua qualificação e foi aprovado, quanto tempo falta para o limite
+                            máximo do depósito da sua dissertação/tese?</label>
                         <div class="mb-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="q18" id="q18_1" value="Menos de 3 meses" >
@@ -326,32 +263,37 @@ while ($rowNota = mysqli_fetch_assoc($resultNota)) {
                             </div>
                         </div>
 
-                        <label>19. Se você já fez sua qualificação e foi aprovado, quanto tempo falta para o limite
-                            máximo do depósito da sua dissertação/tese?</label>
+                        <label>19. Quantos artigos referentes a sua pesquisa de mestrado/doutorado você teve
+                            aceitos ou publicados? (Obs: Você deve inserir os artigos publicados no seu
+                            currículo Lattes) <span class="text-danger">*</span></label>
                         <div class="mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q19" id="q19_1" value="Menos de 3 meses" >
+                                <input class="form-check-input" type="radio" name="q19" id="q19_1" value="0" required>
                                 <label class="form-check-label" for="q19_1">
-                                    Menos de 3 meses
+                                    0
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q19" id="q19_2" value="Entre 3 e 6 meses" >
+                                <input class="form-check-input" type="radio" name="q19" id="q19_2" value="1" required>
                                 <label class="form-check-label" for="q19_2">
-                                    Entre 3 e 6 meses
+                                    1
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q19" id="q19_3" value="Mais de 6 meses" >
+                                <input class="form-check-input" type="radio" name="q19" id="q19_3" value="2" required>
                                 <label class="form-check-label" for="q19_3">
-                                    Mais de 6 meses
+                                    2
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="q19" id="q19_4" value="Mais de 2" required>
+                                <label class="form-check-label" for="q19_4">
+                                    Mais de 2
                                 </label>
                             </div>
                         </div>
 
-                        <label>20. Quantos artigos referentes a sua pesquisa de mestrado/doutorado você teve
-                            aceitos ou publicados? (Obs: Você deve inserir os artigos publicados no seu
-                            currículo Lattes) <span class="text-danger">*</span></label>
+                        <label>20. Quantos artigos você submeteu e ainda estão aguardando resposta? <span class="text-danger">*</span></label>
                         <div class="mb-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="q20" id="q20_1" value="0" required>
@@ -379,93 +321,65 @@ while ($rowNota = mysqli_fetch_assoc($resultNota)) {
                             </div>
                         </div>
 
-                        <label>21. Quantos artigos você submeteu e ainda estão aguardando resposta? <span class="text-danger">*</span></label>
+                        <label>21. Você possui artigo em preparação para submissão? Qual o estágio dele? <span class="text-danger">*</span></label>
                         <div class="mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q21" id="q21_1" value="0" required>
+                                <input class="form-check-input" type="radio" name="q21" id="q21_1" value="Não possuo" required>
                                 <label class="form-check-label" for="q21_1">
-                                    0
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q21" id="q21_2" value="1" required>
-                                <label class="form-check-label" for="q21_2">
-                                    1
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q21" id="q21_3" value="2" required>
-                                <label class="form-check-label" for="q21_3">
-                                    2
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q21" id="q21_4" value="Mais de 2" required>
-                                <label class="form-check-label" for="q21_4">
-                                    Mais de 2
-                                </label>
-                            </div>
-                        </div>
-
-                        <label>22. Você possui artigo em preparação para submissão? Qual o estágio dele? <span class="text-danger">*</span></label>
-                        <div class="mb-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q22" id="q22_1" value="Não possuo" required>
-                                <label class="form-check-label" for="q22_1">
                                     Não possuo
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q22" id="q22_2" value="Experimentos em elaboração" required>
-                                <label class="form-check-label" for="q22_2">
+                                <input class="form-check-input" type="radio" name="q21" id="q21_2" value="Experimentos em elaboração" required>
+                                <label class="form-check-label" for="q21_2">
                                     Experimentos em elaboração
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q22" id="q22_3" value="Aguardando coleta de dados" required>
-                                <label class="form-check-label" for="q22_3">
+                                <input class="form-check-input" type="radio" name="q21" id="q21_3" value="Aguardando coleta de dados" required>
+                                <label class="form-check-label" for="q21_3">
                                     Aguardando coleta de dados
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q22" id="q22_4" value="Em fase de escrita" required>
-                                <label class="form-check-label" for="q22_4">
+                                <input class="form-check-input" type="radio" name="q21" id="q21_4" value="Em fase de escrita" required>
+                                <label class="form-check-label" for="q21_4">
                                     Em fase de escrita
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q22" id="q22_5" value="Em fase de tradução" required>
-                                <label class="form-check-label" for="q22_5">
+                                <input class="form-check-input" type="radio" name="q21" id="q21_5" value="Em fase de tradução" required>
+                                <label class="form-check-label" for="q21_5">
                                     Em fase de tradução
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q22" id="q22_6" value="Preparando resposta para os revisores" required>
-                                <label class="form-check-label" for="q22_6">
+                                <input class="form-check-input" type="radio" name="q21" id="q21_6" value="Preparando resposta para os revisores" required>
+                                <label class="form-check-label" for="q21_6">
                                     Preparando resposta para os revisores
                                 </label>
                             </div>
                         </div>
 
-                        <label for="q23">23. Qual o estágio atual de sua pesquisa? Apresente toda e qualquer atividade que
+                        <label for="q22">22. Qual o estágio atual de sua pesquisa? Apresente toda e qualquer atividade que
                             já tenha sido realizada no contexto de seu projeto de pesquisa (mesmo que
                             ainda incompleta). Faça uma descrição detalhada. <span class="text-danger">*</span></label>
+                        <textarea class="form-control mb-4 p-1" rows="5" name="q22" id="q22" required></textarea>
+
+                        <label for="q23">23. Você participou de algum congressos no país? Se sim, indicar local, se houve
+                            apresentação de trabalho e se o congresso é ou não internacional. <span class="text-danger">*</span></label>
                         <textarea class="form-control mb-4 p-1" rows="5" name="q23" id="q23" required></textarea>
 
-                        <label for="q24">24. Você participou de algum congressos no país? Se sim, indicar local, se houve
-                            apresentação de trabalho e se o congresso é ou não internacional. <span class="text-danger">*</span></label>
+                        <label for="q24">24. Você participou de algum congresso no exterior? Se sim, indicar local e se
+                            houve apresentação de trabalho. <span class="text-danger">*</span></label>
                         <textarea class="form-control mb-4 p-1" rows="5" name="q24" id="q24" required></textarea>
 
-                        <label for="q25">25. Você participou de algum congresso no exterior? Se sim, indicar local e se
-                            houve apresentação de trabalho. <span class="text-danger">*</span></label>
+                        <label for="q25">25. Você realizou algum estágio de pesquisa ou visita de pesquisa no exterior
+                            (incluindo sanduíche)? Se sim, indique o nome da universidade e o período. <span class="text-danger">*</span></label>
                         <textarea class="form-control mb-4 p-1" rows="5" name="q25" id="q25" required></textarea>
 
-                        <label for="q26">26. Você realizou algum estágio de pesquisa ou visita de pesquisa no exterior
-                            (incluindo sanduíche)? Se sim, indique o nome da universidade e o período. <span class="text-danger">*</span></label>
-                        <textarea class="form-control mb-4 p-1" rows="5" name="q26" id="q26" required></textarea>
-
-                        <label for="q27">27. Você tem algo a mais a declarar para a CCP - PPgSI?</label>
-                        <textarea class="form-control mb-4 p-1" rows="5" name="q27" id="q27"></textarea>
+                        <label for="q26">26. Você tem algo a mais a declarar para a CCP - PPgSI?</label>
+                        <textarea class="form-control mb-4 p-1" rows="5" name="q26" id="q26"></textarea>
 
                         <div class="d-flex border rounded mb-4">
                             <h6 class="bg-info p-3 rounded-top text-center m-0">Reavaliação do desempenho do orientando:</h6>
@@ -488,9 +402,9 @@ while ($rowNota = mysqli_fetch_assoc($resultNota)) {
                                 desempenho não deveria ter sido considerado “insatisfatório”.</p>
                         </div>
 
-                        <label for="q28">28. Comentários finais do ORIENTANDO sobre seu desempenho no último
+                        <label for="q27">27. Comentários finais do ORIENTANDO sobre seu desempenho no último
                             semestre, considerando o relatório reapresentado:</label>
-                        <textarea class="form-control mb-4 p-1" rows="5" name="q28" id="q28"></textarea>
+                        <textarea class="form-control mb-4 p-1" rows="5" name="q27" id="q27"></textarea>
                         <button type="button" class="btn btn-primary p-3 float-right" id="confirmar">
                             Enviar
                         </button>
@@ -522,4 +436,4 @@ while ($rowNota = mysqli_fetch_assoc($resultNota)) {
     </div>
 </div>
 
-<script src="View/scripts/scriptPreencher.js" type="text/javascript"></script>
+<script src="View/scripts/scriptPreencher.js?v=<?php echo time(); ?>" type="text/javascript"></script>
