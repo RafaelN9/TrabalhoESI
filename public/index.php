@@ -28,6 +28,7 @@ if(!isset($_SESSION['tipo_usuario'])){
         header("Location: http://localhost/trabalhoESI/public/index.php");
     }
 }
+$_SESSION['from'] = 'index';
 require_once('View/header.php');
 
 if(isset($_POST["cadastroAluno"])){
@@ -84,6 +85,12 @@ if(isset($_POST["formulario"])){
     header("Location: http://localhost/trabalhoESI/public/index.php");
 }
 
+if(isset($_GET["revisao_relatorio"])){
+    require_once 'Controller/ControllerRevisao.php';
+    $controller = new ControllerRevisao();
+    $result = $controller->adquireDataFromDB( '01123456789012345678', 11);
+}
+
 if(isset($_GET["to"])){
     require_once "View/$_GET[to].php";
 }
@@ -91,12 +98,7 @@ if(isset($_GET["to"])){
 if(isset($_GET["getRel"])){
     require_once 'Controller/ControllerRelatorio.php';
     $controller = new ControllerRelatorio();
-    if($_GET['getRel'] == 'historico')
-        $controller->HistoricoRelatorios($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
-
-    if($_GET['getRel'] == 'pendente')
-        $controller->ControllerRelatorio($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
+    $controller->ControllerRelatorio($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
 }
-
 
 require_once('View/footer.php');
