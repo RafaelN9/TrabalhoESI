@@ -45,7 +45,7 @@
                             ?>
                             </select>
 
-                            <input type="submit" class="btn btn-primary p-3 float-right" name="CadastroAluno" value="Cadastrar">
+                            <input type="submit" class="btn btn-primary p-3 float-right" name="cadastroAluno" value="Cadastrar">
                         </form>
                     </div>
 

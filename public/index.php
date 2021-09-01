@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
-if(!isset($_SESSION['tipo_usuario']))
+if(!isset($_SESSION['tipo_usuario'])){
     if(isset($_POST["login"])){
         if(isset($_POST["loginEmail"]) && isset($_POST["loginPwd"])){
             require_once('Controller/ControllerLogin.php');
@@ -24,14 +24,18 @@ if(!isset($_SESSION['tipo_usuario']))
                 }
             }
         }
+        unset($_POST);
+        header("Location: http://localhost/trabalhoESI/public/index.php");
     }
+}
 $_SESSION['from'] = 'index';
 require_once('View/header.php');
 
-if(isset($_POST["CadastroAluno"])){
+if(isset($_POST["cadastroAluno"])){
     require_once 'Controller/ControllerCadastro.php';
     $controller = new ControllerCadastro();
     $_SESSION['result_cad'] = $controller->cadastrarAluno("$_POST[cadastroNumUsp]", "$_POST[cadastroNome]", "$_POST[cadastroEmail]", "$_POST[cadastroSenha]","$_POST[cadastroCurriculo]","$_POST[cadastroCurso]","$_POST[cadastroCPF]");
+    unset($_POST);
     header("Location: http://localhost/trabalhoESI/public/View/login.php");
 }
 
@@ -39,6 +43,7 @@ if(isset($_POST["cadastroProf"])){
     require_once 'Controller/ControllerCadastro.php';
     $controller = new ControllerCadastro();
     $_SESSION['result_cad'] = $controller->cadastrarProfessor("$_POST[cadastroCPF]", "$_POST[cadastroNome]", "$_POST[cadastroEmail]", "$_POST[cadastroSenha]");
+    unset($_POST);
     header("Location: http://localhost/trabalhoESI/public/View/login.php");
 }
 
@@ -46,6 +51,7 @@ if(isset($_POST["cadastroCCP"])){
     require_once 'Controller/ControllerCadastro.php';
     $controller = new ControllerCadastro();
     $_SESSION['result_cad'] = $controller->cadastrarCCP("$_POST[cadastroCPF]");
+    unset($_POST);
     header("Location: http://localhost/trabalhoESI/public/View/login.php");
 }
 
@@ -74,7 +80,9 @@ if(isset($_POST["formulario"])){
         $q19 = $_POST['q19'];
 
     $result = $controller->enviaForm($_SESSION['cod_usuario'],"$_POST[q6]","$_POST[q7]","$_POST[q8]","$q9","$q10","$_POST[q11]","$_POST[q12]","$q13","$_POST[q14]","$_POST[q15]","$_POST[q16]","$_POST[q17]","$q18","$q19","$_POST[q20]","$_POST[q21]","$_POST[q22]","$_POST[q23]","$_POST[q24]","$_POST[q25]","$_POST[q26]","$_POST[q27]","$_POST[q28]");
-    echo $result;
+    
+    unset($_POST);
+    header("Location: http://localhost/trabalhoESI/public/index.php");
 }
 
 if(isset($_GET["to"])){
@@ -86,6 +94,5 @@ if(isset($_GET["getRel"])){
     $controller = new ControllerRelatorio();
     $controller->ControllerRelatorio($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
 }
-
 
 require_once('View/footer.php');

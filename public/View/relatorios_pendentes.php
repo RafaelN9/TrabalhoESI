@@ -18,6 +18,9 @@
             <div class="row h-100 p-md-5 justify-content-center">
                 <div class="col-sm-12 col-md-10 h-100">
                     <div class="row justify-content-center">
+                        <div class="display-4">
+                            Relatórios Pendentes
+                        </div>
                         <div class="col-md-10 mt-3 mb-5">
                             <?php echo $search_bar; ?>
                         </div>
