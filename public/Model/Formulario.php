@@ -2,16 +2,18 @@
 include_once 'Aluno.php';
 
 class Formulario{
-    private $aluno;
-    private $codigo;
+    private $codigo_aluno;
+    private $data_envio;
     private $questoes;
+    
 
-    function __construct($aluno, $q6, $q7, $q8, $q9, $q10,
+    function __construct($codigo_aluno, $data_envio, $q6, $q7, $q8, $q9, $q10,
             $q11, $q12, $q13, $q14, $q15, $q16, 
             $q17, $q18, $q19, $q20, $q21, $q22,
             $q23, $q24, $q25, $q26, $q27, $q28)
     {
-        $this->aluno = $aluno;
+        $this->codigo_aluno = $codigo_aluno;
+        $this->data_envio = $data_envio;
         $this->questoes[] = $q6;
         $this->questoes[] = $q7;
         $this->questoes[] = $q8;
@@ -37,54 +39,16 @@ class Formulario{
         $this->questoes[] = $q28;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCodigo()
-    {
-        return $this->codigo;
-    }
+    public function getCodigoAluno(){ return $this->codigo_aluno;}
 
-    /**
-     * @param mixed $codigo
-     */
-    public function setCodigo($codigo): void
-    {
-        $this->codigo = $codigo;
-    }
+    public function setCodigoAluno($codigo_aluno): void{ $this->codigo_aluno = $codigo_aluno;}
 
-    /**
-     * @return array
-     */
-    public function getQuestoes(): array
-    {
-        return $this->questoes;
-    }
+    public function getQuestoes(): array{ return $this->questoes;}
 
-    /**
-     * @param array $questoes
-     */
-    public function setQuestoes(array $questoes): void
-    {
-        $this->questoes = $questoes;
-    }
+    public function setQuestoes(array $questoes): void{ $this->questoes = $questoes;}
 
-    /**
-     * @return mixed
-     */
-    public function getAluno()
-    {
-        return $this->aluno;
-    }
+    public function getDataEnvio(){ return $this->data_envio;}
 
-    /**
-     * @param mixed $aluno
-     */
-    public function setAluno($aluno): void
-    {
-        $this->aluno = $aluno;
-    }
-
-
+    public function setDataEnvio($dataEnvio): void{ $this->data_envio = $dataEnvio;}
 
 }

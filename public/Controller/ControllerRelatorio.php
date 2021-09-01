@@ -2,10 +2,11 @@
 require_once 'data_base/GetRelatorios.php';
 
 class ControllerRelatorio{
-    private $search_bar;
+    private $search_bar = "";
+    private $errorMessage = "";
     private $tHead;
     private $tBody;
-    private $btn_box;
+    private $btn_box = "";
 
     
 
@@ -13,10 +14,10 @@ class ControllerRelatorio{
         function GetRelatoriosP($cpfProf){
             $bd = new GetRelatorios();
             $response = $bd->GetRelatoriosPendentesProfessor("", $cpfProf);
-            if(gettype($response["body"]) == "string"){
+            if(gettype($response) == "string"){
                 return $response;
             }
-            if(count($response["body"]) == 0){
+            if(count($response) == 0){
                 return "Empty response";
             }
             return $response;
@@ -24,10 +25,10 @@ class ControllerRelatorio{
         function GetRelatoriosC($cpfCCP){
             $bd = new GetRelatorios();
             $response = $bd->GetRelatoriosPendentesCCP("", $cpfCCP);
-            if(gettype($response["body"]) == "string"){
+            if(gettype($response) == "string"){
                 return $response;
             }
-            if(count($response["body"]) == 0){
+            if(count($response) == 0){
                 return "Empty response";
             }
             return $response;
@@ -35,10 +36,10 @@ class ControllerRelatorio{
         function GetRelatoriosA($cpfAluno){
             $bd = new GetRelatorios();
             $response = $bd->GetRelatoriosPendentesAluno("", $cpfAluno);
-            if(gettype($response["body"]) == "string"){
+            if(gettype($response) == "string"){
                 return $response;
             }
-            if(count($response["body"]) == 0){
+            if(count($response) == 0){
                 return "Empty response";
             }
             return $response;
@@ -63,8 +64,13 @@ class ControllerRelatorio{
         switch ($tipo_usuario) {
             case 'aluno':
                 $relatorio = GetRelatoriosA($cpf);
-                if (throwError($relatorio["body"]))
-                    return;
+
+                if (throwError($relatorio)){
+                    $this->errorMessage = $relatorio;
+                    $this->tHead = [];
+                    $this->tBody = [];
+                    break;
+                }
                 $this->tHead[] = $relatorio["head"];
                 foreach($relatorio["body"] as $row){
                     $this->tBody[] = $row;
@@ -73,8 +79,12 @@ class ControllerRelatorio{
                 break;
             case 'professor':
                 $relatorio = GetRelatoriosP($cpf);
-                if (throwError($relatorio["body"]))
-                    return;
+                if (throwError($relatorio)){
+                    $this->errorMessage = $relatorio;
+                    $this->tHead = [];
+                    $this->tBody = [];
+                    break;
+                }
                 $this->tHead[] = $relatorio["head"];
                 foreach($relatorio["body"] as $row){
                     $this->tBody[] = $row;
@@ -82,9 +92,12 @@ class ControllerRelatorio{
                 break;
             case 'ccp':
                 $relatorio = GetRelatoriosC($cpf);
-                if (throwError($relatorio["body"]))
-                    return;
-                
+                if (throwError($relatorio)){
+                    $this->errorMessage = $relatorio;
+                    $this->tHead = [];
+                    $this->tBody = [];
+                    break;               
+                }
                 $this->tHead[] = $relatorio["head"];
                 foreach($relatorio["body"] as $row){
                     $this->tBody[] = $row;
@@ -95,8 +108,9 @@ class ControllerRelatorio{
                 break;
         }
         
-        $response = ["errorMessage" => "", "search_bar" => $this->search_bar,
-        "tHead" => $this->tHead, "tBody" => $this->tBody, "btn_box" => $this->btn_box];
+        $response = ["errorMessage" => $this->errorMessage, "search_bar" => $this->search_bar,
+            "tHead" => $this->tHead, "tBody" => $this->tBody, "btn_box" => $this->btn_box];
+        
         $_REQUEST["relatorio"] = $response;
 
         $_SESSION["prevRel"] = true;

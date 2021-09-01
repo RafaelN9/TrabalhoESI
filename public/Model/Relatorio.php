@@ -11,9 +11,45 @@ class RelatorioProfessor{
         $this->dataEnvioForm = $dataEnvioForm;
     }
     function getHead(){
-        return ["Nome do Aluno", "Código do Formulário Enviado", "Data de Envio do Formulário"];
+        return ["Aluno", "Código", "Data de Envio"];
     }
     function toMap($relatorio){
         return [$relatorio->nomeAluno, $relatorio->codFormularioEnviado, $relatorio->dataEnvioForm];
+    }
+}
+
+class RelatorioAluno{
+    private $codFormularioEnviado;
+    private $dataEnvioForm;
+
+    function __construct($codFormularioEnviado, $dataEnvioForm){
+        $this->codFormularioEnviado = $codFormularioEnviado;
+        $this->dataEnvioForm = $dataEnvioForm;
+    }
+    function getHead(){
+        return ["Código", "Data de Envio"];
+    }
+    function toMap($relatorio){
+        return [$relatorio->nomeAluno, $relatorio->codFormularioEnviado, $relatorio->dataEnvioForm];
+    }
+}
+
+class RelatorioCCP{
+    private $nomeAluno;
+    private $nomeProfResp;
+    private $codFormularioEnviado;
+    private $dataEnvioForm;
+
+    function __construct($nomeAluno, $nomeProfResp, $codFormularioEnviado, $dataEnvioForm){
+        $this->nomeAluno = $nomeAluno;
+        $this->nomeProfResp = $nomeProfResp;
+        $this->codFormularioEnviado = $codFormularioEnviado;
+        $this->dataEnvioForm = $dataEnvioForm;
+    }
+    function getHead(){
+        return ["Aluno", "Professor Responsável", "Código", "Data de Envio"];
+    }
+    function toMap($relatorio){
+        return [$relatorio->nomeAluno, $relatorio->nomeProfResp, $relatorio->codFormularioEnviado, $relatorio->dataEnvioForm];
     }
 }

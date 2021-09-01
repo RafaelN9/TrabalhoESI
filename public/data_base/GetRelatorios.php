@@ -1,7 +1,6 @@
 <?php
 
 use function PHPUnit\Framework\isType;
-
 require_once 'data_base/functions.php';
 require_once 'Model/Relatorio.php';
 
@@ -11,22 +10,12 @@ class GetRelatorios{
     function GetRelatoriosPendentesAluno($filter, $numUSPAluno){
         $query = 
         "SELECT 
-            aluno.Nome as nome, 
-            formularioenviado.Cod_Formulario as codFormularioEnviado, 
-            professor.Nome as 'nomeProfessoResp',
-            formularioenviado.Data as dataEnvioForm
+            formulario.Codigo as codFormulario,
+            formulario.Data_Envio as dataEnvioForm
         FROM 
-            aluno, 
-            professor, 
-            formularioenviado,
             formulario, 
-            professorresp 
         WHERE 
-            (formularioenviado.Numero_USP = aluno.Numero_USP) and 
-            (formularioenviado.Numero_USP = professorresp.Numero_USP) and 
-            (professorresp.CPF_Prof = professor.CPF) and
-            (aluno.Numero_USP = '$numUSPAluno') $filter
-        group by formularioenviado.Numero_USP, formularioenviado.Cod_Formulario";
+            (formulario.Numero_USP = '$numUSPAluno') $filter ";
 
         $result = runSQL($query);
         $relatoriosArray = array();
@@ -34,9 +23,8 @@ class GetRelatorios{
             return $result;
         }
         while($row = mysqli_fetch_assoc($result)){
-            $relatorio = new RelatorioProfessor(
-                $row["nome"],
-                $row["codFormularioEnviado"],
+            $relatorio = new RelatorioAluno(
+                $row["codFormulario"],
                 $row["dataEnvioForm"]
             );
             $relatoriosArray[] = $relatorio->toMap($relatorio);
@@ -48,23 +36,21 @@ class GetRelatorios{
     function GetRelatoriosPendentesCCP($filter, $cpfCCP){
         $query = 
         "SELECT 
-            aluno.Nome as nome, 
-            formularioenviado.Cod_Formulario as codFormularioEnviado, 
+            aluno.Nome as nomeAluno, 
+            formulario.Codigo as codFormulario, 
             professor.Nome as 'nomeProfessoResp',
-            formularioenviado.Data as dataEnvioForm
+            formulario.Data_Envio as dataEnvioForm
         FROM 
             aluno, 
             professor, 
-            formularioenviado,
             formulario, 
             professorresp 
         WHERE 
-            (formularioenviado.Numero_USP = aluno.Numero_USP) and 
-            (formularioenviado.Numero_USP = professorresp.Numero_USP) and 
+            (formulario.Numero_USP = aluno.Numero_USP) and 
+            (formulario.Numero_USP = professorresp.Numero_USP) and 
             (professorresp.CPF_Prof = professor.CPF) and
             (professor.CPF IN (SELECT * FROM ccp)) and
-            (professor.CPF = '$cpfCCP') $filter
-        group by formularioenviado.Numero_USP, formularioenviado.Cod_Formulario";
+            (professor.CPF = '$cpfCCP') $filter ";
 
         $result = runSQL($query);
         $relatoriosArray = array();
@@ -72,9 +58,10 @@ class GetRelatorios{
             return $result;
         }
         while($row = mysqli_fetch_assoc($result)){
-            $relatorio = new RelatorioProfessor(
-                $row["nome"],
-                $row["codFormularioEnviado"],
+            $relatorio = new RelatorioCCP(
+                $row["nomeAluno"],
+                $row["nomeProfessorResp"],
+                $row["codFormulario"],
                 $row["dataEnvioForm"]
             );
             $relatoriosArray[] = $relatorio->toMap($relatorio);
@@ -86,22 +73,19 @@ class GetRelatorios{
     function GetRelatoriosPendentesProfessor($filter, $cpfProf){
         $query = 
         "SELECT 
-            aluno.Nome as nome, 
-            formularioenviado.Cod_Formulario as codFormularioEnviado, 
-            professor.Nome as 'nomeProfessoResp',
-            formularioenviado.Data as dataEnvioForm
-        FROM 
-            aluno, 
-            professor, 
-            formularioenviado,
-            formulario, 
-            professorresp 
-        WHERE 
-            (formularioenviado.Numero_USP = aluno.Numero_USP) and 
-            (formularioenviado.Numero_USP = professorresp.Numero_USP) and 
-            (professorresp.CPF_Prof = professor.CPF) and
-            (professor.CPF = '$cpfProf') $filter
-        group by formularioenviado.Numero_USP, formularioenviado.Cod_Formulario";
+        aluno.Nome as nomeAluno, 
+        formulario.Codigo as codFormulario, 
+        formulario.Data_Envio as dataEnvioForm
+    FROM 
+        aluno, 
+        professor, 
+        formulario, 
+        professorresp 
+    WHERE 
+        (formulario.Numero_USP = aluno.Numero_USP) and 
+        (formulario.Numero_USP = professorresp.Numero_USP) and 
+        (professorresp.CPF_Prof = professor.CPF) and
+        (professor.CPF = '$cpfProf') $filter ";
 
         $result = runSQL($query);
         $relatoriosArray = array();
@@ -111,14 +95,13 @@ class GetRelatorios{
         if (mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
                 $relatorio = new RelatorioProfessor(
-                    $row["nome"],
-                    $row["codFormularioEnviado"],
+                    $row["nomeAluno"],
+                    $row["codFormulario"],
                     $row["dataEnvioForm"]
                 );
                 $relatoriosArray[] = $relatorio->toMap($relatorio);
             }
         }
-        
         return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
     }
 
