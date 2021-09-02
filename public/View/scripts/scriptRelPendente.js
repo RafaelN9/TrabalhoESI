@@ -14,6 +14,8 @@ function Marcar(elem){
 }
 
 function acessarRelatorio(){
-
+    if(valor != undefined){
+        window.location.href = "http://localhost/trabalhoESI/public/index.php?revisao_relatorio="+valor;
+    }
 
 }
