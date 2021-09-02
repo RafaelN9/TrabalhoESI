@@ -1,15 +1,15 @@
 <?php 
-    $search_bar = ""; $tHead = [[]]; $tBody = []; $btn_box = ""; $errorMessage = ""; $btn_solicita=''; $btn_corta='';
+    $search_bar = ""; $tHead = [[]]; $tBody = []; $btn_box = ""; $errorMessage = "";
     $errorMessage = $_REQUEST["relatorio"]["errorMessage"];
     if($errorMessage === ""){
         $search_bar = $_REQUEST["relatorio"]["search_bar"];
         $tHead = $_REQUEST["relatorio"]["tHead"];
         $tBody = $_REQUEST["relatorio"]["tBody"];
-        $btn_box = '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Acessar Relatório</button>';
+        $btn_box = '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="acessarRelatorio()">Acessar Relatório</button>';
         if($_SESSION['tipo_usuario'] == 'aluno')
-            $btn_solicita = '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Solicitar para refazer relatório</button>';
+            $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Solicitar para refazer relatório</button>';
         if($_SESSION['tipo_usuario'] == 'ccp')
-            $btn_corta= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Cortar aluno</button>';
+            $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Cortar aluno</button>';
         $btn_box .= $_REQUEST["relatorio"]["btn_box"];
     }elseif(count($tBody) > 0){
         $tHead = $_REQUEST["relatorio"]["tHead"];
@@ -33,8 +33,10 @@
                             <table class="table table-light rounded table-hover" id="tableRelatorio">
                                 <thead class='thead bg-warning'>
                                     <tr>
+                                        <th></th>
                                     <?php
                                     foreach($tHead[0] as $name){ ?>
+
                                         <th> <?php echo $name ?> </th>
                                     <?php } ?>
                                     </tr>
@@ -42,7 +44,10 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach($tBody as $row){ ?>
-                                        <tr>
+                                        <tr id="linha<?php echo $row[1]; ?>" onclick="Marcar('<?php echo $row[1]; ?>')">
+                                            <td>
+                                                <input type="radio" onclick="Marcar('<?php echo $row[1]; ?>')" name="relatorio" id="<?php echo $row[1]; ?>" value="<?php echo $row[1]; ?>"/>
+                                            </td>
                                             <?php foreach($row as $key => $value){ ?>
                                             <td>
                                                 <?php echo $value ?>
@@ -57,8 +62,6 @@
                             <div class="d-flex justify-content-between flex-wrap">
                                 <?php
                                     echo $btn_box;
-                                    echo $btn_solicita;
-                                    echo $btn_corta;
                                 ?>
                             </div>
                         </div>
@@ -67,3 +70,5 @@
             </div>
         </div>
     </div>
+
+<script type="text/javascript" src="View/scripts/scriptRelPendente.js"></script>

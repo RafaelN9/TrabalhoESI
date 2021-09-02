@@ -24,6 +24,7 @@
                                 <tbody>
                                     <?php foreach($tBody as $row){ ?>
                                         <tr>
+
                                             <?php foreach($row as $key => $value){ ?>
                                             <td>
                                                 <?php echo $value ?>
