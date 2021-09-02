@@ -4,7 +4,7 @@ require_once 'data_base/GetFormulario.php';
 class ControllerRevisao{
 
 
-    function adquireDataFromDB($n_usp, $codigo){
+    function adquireRelatorioFromDB($n_usp, $codigo){
         $bd = new GetFormulario();
         $responseForm = $bd->getFormularioPreenchido($n_usp, $codigo);
         $responseAlunoForm = $bd->getInformacoesDoAluno($n_usp);
