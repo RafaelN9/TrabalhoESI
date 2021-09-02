@@ -98,7 +98,11 @@ if(isset($_GET["to"])){
 if(isset($_GET["getRel"])){
     require_once 'Controller/ControllerRelatorio.php';
     $controller = new ControllerRelatorio();
-    $controller->ControllerRelatorio($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
+    if($_GET['getRel'] == 'historico')
+        $controller->HistoricoRelatorios($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
+
+    if($_GET['getRel'] == 'pendente')
+        $controller->ControllerRelatorio($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
 }
 
 require_once('View/footer.php');

@@ -1,5 +1,5 @@
 <?php 
-    $search_bar = ""; $tHead = []; $tBody = []; $btn_box = ""; $errorMessage = ""; $btn_solicita=''; $btn_corta='';
+    $search_bar = ""; $tHead = [[]]; $tBody = []; $btn_box = ""; $errorMessage = ""; $btn_solicita=''; $btn_corta='';
     $errorMessage = $_REQUEST["relatorio"]["errorMessage"];
     if($errorMessage === ""){
         $search_bar = $_REQUEST["relatorio"]["search_bar"];

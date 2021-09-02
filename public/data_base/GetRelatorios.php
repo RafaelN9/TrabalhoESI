@@ -22,10 +22,14 @@ class GetRelatorios{
         if ( gettype($result) == "string"){
             return $result;
         }
+        if(mysqli_num_rows($result) == 0)
+            return [];
         while($row = mysqli_fetch_assoc($result)){
             $relatorio = new RelatorioAluno(
                 $row["codFormulario"],
-                $row["dataEnvioForm"]
+                $row["dataEnvioForm"],
+                '',
+                ''
             );
             $relatoriosArray[] = $relatorio->toMap($relatorio);
         }
@@ -38,7 +42,7 @@ class GetRelatorios{
         "SELECT 
             aluno.Nome as nomeAluno, 
             formulario.Codigo as codFormulario, 
-            professor.Nome as 'nomeProfessoResp',
+            professor.Nome as nomeProfessoResp,
             formulario.Data_Envio as dataEnvioForm
         FROM 
             aluno, 
@@ -49,24 +53,31 @@ class GetRelatorios{
             (formulario.Numero_USP = aluno.Numero_USP) and 
             (formulario.Numero_USP = professorresp.Numero_USP) and 
             (professorresp.CPF_Prof = professor.CPF) and
-            (professor.CPF IN (SELECT * FROM ccp)) and
+            (professor.CPF IN (SELECT CPF_prof FROM ccp)) and
             (professor.CPF = '$cpfCCP') $filter ";
+
 
         $result = runSQL($query);
         $relatoriosArray = array();
         if ( gettype($result) == "string"){
             return $result;
         }
-        while($row = mysqli_fetch_assoc($result)){
-            $relatorio = new RelatorioCCP(
-                $row["nomeAluno"],
-                $row["nomeProfessorResp"],
-                $row["codFormulario"],
-                $row["dataEnvioForm"]
-            );
-            $relatoriosArray[] = $relatorio->toMap($relatorio);
+        if(mysqli_num_rows($result) == 0)
+            return [];
+        if (mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_assoc($result)){
+                $relatorio = new RelatorioCCP(
+                    $row["nomeAluno"],
+                    $row["nomeProfessorResp"],
+                    $row["codFormulario"],
+                    $row["dataEnvioForm"],
+                    '',
+                    ''
+                );
+                $relatoriosArray[] = $relatorio->toMap($relatorio);
+            }
         }
-        
+
         return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
     }
 
@@ -92,12 +103,16 @@ class GetRelatorios{
         if ( gettype($result) == "string"){
             return $result;
         }
+        if(mysqli_num_rows($result) == 0)
+            return [];
         if (mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
                 $relatorio = new RelatorioProfessor(
                     $row["nomeAluno"],
                     $row["codFormulario"],
-                    $row["dataEnvioForm"]
+                    $row["dataEnvioForm"],
+                    '',
+                    ''
                 );
                 $relatoriosArray[] = $relatorio->toMap($relatorio);
             }
@@ -126,6 +141,8 @@ class GetRelatorios{
         if ( gettype($result) == "string"){
             return $result;
         }
+        if(mysqli_num_rows($result) == 0)
+            return [];
         while($row = mysqli_fetch_assoc($result)){
             $relatorio = new RelatorioAluno(
                 $row["codFormulario"],
@@ -167,6 +184,8 @@ class GetRelatorios{
         if ( gettype($result) == "string"){
             return $result;
         }
+        if(mysqli_num_rows($result) == 0)
+            return [];
         if (mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
                 $relatorio = new RelatorioProfessor(
@@ -188,7 +207,7 @@ class GetRelatorios{
             "SELECT 
             aluno.Nome as nomeAluno, 
             formulario.Codigo as codFormulario, 
-            professor.Nome as 'nomeProfessoResp',
+            professor.Nome as nomeProfessoResp,
             formulario.Data_Envio as dataEnvioForm,
             avaliacaoccp.Parecer as parecer,
             nota.Nome as nota
@@ -204,7 +223,7 @@ class GetRelatorios{
             (formulario.Numero_USP = professorresp.Numero_USP) and 
             (professorresp.CPF_Prof = professor.CPF) and
             (professor.CPF IN (SELECT * FROM ccp)) and
-            (professor.CPF = '$cpfCCP')
+            (professor.CPF = '$cpfCCP') and
             (formulario.Codigo = avaliacaoccp.Cod_Form) and 
             (avaliacaoccp.Cod_Nota = nota.Codigo) $filter ";
 
@@ -213,6 +232,8 @@ class GetRelatorios{
         if ( gettype($result) == "string"){
             return $result;
         }
+        if(mysqli_num_rows($result) == 0)
+            return [];
         while($row = mysqli_fetch_assoc($result)){
             $relatorio = new RelatorioCCP(
                 $row["nomeAluno"],
@@ -224,8 +245,6 @@ class GetRelatorios{
             );
             $relatoriosArray[] = $relatorio->toMap($relatorio);
         }
-
         return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
     }
-
 }

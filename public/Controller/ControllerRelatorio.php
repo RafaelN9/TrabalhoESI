@@ -137,7 +137,7 @@ class ControllerRelatorio{
             if(gettype($response) == "string"){
                 return $response;
             }
-            if(count($response) == 0){
+            if(empty($response)){
                 return "Empty response";
             }
             return $response;
@@ -157,12 +157,14 @@ class ControllerRelatorio{
         function throwError($dbResponse){
             if(gettype($dbResponse) == "string"){
                 $_REQUEST["relatorio"]["errorMessage"] = $dbResponse;
+
+                /*
                 if(isset($_SESSION["prevRel"])){
                     if($_SESSION["prevRel"]){
-                        $_REQUEST["relatorio"] = $_SESSION["relatorio"];
-                        $_SESSION["prevRel"] = false;
+                    $_REQUEST["relatorio"] = $_SESSION["relatorio"];
+                    $_SESSION["prevRel"] = false;
                     }
-                }
+                }*/
                 require_once 'View/historico_relatorio.php';
                 return true;
             }
