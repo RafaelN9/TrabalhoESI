@@ -17,32 +17,42 @@ function setModalToUserType($tipoUsuario){
     if($tipoUsuario == "professor"){
         return "<div class='modal-dialog modal-dialog-centered'>
         <div class='modal-content'>
-                <div class='modal-header'>
-                    <h4 class='text-center'>Avaliação do Relatorio do Aluno</h4>
+                <div class='modal-header justify-content-center'>
+                    <h4>Avaliação do Relatorio do Aluno</h4>
                 </div>
                 <div class='modal-body container-fluid'>
-                    <form method='POST' action='./////'>
-                        <textarea id='avaliacaoTextual' name='avaliacaoTextual' rows='15' class='rounded border textarea-lg'></textarea>
+                    <form id='avaliacaoprof' method='POST' action='./////' class='container-fluid'>
+                        <textarea id='avaliacaoTextual' name='avaliacaoTextual' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Avaliação'></textarea>
+                        <input type='text' class='form-control mt-2' placeholder='Parecer'/>
                     </form>
                 </div>
-                <div class='modal-footer'>
-                    <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                <div class='modal-footer justify-content-between'>
+                    <button type='button' class='btn-lg btn-secondary pl-4 pr-4' data-dismiss='modal'>Fechar</button>
+                    <input type='submit' form='avaliacaoprof' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
                 </div>
             </div>
         </div>";
     }
     else if($tipoUsuario == 'ccp'){
-        return "<div class='modal-dialog'>
+        return "<div class='modal-dialog modal-dialog-centered'>
         <div class='modal-content'>
-                <div class='modal-header'>
-                    <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                    <h4 class='modal-title'>Modal Header</h4>
+                <div class='modal-header justify-content-center'>
+                    <h4>Avaliação do Relatorio do Aluno</h4>
                 </div>
-                <div class='modal-body'>
-                    <p>Some text in the modal.</p>
+                <div class='modal-body container-fluid text-center'>
+                    <h4 class='align-self-center'>Avaliação do Professor</h4>
+                    <div class='container-fluid border-bottom pb-2'>
+                        <textarea id='avaliacaoTextual' name='avaliacaoTextual' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Avaliação' disabled></textarea>
+                        <input type='text' class='form-control mt-2' placeholder='Parecer' disabled/>
+                    </div>
+                    <form id='avaliacaoccp' method='POST' action='./////' class='container-fluid'>
+                        <textarea id='avaliacaoTextual' name='avaliacaoTextual' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Avaliação'></textarea>
+                        <input type='text' class='form-control mt-2' placeholder='Parecer'/>
+                    </form>
                 </div>
-                <div class='modal-footer'>
-                    <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                <div class='modal-footer justify-content-between'>
+                    <button type='button' class='btn-lg btn-secondary pl-4 pr-4' data-dismiss='modal'>Fechar</button>
+                    <input type='submit' form='avaliacaoccp' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
                 </div>
             </div>
         </div>";
