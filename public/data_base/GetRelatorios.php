@@ -42,19 +42,23 @@ class GetRelatorios{
         "SELECT 
             aluno.Nome as nomeAluno, 
             formulario.Codigo as codFormulario, 
-            professor.Nome as nomeProfessoResp,
-            formulario.Data_Envio as dataEnvioForm
+            professor.Nome as nomeProfessorResp,
+            formulario.Data_Envio as dataEnvioForm,
+            avaliacaoprof.Parecer,
+            nota.Nome as nota
         FROM 
             aluno, 
             professor, 
             formulario, 
-            professorresp 
+            professorresp,
+            avaliacaoprof,
+            nota
         WHERE 
             (formulario.Numero_USP = aluno.Numero_USP) and 
             (formulario.Numero_USP = professorresp.Numero_USP) and 
-            (professorresp.CPF_Prof = professor.CPF) and
-            (professor.CPF IN (SELECT CPF_prof FROM ccp)) and
-            (professor.CPF = '$cpfCCP') $filter ";
+            (professorresp.CPF_Prof = professor.CPF) AND
+            avaliacaoprof.Cod_Form = formulario.Codigo AND
+            nota.Codigo = avaliacaoprof.Cod_Nota $filter ";
 
 
         $result = runSQL($query);
@@ -71,8 +75,8 @@ class GetRelatorios{
                     $row["nomeProfessorResp"],
                     $row["codFormulario"],
                     $row["dataEnvioForm"],
-                    '',
-                    ''
+                    $row["Parecer"],
+                    $row["nota"]
                 );
                 $relatoriosArray[] = $relatorio->toMap($relatorio);
             }
@@ -204,28 +208,9 @@ class GetRelatorios{
 
     function GetHistoricoCCP($filter, $cpfCCP){
         $query =
-            "SELECT 
-            aluno.Nome as nomeAluno, 
-            formulario.Codigo as codFormulario, 
-            professor.Nome as nomeProfessoResp,
-            formulario.Data_Envio as dataEnvioForm,
-            avaliacaoccp.Parecer as parecer,
-            nota.Nome as nota
-        FROM 
-            aluno, 
-            professor, 
-            formulario, 
-            professorresp,
-            avaliacaoccp,
-             nota
-        WHERE 
-            (formulario.Numero_USP = aluno.Numero_USP) and 
-            (formulario.Numero_USP = professorresp.Numero_USP) and 
-            (professorresp.CPF_Prof = professor.CPF) and
-            (professor.CPF IN (SELECT * FROM ccp)) and
-            (professor.CPF = '$cpfCCP') and
-            (formulario.Codigo = avaliacaoccp.Cod_Form) and 
-            (avaliacaoccp.Cod_Nota = nota.Codigo) $filter ";
+            "SELECT aluno.Nome as nomeAluno, formulario.Codigo as codFormulario, professor.Nome as nomeProfessorResp, formulario.Data_Envio as dataEnvioForm, avaliacaoccp.Parecer, nota.Nome as nota 
+            FROM aluno, professor, formulario, professorresp, avaliacaoccp, nota 
+            WHERE (formulario.Numero_USP = aluno.Numero_USP) and (formulario.Numero_USP = professorresp.Numero_USP) and (professorresp.CPF_Prof = professor.CPF) AND avaliacaoccp.Cod_Form = formulario.Codigo AND nota.Codigo = avaliacaoccp.Cod_Nota $filter ";
 
         $result = runSQL($query);
         $relatoriosArray = array();
@@ -237,10 +222,10 @@ class GetRelatorios{
         while($row = mysqli_fetch_assoc($result)){
             $relatorio = new RelatorioCCP(
                 $row["nomeAluno"],
-                $row["nomeProfessorResp"],
                 $row["codFormulario"],
+                $row["nomeProfessorResp"],
                 $row["dataEnvioForm"],
-                $row["parecer"],
+                $row["Parecer"],
                 $row["nota"]
             );
             $relatoriosArray[] = $relatorio->toMap($relatorio);

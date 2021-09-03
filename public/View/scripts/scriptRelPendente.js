@@ -1,6 +1,7 @@
 let valor;
 
 function Marcar(elem){
+    console.log(elem)
     $("#"+elem)[0].checked = true;
     $("#linha"+elem).addClass('table-active');
     valor = $("input[name='relatorio']:checked").val();
@@ -15,6 +16,7 @@ function Marcar(elem){
 
 function acessarRelatorio(){
     if(valor != undefined){
+        console.log("ola");
         window.location.href = "http://localhost/trabalhoESI/public/index.php?revisao_relatorio="+valor;
     }
 

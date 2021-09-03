@@ -29,10 +29,12 @@ class GetFormulario{
         nota.Codigo = formulario.Questao_8 AND 
         formulario.Codigo = '$codigo';";
 
+
         $result = runSQL($query);
 
         if(mysqli_num_rows($result) != 0){
             if($row = mysqli_fetch_assoc($result)){
+                $_SESSION["cod_form"] = $row['Codigo'];
                 $formulario = new Formulario($row['Numero_USP'], $row['Data_Envio'], 
                 $row['Questao_6'], $row['curso'], $row['nota'], $row['Questao_9'], 
                 $row['Questao_10'], $row['Questao_11'], $row['Questao_12'], $row['Questao_13'], 

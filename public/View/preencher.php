@@ -90,12 +90,6 @@ while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
                             <?php
                                 echo $optionNota;
                             ?>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q7" id="q7_4" value="Não se aplica" required>
-                                <label class="form-check-label" for="q7_4">
-                                    Não se aplica
-                                </label>
-                            </div>
                         </div>
 
                         <label for="curso">8. Qual é o seu curso?<span class="text-danger">*</span></label>

@@ -9,21 +9,27 @@ if($_REQUEST['formulario'] == NULL){header("Location: http://localhost/trabalhoE
 $form = $_REQUEST["formulario"];
 $questoes = $form->getQuestoes();
 $alunoForm = $_REQUEST["aluno_form"];
-$tipoUsuario = "professor";
+$tipoUsuario = $_SESSION['tipo_usuario'];
 
 
 
 function setModalToUserType($tipoUsuario){
+    global  $codForm;
     if($tipoUsuario == "professor"){
+
         return "<div class='modal-dialog modal-dialog-centered'>
         <div class='modal-content'>
                 <div class='modal-header justify-content-center'>
                     <h4>Avaliação do Relatorio do Aluno</h4>
                 </div>
                 <div class='modal-body container-fluid'>
-                    <form id='avaliacaoprof' method='POST' action='./////' class='container-fluid'>
-                        <textarea id='avaliacaoTextual' name='avaliacaoTextual' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Avaliação'></textarea>
-                        <input type='text' class='form-control mt-2' placeholder='Parecer'/>
+                    <form id='avaliacaoprof' method='POST' action='index.php' class='container-fluid'>
+                        <textarea id='parecer' name='parecer' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer'></textarea>
+                       <select class='form-control mt-2' name='avaliacao' >
+                          <option value='1'>ADEQUADO</option>
+                          <option value='2'>ADEQUADO COM RESSALVA</option>
+                          <option value='3'>INSATISFATÓRIO</option>
+                        </select>
                     </form>
                 </div>
                 <div class='modal-footer justify-content-between'>
@@ -34,6 +40,13 @@ function setModalToUserType($tipoUsuario){
         </div>";
     }
     else if($tipoUsuario == 'ccp'){
+        $query = "SELECT avaliacaoprof.Parecer, nota.Nome as nota FROM avaliacaoprof, nota WHERE avaliacaoprof.Cod_Nota = nota.Codigo AND avaliacaoprof.Cod_Form = $_SESSION[cod_form] LIMIT 1";
+        echo $query;
+        $result = runSQL($query);
+        if($row = mysqli_fetch_assoc($result)){
+            $nota = $row['nota'];
+            $parecer = $row['Parecer'];
+        }
         return "<div class='modal-dialog modal-dialog-centered'>
         <div class='modal-content'>
                 <div class='modal-header justify-content-center'>
@@ -42,12 +55,16 @@ function setModalToUserType($tipoUsuario){
                 <div class='modal-body container-fluid text-center'>
                     <h4 class='align-self-center'>Avaliação do Professor</h4>
                     <div class='container-fluid border-bottom pb-2'>
-                        <textarea id='avaliacaoTextual' name='avaliacaoTextual' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Avaliação' disabled></textarea>
-                        <input type='text' class='form-control mt-2' placeholder='Parecer' disabled/>
+                        <textarea id='parecerProf' name='parecerProf' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer Professor' disabled>$parecer</textarea>
+                        <input type='text' class='form-control mt-2' value='$nota' name='avaliacaoProf' id='avaliacaoProf' placeholder='Avaliação' disabled/>
                     </div>
                     <form id='avaliacaoccp' method='POST' action='./////' class='container-fluid'>
-                        <textarea id='avaliacaoTextual' name='avaliacaoTextual' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Avaliação'></textarea>
-                        <input type='text' class='form-control mt-2' placeholder='Parecer'/>
+                        <textarea id='parecer' name='parecer' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer'></textarea>
+                        <select class='form-control mt-2' name='avaliacao' >
+                          <option value='1'>ADEQUADO</option>
+                          <option value='2'>ADEQUADO COM RESSALVA</option>
+                          <option value='3'>INSATISFATÓRIO</option>
+                        </select>
                     </form>
                 </div>
                 <div class='modal-footer justify-content-between'>
