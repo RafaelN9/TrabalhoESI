@@ -4,12 +4,14 @@ require_once 'data_base/GetFormulario.php';
 class ControllerRevisao{
 
 
-    function adquireRelatorioFromDB($n_usp, $codigo){
+    function adquireRelatorioFromDB($codigo){
         $bd = new GetFormulario();
-        $responseForm = $bd->getFormularioPreenchido($n_usp, $codigo);
-        $responseAlunoForm = $bd->getInformacoesDoAluno($n_usp);
-        $_REQUEST["formulario"] = $responseForm->fetch_assoc();
-        $_REQUEST["aluno_form"] = $responseAlunoForm->fetch_assoc();
+        $responseForm = $bd->getFormulario($codigo);
+        if($responseForm !== NULL){
+            $responseAlunoForm = $bd->getInformacoesDoAluno($responseForm->getCodigoAluno());
+                $_REQUEST["aluno_form"] = $responseAlunoForm;
+        }
+        $_REQUEST["formulario"] = $responseForm;
         require_once 'View/revisao_relatorio.php';
     }
 
