@@ -88,7 +88,7 @@ if(isset($_POST["formulario"])){
 if(isset($_GET["revisao_relatorio"])){
     require_once 'Controller/ControllerRevisao.php';
     $controller = new ControllerRevisao();
-    $result = $controller->adquireRelatorioFromDB( '01123456789012345678', 11);
+    $result = $controller->adquireRelatorioFromDB($_GET["revisao_relatorio"]);
 }
 
 if(isset($_GET["to"])){

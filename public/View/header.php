@@ -47,7 +47,6 @@ elseif($_SESSION['tipo_usuario'] == 'professor')
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
         <button class="dropdown-item" type="button"><a href="index.php?getRel=pendente">Relatórios Pendentes</a></button>
-        <button class="dropdown-item" type="button"><a href="index.php?revisao_relatorio">Revisão Formulario</a></button>
         <button class="dropdown-item" type="button"><a href="index.php?getRel=historico">Histórico de relatórios</a></button>
     </div>
     </div>';

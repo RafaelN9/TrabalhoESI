@@ -52,6 +52,12 @@ html, body{
     min-height: 100vh;
 }
 
+.textarea-lg{
+    width: 80%;
+    resize: none;
+    border: 2px solid #EEEEEE;
+}
+
 ::-webkit-scrollbar{
     width: 0;
 }
