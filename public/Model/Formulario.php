@@ -4,13 +4,13 @@ include_once 'Aluno.php';
 class Formulario{
     private $codigo_aluno;
     private $data_envio;
+    private $professor_resp;
     private $questoes;
-    
 
     function __construct($codigo_aluno, $data_envio, $q6, $q7, $q8, $q9, $q10,
             $q11, $q12, $q13, $q14, $q15, $q16, 
             $q17, $q18, $q19, $q20, $q21, $q22,
-            $q23, $q24, $q25, $q26, $q27)
+            $q23, $q24, $q25, $q26, $q27, $professor_resp)
     {
         $this->codigo_aluno = $codigo_aluno;
         $this->data_envio = $data_envio;
@@ -36,6 +36,7 @@ class Formulario{
         $this->questoes[] = $q25;
         $this->questoes[] = $q26;
         $this->questoes[] = $q27;
+        $this->professor_resp = $professor_resp;
     }
 
     public function getCodigoAluno(){ return $this->codigo_aluno;}
@@ -49,5 +50,7 @@ class Formulario{
     public function getDataEnvio(){ return $this->data_envio;}
 
     public function setDataEnvio($dataEnvio): void{ $this->data_envio = $dataEnvio;}
+
+    public function getProfessorResp(){return $this->professor_resp;}
 
 }
