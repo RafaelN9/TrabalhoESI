@@ -231,15 +231,21 @@ while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q17" id="q17_2" value="Entre 3 e 6 meses" >
+                                <input class="form-check-input" type="radio" name="q17" id="q17_2" value="Menos de 3 meses" >
                                 <label class="form-check-label" for="q17_2">
                                     Entre 3 e 6 meses
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q17" id="q17_3" value="Mais de 6 meses" >
+                                <input class="form-check-input" type="radio" name="q17" id="q17_3" value="Entre 3 e 6 meses" >
                                 <label class="form-check-label" for="q17_3">
                                     Mais de 6 meses
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="q17" id="q17_4" value="Mais de 6 meses" >
+                                <label class="form-check-label" for="q17_4">
+                                    Não se aplica a mim
                                 </label>
                             </div>
                         </div>
@@ -254,15 +260,21 @@ while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q18" id="q18_2" value="Entre 3 e 6 meses" >
+                                <input class="form-check-input" type="radio" name="q18" id="q18_2" value="Menos de 3 meses" >
                                 <label class="form-check-label" for="q18_2">
                                     Entre 3 e 6 meses
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q18" id="q18_3" value="Mais de 6 meses" >
+                                <input class="form-check-input" type="radio" name="q18" id="q18_3" value="Entre 3 e 6 meses" >
                                 <label class="form-check-label" for="q18_3">
                                     Mais de 6 meses
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="q18" id="q18_4" value="Mais de 6 meses" >
+                                <label class="form-check-label" for="q18_4">
+                                    Não se aplica a mim
                                 </label>
                             </div>
                         </div>
