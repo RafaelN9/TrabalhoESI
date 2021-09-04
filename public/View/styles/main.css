@@ -56,6 +56,10 @@ html, body{
     resize: none;
 }
 
+.visuallyhidden {
+    opacity: 0;
+}
+
 ::-webkit-scrollbar{
     width: 0;
 }

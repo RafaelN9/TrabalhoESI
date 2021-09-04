@@ -20,12 +20,13 @@ if(!isset($_SESSION['tipo_usuario'])){
                     if($result){
                         $_SESSION['cod_usuario'] = $result;
                         $_SESSION['tipo_usuario'] = 'professor';
-                    }
+                    }else
+                        header("Location: http://localhost/trabalhoESI/public/View/login.php?erroLogin=S");
                 }
             }
         }
         unset($_POST);
-        header("Location: http://localhost/trabalhoESI/public/index.php");
+        //header("Location: http://localhost/trabalhoESI/public/index.php");
     }
 }
 

@@ -19,6 +19,6 @@
             setTimeout(function() {
                 divToDisplay.innerText = '';
                 divToDisplay.hidden = true;
-            }, 5000);
+            }, 3000);
         </script>";
     }
