@@ -26,7 +26,7 @@ if(!isset($_SESSION['tipo_usuario'])){
             }
         }
         unset($_POST);
-        //header("Location: http://localhost/trabalhoESI/public/index.php");
+        header("Location: http://localhost/trabalhoESI/public/index.php");
     }
 }
 
@@ -93,6 +93,7 @@ if(isset($_GET["revisao_relatorio"])){
 }
 
 if(isset($_POST["avaliacaoProfessor"])){
+    var_dump($_POST);
     require_once 'Controller/ControllerRevisao.php';
     $controller = new ControllerRevisao();
     $result = $controller->insereAvalicaoDoProfessorNaDB($_POST['nota'], $_POST['parecer'], $_POST['codigo_form']);
@@ -100,6 +101,7 @@ if(isset($_POST["avaliacaoProfessor"])){
 }
 
 if(isset($_POST["avaliacaoCCP"])){
+
     require_once 'Controller/ControllerRevisao.php';
     $controller = new ControllerRevisao();
     $result = $controller->insereAvalicaoDoCCPNaDB($_POST['nota'], $_POST['parecer'], $_POST['codigo_form'], $_POST['cpf_ccp']);

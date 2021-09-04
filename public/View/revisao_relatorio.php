@@ -27,20 +27,23 @@ function setModalToUserType($tipoUsuario){
                 <div class='modal-header justify-content-center'>
                     <h4>Avaliação do Relatorio do Aluno</h4>
                 </div>
+                <form id='avaliacaoprof' method='POST' action='index.php' class='container-fluid'>
                 <div class='modal-body container-fluid'>
-                    <form id='avaliacaoprof' method='POST' action='index.php' class='container-fluid'>
+                    
                         <input type='text' style='display:none' value='$codigo_form' name='codigo_form'/>
                         <textarea id='parecer' name='parecer' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer'></textarea>
                        <select class='form-control mt-2' name='nota' id='nota'>
                           $optionNota
                         </select>
-                    </form>
+                    
                 </div>
                 <div class='modal-footer justify-content-between'>
                     <button type='button' class='btn-lg btn-secondary pl-4 pr-4' data-dismiss='modal'>Fechar</button>
-                    <input type='submit' name='avaliacaoProfessor' form='avaliacaoprof' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
+                    <input type='submit' name='avaliacaoProfessor' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
                 </div>
+                </form>
             </div>
+            
         </div>";
     }
     else if($tipoUsuario == 'ccp'){
@@ -58,21 +61,22 @@ function setModalToUserType($tipoUsuario){
                 <div class='modal-header justify-content-center'>
                     <h4>Avaliação do Relatorio do Aluno</h4>
                 </div>
+                <form id='avaliacaoCCP' method='POST' action='index.php' class='container-fluid'>
                 <div class='modal-body container-fluid text-center'>
                     <h4 class='align-self-center'>Avaliação do Professor</h4>
                     <div class='container-fluid border-bottom pb-2'>
                         <textarea id='parecerProf' name='parecerProf' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer Professor' disabled>$parecer</textarea>
                         <input type='text' class='form-control mt-2' value='$nota' name='avaliacaoProf' id='avaliacaoProf' placeholder='Avaliação' disabled/>
                     </div>
-                    <form id='avaliacaoCCP' method='POST' action='index.php' class='container-fluid'>
+                    
                         <input type='text' style='display:none' value='$codigo_form' name='codigo_form'/>
                         <input type='text' style='display:none' value='$cpf_ccp' name='cpf_ccp'/>
                         <textarea id='parecer' name='parecer' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer'></textarea>
                         <select class='form-control mt-2' name='nota' >
                           $optionNota
                         </select>
-                    </form>
                 </div>
+                </form>
                 <div class='modal-footer justify-content-between'>
                     <button type='button' class='btn-lg btn-secondary pl-4 pr-4' data-dismiss='modal'>Fechar</button>
                     <input type='submit' name='avaliacaoCCP' form='avaliacaoCCP' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
@@ -246,8 +250,9 @@ function setModalToUserType($tipoUsuario){
 </div>
 
 <div id="modalAvaliacao" class="modal fade" role="dialog">
+
     <?php echo setModalToUserType($tipoUsuario);?>
-    
+
 </div>
 
 <?php include_once('View/footer.php'); ?>

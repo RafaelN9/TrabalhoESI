@@ -65,7 +65,7 @@ class insertBD{
                 FROM
                     formulario
                 WHERE
-                    formulario.Codigo = 11
+                    formulario.Codigo = $codForm
             )
         ),
         '$parecer'
