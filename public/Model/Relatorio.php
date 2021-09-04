@@ -59,7 +59,7 @@ class RelatorioCCP{
         $this->nota = $nota;
     }
     function getHead(){
-        return ["Aluno", "Código", "Professor Responsável", "Data de Envio", "Parecer professor", "Nota professor"];
+        return ["Aluno", "Código", "Professor Responsável", "Data de Envio", "Parecer", "Nota"];
     }
     function toMap($relatorio){
         return [$relatorio->nomeAluno, $relatorio->nomeProfResp, $relatorio->codFormularioEnviado, $relatorio->dataEnvioForm, $relatorio->parecer, $relatorio->nota];

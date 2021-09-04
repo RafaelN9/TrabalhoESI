@@ -39,7 +39,7 @@ class GetRelatorios{
 
     function GetRelatoriosPendentesCCP($filter, $cpfCCP){
         $query = 
-        "SELECT 
+        "SELECT DISTINCT 
             aluno.Nome as nomeAluno, 
             formulario.Codigo as codFormulario, 
             professor.Nome as nomeProfessorResp,
@@ -52,13 +52,15 @@ class GetRelatorios{
             formulario, 
             professorresp,
             avaliacaoprof,
-            nota
+            nota,
+            avaliacaoccp
         WHERE 
             (formulario.Numero_USP = aluno.Numero_USP) and 
             (formulario.Numero_USP = professorresp.Numero_USP) and 
             (professorresp.CPF_Prof = professor.CPF) AND
             avaliacaoprof.Cod_Form = formulario.Codigo AND
-            nota.Codigo = avaliacaoprof.Cod_Nota $filter ";
+            nota.Codigo = avaliacaoprof.Cod_Nota and 
+            formulario.Codigo not in (SELECT avaliacaoccp.Cod_Form FROM avaliacaoccp) $filter ";
 
 
         $result = runSQL($query);
@@ -87,7 +89,7 @@ class GetRelatorios{
 
     function GetRelatoriosPendentesProfessor($filter, $cpfProf){
         $query = 
-        "SELECT 
+        "SELECT DISTINCT 
         aluno.Nome as nomeAluno, 
         formulario.Codigo as codFormulario, 
         formulario.Data_Envio as dataEnvioForm
@@ -95,12 +97,14 @@ class GetRelatorios{
         aluno, 
         professor, 
         formulario, 
-        professorresp 
+        professorresp,
+        avaliacaoprof
     WHERE 
         (formulario.Numero_USP = aluno.Numero_USP) and 
         (formulario.Numero_USP = professorresp.Numero_USP) and 
         (professorresp.CPF_Prof = professor.CPF) and
-        (professor.CPF = '$cpfProf') $filter ";
+        (professor.CPF = '$cpfProf') AND
+        formulario.Codigo NOT IN (SELECT avaliacaoprof.Cod_Form FROM avaliacaoprof) $filter ";
 
         $result = runSQL($query);
         $relatoriosArray = array();
