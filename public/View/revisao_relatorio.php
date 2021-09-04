@@ -48,7 +48,6 @@ function setModalToUserType($tipoUsuario){
     }
     else if($tipoUsuario == 'ccp'){
         $query = "SELECT avaliacaoprof.Parecer, nota.Nome as nota FROM avaliacaoprof, nota WHERE avaliacaoprof.Cod_Nota = nota.Codigo AND avaliacaoprof.Cod_Form = $_SESSION[cod_form] LIMIT 1";
-        echo $query;
         $result = runSQL($query);
         if($row = mysqli_fetch_assoc($result)){
             $nota = $row['nota'];

@@ -96,10 +96,14 @@ if(isset($_GET["revisao_relatorio"])){
 }
 
 if(isset($_POST["avaliacaoProfessor"])){
-    var_dump($_POST);
     require_once 'Controller/ControllerRevisao.php';
     $controller = new ControllerRevisao();
     $result = $controller->insereAvalicaoDoProfessorNaDB($_POST['nota'], $_POST['parecer'], $_POST['codigo_form']);
+    if($result == 1){
+        echo '<script>setTimeout(()=>{alert("Avaliação adicionada com sucesso!")}, 100)</script>';
+    }else{
+        echo "<script>setTimeout(()=>{alert(`ERROR : $result`)}, 150)</script>";
+    }
     unset($_POST);
 }
 
@@ -108,6 +112,11 @@ if(isset($_POST["avaliacaoCCP"])){
     require_once 'Controller/ControllerRevisao.php';
     $controller = new ControllerRevisao();
     $result = $controller->insereAvalicaoDoCCPNaDB($_POST['nota'], $_POST['parecer'], $_POST['codigo_form'], $_POST['cpf_ccp']);
+    if($result == 1){
+        echo '<script>setTimeout(()=>{alert("Avaliação adicionada com sucesso!")}, 100)</script>';
+    }else{
+        echo "<script>setTimeout(()=>{alert(`ERROR : $result`)}, 150)</script>";
+    }
     unset($_POST);
 }
 
