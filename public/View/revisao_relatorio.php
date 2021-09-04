@@ -38,7 +38,7 @@ function setModalToUserType($tipoUsuario){
                 </div>
                 <div class='modal-footer justify-content-between'>
                     <button type='button' class='btn-lg btn-secondary pl-4 pr-4' data-dismiss='modal'>Fechar</button>
-                    <input type='submit' name='avaliaRelatorio' form='avaliacaoprof' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
+                    <input type='submit' name='avaliacaoProfessor' form='avaliacaoprof' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
                 </div>
             </div>
         </div>";
@@ -51,6 +51,8 @@ function setModalToUserType($tipoUsuario){
             $nota = $row['nota'];
             $parecer = $row['Parecer'];
         }
+        $codigo_form = $_GET['revisao_relatorio'];
+        $cpf_ccp = $_SESSION['cpf'];
         return "<div class='modal-dialog modal-dialog-centered'>
         <div class='modal-content'>
                 <div class='modal-header justify-content-center'>
@@ -62,16 +64,18 @@ function setModalToUserType($tipoUsuario){
                         <textarea id='parecerProf' name='parecerProf' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer Professor' disabled>$parecer</textarea>
                         <input type='text' class='form-control mt-2' value='$nota' name='avaliacaoProf' id='avaliacaoProf' placeholder='Avaliação' disabled/>
                     </div>
-                    <form id='avaliacaoccp' method='POST' action='./////' class='container-fluid'>
+                    <form id='avaliacaoCCP' method='POST' action='index.php' class='container-fluid'>
+                        <input type='text' style='display:none' value='$codigo_form' name='codigo_form'/>
+                        <input type='text' style='display:none' value='$cpf_ccp' name='cpf_ccp'/>
                         <textarea id='parecer' name='parecer' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer'></textarea>
-                        <select class='form-control mt-2' name='avaliacao' >
+                        <select class='form-control mt-2' name='nota' >
                           $optionNota
                         </select>
                     </form>
                 </div>
                 <div class='modal-footer justify-content-between'>
                     <button type='button' class='btn-lg btn-secondary pl-4 pr-4' data-dismiss='modal'>Fechar</button>
-                    <input type='submit' form='avaliacaoccp' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
+                    <input type='submit' name='avaliacaoCCP' form='avaliacaoCCP' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
                 </div>
             </div>
         </div>";

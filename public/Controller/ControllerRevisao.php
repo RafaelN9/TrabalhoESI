@@ -19,9 +19,15 @@ class ControllerRevisao{
         require_once 'View/revisao_relatorio.php';
     }
 
-    function insereAvalicaoNaDB($nota, $parecer, $codForm){
+    function insereAvalicaoDoProfessorNaDB($nota, $parecer, $codForm){
         $bd = new insertBD();
         $result = $bd->adicionaAvaliacaoDoProfessor($nota, $parecer, $codForm);
+        return $result;
+    }
+
+    function insereAvalicaoDoCCPNaDB($nota, $parecer, $codForm, $CPF_CCP){
+        $bd = new insertBD();
+        $result = $bd->adicionaAvaliacaoDoCCP($nota, $parecer, $codForm, $CPF_CCP);
         return $result;
     }
 

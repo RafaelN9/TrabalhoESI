@@ -91,10 +91,17 @@ if(isset($_GET["revisao_relatorio"])){
     $result = $controller->adquireRelatorioFromDB($_GET["revisao_relatorio"]);
 }
 
-if(isset($_POST["avaliaRelatorio"])){
+if(isset($_POST["avaliacaoProfessor"])){
     require_once 'Controller/ControllerRevisao.php';
     $controller = new ControllerRevisao();
-    $result = $controller->insereAvalicaoNaDB($_POST['nota'], $_POST['parecer'], $_POST['codigo_form']);
+    $result = $controller->insereAvalicaoDoProfessorNaDB($_POST['nota'], $_POST['parecer'], $_POST['codigo_form']);
+    unset($_POST);
+}
+
+if(isset($_POST["avaliacaoCCP"])){
+    require_once 'Controller/ControllerRevisao.php';
+    $controller = new ControllerRevisao();
+    $result = $controller->insereAvalicaoDoCCPNaDB($_POST['nota'], $_POST['parecer'], $_POST['codigo_form'], $_POST['cpf_ccp']);
     unset($_POST);
 }
 

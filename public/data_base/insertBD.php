@@ -73,6 +73,22 @@ class insertBD{
         return runSQL($query);
     }
 
+    public function adicionaAvaliacaoDoCCP($nota, $parecer, $codForm, $CPF_CCP){
+        $query = "INSERT INTO avaliacaoccp(
+            Cod_Form,
+            Cod_Nota,
+            CPF_CCP,
+            Parecer
+        )
+        VALUES(
+            '$codForm',
+            '$nota',
+            '$CPF_CCP',
+            '$parecer'
+        );";
+        return runSQL($query);
+    }
+
     public function solicitaRefazer($cod){
         $query = "INSERT INTO solicitaRefazer values('$cod')";
         return runSQL($query);
