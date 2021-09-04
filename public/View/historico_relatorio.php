@@ -9,7 +9,7 @@
         if($_SESSION['tipo_usuario'] == 'aluno')
             $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="solicitarRefazer()">Solicitar refazer relatório</button>';
         if($_SESSION['tipo_usuario'] == 'ccp')
-            $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Cortar aluno</button>';
+            $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="cortarAluno()">Cortar aluno</button>';
         $btn_box .= $_REQUEST["relatorio"]["btn_box"];
     }elseif(count($tBody) > 0){
         $tHead = $_REQUEST["relatorio"]["tHead"];

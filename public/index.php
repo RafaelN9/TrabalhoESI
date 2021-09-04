@@ -121,4 +121,13 @@ if(isset($_GET["refazer"])){
     }else echo "<h1 class='text-center text-danger'>$result</h1>";
 }
 
+if(isset($_GET["cortar"])){
+    require_once 'Controller/ControllerDesligaAluno.php';
+    $controller = new ControllerDesligaAluno();
+    $result = $controller->desliga($_GET["cortar"]);
+    if($result == 1){
+        echo "<h1 class='text-center text-success'>Aluno desligado do programa com sucesso!!</h1>";
+    }else echo "<h1 class='text-center text-danger'>$result</h1>";
+}
+
 require_once('View/footer.php');

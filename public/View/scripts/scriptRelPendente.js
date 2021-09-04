@@ -26,6 +26,12 @@ function acessarRelatorio(){
     }
 }
 
+function cortarAluno(){
+    if(valor != undefined){
+        window.location.href = "http://localhost/trabalhoESI/public/index.php?cortar="+valor;
+    }
+}
+
 
 
 

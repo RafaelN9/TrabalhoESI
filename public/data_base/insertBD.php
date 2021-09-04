@@ -77,4 +77,14 @@ class insertBD{
         $query = "INSERT INTO solicitaRefazer values('$cod')";
         return runSQL($query);
     }
+
+    public function desligaAluno($cod){
+        $queryNum = "SELECT Numero_USP from formulario WHERE Codigo = $cod";
+        $resultNum = runSQL($queryNum);
+        if($row = mysqli_fetch_assoc($resultNum)) {
+            $query = "INSERT INTO alunoDesligado values('$row[Numero_USP]')";
+            return runSQL($query);
+        }
+        return $resultNum;
+    }
 }

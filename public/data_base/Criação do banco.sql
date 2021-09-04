@@ -100,6 +100,12 @@ Create table solicitaRefazer(
     Primary Key(Cod_Form)
 );
 
+Create table alunoDesligado(
+    Numero_USP varchar(20) NOT NULL,
+    FOREIGN KEY (Numero_USP) REFERENCES Aluno(Numero_USP),
+    Primary Key(Numero_USP)
+);
+
 Create table aceitoRefazer(
     Cod_Form int(11) NOT NULL,
     FOREIGN KEY (Cod_Form) REFERENCES solicitaRefazer(Cod_Form),
