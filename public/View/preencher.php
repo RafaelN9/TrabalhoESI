@@ -3,12 +3,9 @@ $queryCurso = "SELECT * FROM Cursos";
 $resultCurso = runSQL($queryCurso);
 $optionCurso = '';
 while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
-    $optionCurso .= '<div class="form-check">
-                        <input class="form-check-input" type="radio" name="q8" id="q8_'.$rowCurso['Codigo'].'" value="'.$rowCurso['Codigo'].'" disabled ';
     if($rowCurso['Codigo'] == $_SESSION['curso'])
-        $optionCurso .= 'checked';
-
-    $optionCurso .= '>
+    $optionCurso .= '<div class="form-check">
+                        <input class="form-check-input" type="radio" name="q8" id="q8_'.$rowCurso['Codigo'].'" value="'.$rowCurso['Codigo'].'" checked >
                         <label class="form-check-label" for="q8_'.$rowCurso['Codigo'].'">
                         '.$rowCurso['Nome'].'
                         </label>
