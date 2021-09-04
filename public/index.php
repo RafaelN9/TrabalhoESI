@@ -2,31 +2,33 @@
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
 if(!isset($_SESSION['tipo_usuario'])){
-    if(isset($_POST["login"])){
-        if(isset($_POST["loginEmail"]) && isset($_POST["loginPwd"])){
-            require_once('Controller/ControllerLogin.php');
-            $controller = new ControllerLogin();
-            $result = $controller->verificaAluno($_POST["loginEmail"],$_POST["loginPwd"]);
+    if(isset($_POST["login"])) if(isset($_POST["loginEmail"]) && isset($_POST["loginPwd"])){
+        require_once('Controller/ControllerLogin.php');
+        $controller = new ControllerLogin();
+        $result = $controller->verificaAluno($_POST["loginEmail"],$_POST["loginPwd"]);
+        if($result){
+            $_SESSION['cod_usuario'] = $result;
+            $_SESSION['tipo_usuario'] = 'aluno';
+            unset($_POST);
+            header("Location: http://localhost/trabalhoESI/public/index.php");
+        }else{
+            $result = $controller->verificaCCP($_POST["loginEmail"],$_POST["loginPwd"]);
             if($result){
                 $_SESSION['cod_usuario'] = $result;
-                $_SESSION['tipo_usuario'] = 'aluno';
+                $_SESSION['tipo_usuario'] = 'ccp';
+                unset($_POST);
+                header("Location: http://localhost/trabalhoESI/public/index.php");
             }else{
-                $result = $controller->verificaCCP($_POST["loginEmail"],$_POST["loginPwd"]);
+                $result = $controller->verificaProfessor($_POST["loginEmail"],$_POST["loginPwd"]);
                 if($result){
                     $_SESSION['cod_usuario'] = $result;
-                    $_SESSION['tipo_usuario'] = 'ccp';
-                }else{
-                    $result = $controller->verificaProfessor($_POST["loginEmail"],$_POST["loginPwd"]);
-                    if($result){
-                        $_SESSION['cod_usuario'] = $result;
-                        $_SESSION['tipo_usuario'] = 'professor';
-                    }else
-                        header("Location: http://localhost/trabalhoESI/public/View/login.php?erroLogin=S");
-                }
+                    $_SESSION['tipo_usuario'] = 'professor';
+                    unset($_POST);
+                    header("Location: http://localhost/trabalhoESI/public/index.php");
+                }else
+                    header("Location: http://localhost/trabalhoESI/public/View/login.php?erroLogin=S");
             }
         }
-        unset($_POST);
-        header("Location: http://localhost/trabalhoESI/public/index.php");
     }
 }
 

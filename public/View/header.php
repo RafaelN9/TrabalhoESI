@@ -35,9 +35,7 @@ if($_SESSION['tipo_usuario'] == 'aluno')
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <a class="dropdown-item" href="index.php?to=preencher" type="button">Preencher formulário</a>
-                    <a class="dropdown-item" href="index.php?getRel=historico" type="button">Formulários</a>
-                    <button class="dropdown-item" type="button">Item 2</button>
-                    <button class="dropdown-item" type="button">Item 3</button>
+                    <a class="dropdown-item" href="index.php?getRel=historico" type="button">Histórico de relatórios</a>
                 </div>
             </div>';
 elseif($_SESSION['tipo_usuario'] == 'professor')
@@ -59,7 +57,6 @@ elseif($_SESSION['tipo_usuario'] == 'ccp')
     <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
         <button class="dropdown-item" type="button"><a href="index.php?getRel=pendente">Relatórios Pendentes</a></button>
         <button class="dropdown-item" type="button"><a href="index.php?getRel=historico">Histórico de relatórios</a></button>
-        <button class="dropdown-item" type="button">Item 3</button>
     </div>
     </div>';
 
