@@ -1,3 +1,4 @@
+$(document).ready(function(){
 $("#cadastroAluno").click(function(){
     $("#cadastroAluno").addClass('active'); 
     $("#cadastroProf").removeClass('active'); 
@@ -43,3 +44,25 @@ $("#cadastroCCP").click(function(){
     $("#formCCP").addClass('d-flex'); 
 });
 
+    let options = {
+        translation: {
+            "@": { pattern: /[a-zÀ-ÿA-Z ]/, recursive: true },
+            E: { pattern: /[\w@\-.+]/, recursive: true },
+            A: { pattern: /[\w@\-.+]/, optional: false },
+            S: { pattern: /[\w@\-.+]/, optional: true },
+        },
+    };
+
+    $("#cadastroNome").mask("@", options);
+    $("#cadastroEmail").mask("E", options);
+    $('#cadastroCPF').mask('000.000.000-00', {reverse: true});
+    $("#cadastroSenha").mask("AAAAAAAASSSSSSSS", options);
+    $("#cadastroNumUsp").mask("#");
+
+    $("#cadastroNomeProf").mask("@", options);
+    $("#cadastroEmailProf").mask("E", options);
+    $('#cadastroCPFProf').mask('000.000.000-00', {reverse: true});
+    $("#cadastroSenhaProf").mask("AAAAAAAASSSSSSSS", options);
+
+    $('#cadastroCPFCCP').mask('000.000.000-00', {reverse: true});
+})
