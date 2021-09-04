@@ -1,5 +1,9 @@
-<?php 
+<?php
+
+use PHPUnit\TextUI\ResultPrinter;
+
 require_once 'data_base/GetFormulario.php';
+require_once 'data_base/insertBD.php';
 
 class ControllerRevisao{
 
@@ -13,6 +17,12 @@ class ControllerRevisao{
         }
         $_REQUEST["formulario"] = $responseForm;
         require_once 'View/revisao_relatorio.php';
+    }
+
+    function insereAvalicaoNaDB($nota, $parecer, $codForm){
+        $bd = new insertBD();
+        $result = $bd->adicionaAvaliacaoDoProfessor($nota, $parecer, $codForm);
+        return $result;
     }
 
 }

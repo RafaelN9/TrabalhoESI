@@ -14,9 +14,8 @@ $tipoUsuario = $_SESSION['tipo_usuario'];
 
 
 function setModalToUserType($tipoUsuario){
-    global  $codForm;
     if($tipoUsuario == "professor"){
-
+        $codigo_form = $_GET['revisao_relatorio'];
         return "<div class='modal-dialog modal-dialog-centered'>
         <div class='modal-content'>
                 <div class='modal-header justify-content-center'>
@@ -24,8 +23,9 @@ function setModalToUserType($tipoUsuario){
                 </div>
                 <div class='modal-body container-fluid'>
                     <form id='avaliacaoprof' method='POST' action='index.php' class='container-fluid'>
+                        <input type='text' style='display:none' value='$codigo_form' name='codigo_form'/>
                         <textarea id='parecer' name='parecer' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer'></textarea>
-                       <select class='form-control mt-2' name='avaliacao' >
+                       <select class='form-control mt-2' name='nota' id='nota'>
                           <option value='1'>ADEQUADO</option>
                           <option value='2'>ADEQUADO COM RESSALVA</option>
                           <option value='3'>INSATISFATÓRIO</option>
@@ -34,7 +34,7 @@ function setModalToUserType($tipoUsuario){
                 </div>
                 <div class='modal-footer justify-content-between'>
                     <button type='button' class='btn-lg btn-secondary pl-4 pr-4' data-dismiss='modal'>Fechar</button>
-                    <input type='submit' form='avaliacaoprof' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
+                    <input type='submit' name='avaliaRelatorio' form='avaliacaoprof' value='Confirmar' class='btn-lg btn-primary float-right pl-4 pr-4'/>
                 </div>
             </div>
         </div>";
@@ -83,7 +83,6 @@ function setModalToUserType($tipoUsuario){
     <div class="container bg-principal p-5 overflow-auto text-light w-75" style="height: 100%;">
         
         <h2 class="text-center">Relatorio Semestral de <b><?php echo $alunoForm->getNome()?></b></h2>
-
         <div class='container-fluid'>
             <h4>Endereço de e-mail</h4>
             <p class='text-break'><?php echo $alunoForm->getEmail() ?></p>

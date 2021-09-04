@@ -91,6 +91,13 @@ if(isset($_GET["revisao_relatorio"])){
     $result = $controller->adquireRelatorioFromDB($_GET["revisao_relatorio"]);
 }
 
+if(isset($_POST["avaliaRelatorio"])){
+    require_once 'Controller/ControllerRevisao.php';
+    $controller = new ControllerRevisao();
+    $result = $controller->insereAvalicaoNaDB($_POST['nota'], $_POST['parecer'], $_POST['codigo_form']);
+    unset($_POST);
+}
+
 if(isset($_GET["to"])){
     require_once "View/$_GET[to].php";
 }
