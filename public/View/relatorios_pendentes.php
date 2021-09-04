@@ -1,5 +1,5 @@
 <?php 
-    $search_bar = ""; $tHead = [[]]; $tBody = []; $btn_box = ""; $errorMessage = "";
+    $tHead = [[]]; $tBody = []; $errorMessage = "";
     $errorMessage = $_REQUEST["relatorio"]["errorMessage"];
     if($errorMessage === "") {
         $search_bar = $_REQUEST["relatorio"]["search_bar"];
@@ -20,14 +20,12 @@ $_SESSION['from'] = 'pendente';
                         <div class="display-4">
                             Relatórios Pendentes
                         </div>
-                        <div class="col-md-10 mt-3 mb-5">
-                            <?php echo $search_bar; ?>
-                        </div>
+                        <input type='text' class='form-control col-md-10 mt-3' id='search-box' name='search-box' placeholder="Buscar..."/>
                         <div class="col-12 mb-5">
                             <h3><?php echo $errorMessage; ?></h3> 
                             <table class="table table-light rounded table-hover" id="tableRelatorio">
                                 <thead class='thead bg-warning'>
-                                    <tr>
+                                    <tr id='head'>
                                         <th></th>
                                     <?php
                                     foreach($tHead[0] as $name){ ?>
@@ -64,3 +62,4 @@ $_SESSION['from'] = 'pendente';
     </div>
 
 <script type="text/javascript" src="View/scripts/scriptRelPendente.js"></script>
+<script type="text/javascript" src="View/scripts/scriptSearchBox.js?<?php echo time(); ?>"></script>

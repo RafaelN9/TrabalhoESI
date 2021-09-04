@@ -22,20 +22,19 @@
     <div class="container-fluid h-100 d-flex" style="min-height: 100vh;">
         <div class="container-fluid ">
             <div class="row h-100 p-md-5 justify-content-center">
+
                 <div class="col-sm-12 col-md-10 h-100">
                     <div class="row justify-content-center">
                         <div class="display-4">
                             Histórico de relatórios
                         </div>
-                        <div class="col-md-10 mt-3 mb-5">
-                            <?php echo $search_bar; ?>
-                        </div>
+                        <input type='text' class='form-control col-md-10 mt-3' id='search-box' name='search-box' placeholder="Buscar..."/>
                         <div class="col-12 mb-5">
                             <h3><?php echo $errorMessage; ?></h3>
                             <table class="table table-light rounded table-hover" id="tableRelatorio">
 
                                 <thead class='thead bg-warning'>
-                                    <tr>
+                                    <tr id='head'>
                                         <th></th>
                                     <?php
                                     foreach($tHead[0] as $name){ ?>
@@ -78,3 +77,4 @@
 
 
 <script type="text/javascript" src="View/scripts/scriptRelPendente.js?<?php echo time(); ?>"></script>
+<script type="text/javascript" src="View/scripts/scriptSearchBox.js?<?php echo time(); ?>"></script>
