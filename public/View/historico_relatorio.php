@@ -7,7 +7,7 @@
         $tBody = $_REQUEST["relatorio"]["tBody"];
         $btn_box = '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="acessarRelatorio()">Acessar Relatório</button>';
         if($_SESSION['tipo_usuario'] == 'aluno')
-            $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Solicitar para refazer relatório</button>';
+            $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="solicitarRefazer()">Solicitar refazer relatório</button>';
         if($_SESSION['tipo_usuario'] == 'ccp')
             $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Cortar aluno</button>';
         $btn_box .= $_REQUEST["relatorio"]["btn_box"];
@@ -15,6 +15,8 @@
         $tHead = $_REQUEST["relatorio"]["tHead"];
         $tBody = $_REQUEST["relatorio"]["tBody"];
     }
+
+    $_SESSION['from'] = 'historico';
 ?>
 
     <div class="container-fluid h-100 d-flex" style="min-height: 100vh;">
@@ -29,8 +31,9 @@
                             <?php echo $search_bar; ?>
                         </div>
                         <div class="col-12 mb-5">
-                            <h3><?php echo $errorMessage; ?></h3> 
+                            <h3><?php echo $errorMessage; ?></h3>
                             <table class="table table-light rounded table-hover" id="tableRelatorio">
+
                                 <thead class='thead bg-warning'>
                                     <tr>
                                         <th></th>
@@ -42,7 +45,9 @@
                                     </tr>
                                     
                                 </thead>
+
                                 <tbody>
+
                                     <?php foreach($tBody as $row){ ?>
                                         <tr id="linha<?php echo $row[1]; ?>" onclick="Marcar('<?php echo $row[1]; ?>')">
                                             <td>
@@ -71,4 +76,5 @@
         </div>
     </div>
 
-<script type="text/javascript" src="View/scripts/scriptRelPendente.js"></script>
+
+<script type="text/javascript" src="View/scripts/scriptRelPendente.js?<?php echo time(); ?>"></script>

@@ -72,4 +72,9 @@ class insertBD{
         );";
         return runSQL($query);
     }
+
+    public function solicitaRefazer($cod){
+        $query = "INSERT INTO solicitaRefazer values('$cod')";
+        return runSQL($query);
+    }
 }

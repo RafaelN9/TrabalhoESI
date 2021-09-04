@@ -14,6 +14,12 @@ $tipoUsuario = $_SESSION['tipo_usuario'];
 
 
 function setModalToUserType($tipoUsuario){
+    $queryNota = "SELECT * FROM Nota WHERE Codigo <> 4";
+    $resultNota = runSQL($queryNota);
+    $optionNota = '';
+    while ($rowNota = mysqli_fetch_assoc($resultNota)) {
+        $optionNota .= "<option value='$rowNota[Codigo]'>$rowNota[Nome]</option>";
+    }
     if($tipoUsuario == "professor"){
         $codigo_form = $_GET['revisao_relatorio'];
         return "<div class='modal-dialog modal-dialog-centered'>
@@ -26,9 +32,7 @@ function setModalToUserType($tipoUsuario){
                         <input type='text' style='display:none' value='$codigo_form' name='codigo_form'/>
                         <textarea id='parecer' name='parecer' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer'></textarea>
                        <select class='form-control mt-2' name='nota' id='nota'>
-                          <option value='1'>ADEQUADO</option>
-                          <option value='2'>ADEQUADO COM RESSALVA</option>
-                          <option value='3'>INSATISFATÓRIO</option>
+                          $optionNota
                         </select>
                     </form>
                 </div>
@@ -61,9 +65,7 @@ function setModalToUserType($tipoUsuario){
                     <form id='avaliacaoccp' method='POST' action='./////' class='container-fluid'>
                         <textarea id='parecer' name='parecer' rows='10' class='rounded border form-control textarea-dont-resize mt-2' placeholder='Parecer'></textarea>
                         <select class='form-control mt-2' name='avaliacao' >
-                          <option value='1'>ADEQUADO</option>
-                          <option value='2'>ADEQUADO COM RESSALVA</option>
-                          <option value='3'>INSATISFATÓRIO</option>
+                          $optionNota
                         </select>
                     </form>
                 </div>
@@ -230,8 +232,12 @@ function setModalToUserType($tipoUsuario){
             semestre, considerando o relatório reapresentado:</h4>
             <p class='text-break'><?php echo $questoes[21] ?></p>
         </div>
-    
-        <button class="btn-lg btn-primary float-right pl-4 pr-4" data-toggle="modal" data-target="#modalAvaliacao">Avaliar</button>
+
+        <?php
+            if($_SESSION['from'] == 'pendente')
+                echo '<button class="btn-lg btn-primary float-right pl-4 pr-4" data-toggle="modal" data-target="#modalAvaliacao">Avaliar</button>';
+        ?>
+
     </div>
 </div>
 

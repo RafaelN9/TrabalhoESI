@@ -35,7 +35,7 @@ class RelatorioAluno{
         $this->nota = $nota;
     }
     function getHead(){
-        return ["Código", "Data de Envio", "Parecer", "Nota"];
+        return ["Data de Envio", "Código", "Parecer", "Nota"];
     }
     function toMap($relatorio){
         return [$relatorio->codFormularioEnviado, $relatorio->dataEnvioForm, $relatorio->parecer, $relatorio->nota];
@@ -59,7 +59,7 @@ class RelatorioCCP{
         $this->nota = $nota;
     }
     function getHead(){
-        return ["Aluno", "Professor Responsável", "Código", "Data de Envio", "Parecer professor", "Nota professor"];
+        return ["Aluno", "Código", "Professor Responsável", "Data de Envio", "Parecer professor", "Nota professor"];
     }
     function toMap($relatorio){
         return [$relatorio->nomeAluno, $relatorio->nomeProfResp, $relatorio->codFormularioEnviado, $relatorio->dataEnvioForm, $relatorio->parecer, $relatorio->nota];

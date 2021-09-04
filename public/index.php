@@ -28,7 +28,7 @@ if(!isset($_SESSION['tipo_usuario'])){
         header("Location: http://localhost/trabalhoESI/public/index.php");
     }
 }
-$_SESSION['from'] = 'index';
+
 require_once('View/header.php');
 
 if(isset($_POST["cadastroAluno"])){
@@ -110,6 +110,15 @@ if(isset($_GET["getRel"])){
 
     if($_GET['getRel'] == 'pendente')
         $controller->ControllerRelatorio($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
+}
+
+if(isset($_GET["refazer"])){
+    require_once 'Controller/ControllerRefazer.php';
+    $controller = new ControllerRefazer();
+    $result = $controller->solicitaRefazer($_GET["refazer"]);
+    if($result == 1){
+        echo "<h1 class='text-center text-success'>Solicitado com sucesso!! Aguardar retorno da CCP</h1>";
+    }else echo "<h1 class='text-center text-danger'>$result</h1>";
 }
 
 require_once('View/footer.php');

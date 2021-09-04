@@ -94,7 +94,19 @@ Create table AvaliacaoCCP(
     Primary Key(Cod_Form, CPF_CCP)
 );
 
-insert into Nota(Nome) values("ADEQUADO"),("ADEQUADO COM RESSALVAS"), ("INSATISFATÓRIO");
+Create table solicitaRefazer(
+    Cod_Form int(11) NOT NULL,
+    FOREIGN KEY (Cod_Form) REFERENCES Formulario(Codigo),
+    Primary Key(Cod_Form)
+);
+
+Create table aceitoRefazer(
+    Cod_Form int(11) NOT NULL,
+    FOREIGN KEY (Cod_Form) REFERENCES solicitaRefazer(Cod_Form),
+    Primary Key(Cod_Form)
+);
+
+insert into Nota(Nome) values("ADEQUADO"),("ADEQUADO COM RESSALVAS"), ("INSATISFATÓRIO"), ("NÃO SE APLICA");
 
 insert into Cursos(Nome) values("Mestrado"),("Doutorado");
 

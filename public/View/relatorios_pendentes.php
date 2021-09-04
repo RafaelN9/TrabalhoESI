@@ -5,9 +5,11 @@
         $search_bar = $_REQUEST["relatorio"]["search_bar"];
         $tHead = $_REQUEST["relatorio"]["tHead"];
         $tBody = $_REQUEST["relatorio"]["tBody"];
-        $btn_box = '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2">Acessar Relatório</button>';
+        $btn_box = '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="acessarRelatorio()">Acessar Relatório</button>';
         $btn_box .= $_REQUEST["relatorio"]["btn_box"];
     }
+
+$_SESSION['from'] = 'pendente';
 ?>
 
     <div class="container-fluid h-100 d-flex" style="min-height: 100vh;">
@@ -26,6 +28,7 @@
                             <table class="table table-light rounded table-hover" id="tableRelatorio">
                                 <thead class='thead bg-warning'>
                                     <tr>
+                                        <th></th>
                                     <?php
                                     foreach($tHead[0] as $name){ ?>
                                         <th> <?php echo $name ?> </th>
@@ -35,7 +38,10 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach($tBody as $row){ ?>
-                                        <tr>
+                                        <tr id="linha<?php echo $row[1]; ?>" onclick="Marcar('<?php echo $row[1]; ?>')">
+                                            <td>
+                                                <input type="radio" onclick="Marcar('<?php echo $row[1]; ?>')" name="relatorio" id="<?php echo $row[1]; ?>" value="<?php echo $row[1]; ?>"/>
+                                            </td>
                                             <?php foreach($row as $key => $value){ ?>
                                             <td>
                                                 <?php echo $value ?>
@@ -56,3 +62,5 @@
             </div>
         </div>
     </div>
+
+<script type="text/javascript" src="View/scripts/scriptRelPendente.js"></script>

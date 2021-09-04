@@ -26,8 +26,8 @@ class GetRelatorios{
             return [];
         while($row = mysqli_fetch_assoc($result)){
             $relatorio = new RelatorioAluno(
-                $row["codFormulario"],
                 $row["dataEnvioForm"],
+                $row["codFormulario"],
                 '',
                 ''
             );
@@ -72,8 +72,8 @@ class GetRelatorios{
             while($row = mysqli_fetch_assoc($result)){
                 $relatorio = new RelatorioCCP(
                     $row["nomeAluno"],
-                    $row["nomeProfessorResp"],
                     $row["codFormulario"],
+                    $row["nomeProfessorResp"],
                     $row["dataEnvioForm"],
                     $row["Parecer"],
                     $row["nota"]
@@ -149,8 +149,8 @@ class GetRelatorios{
             return [];
         while($row = mysqli_fetch_assoc($result)){
             $relatorio = new RelatorioAluno(
-                $row["codFormulario"],
                 $row["dataEnvioForm"],
+                $row["codFormulario"],
                 $row["parecer"],
                 $row["nota"]
             );
