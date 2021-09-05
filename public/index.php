@@ -10,23 +10,23 @@ if(!isset($_SESSION['tipo_usuario'])){
             $_SESSION['cod_usuario'] = $result;
             $_SESSION['tipo_usuario'] = 'aluno';
             unset($_POST);
-            header("Location: http://localhost/trabalhoESI/public/index.php");
+            header("Location:  index.php");
         }else{
             $result = $controller->verificaCCP($_POST["loginEmail"],$_POST["loginPwd"]);
             if($result){
                 $_SESSION['cod_usuario'] = $result;
                 $_SESSION['tipo_usuario'] = 'ccp';
                 unset($_POST);
-                header("Location: http://localhost/trabalhoESI/public/index.php");
+                header("Location:  index.php");
             }else{
                 $result = $controller->verificaProfessor($_POST["loginEmail"],$_POST["loginPwd"]);
                 if($result){
                     $_SESSION['cod_usuario'] = $result;
                     $_SESSION['tipo_usuario'] = 'professor';
                     unset($_POST);
-                    header("Location: http://localhost/trabalhoESI/public/index.php");
+                    header("Location:  index.php");
                 }else
-                    header("Location: http://localhost/trabalhoESI/public/View/login.php?erroLogin=S");
+                    header("Location:  View/login.php?erroLogin=S");
             }
         }
     }
@@ -39,7 +39,7 @@ if(isset($_POST["cadastroAluno"])){
     $controller = new ControllerCadastro();
     $_SESSION['result_cad'] = $controller->cadastrarAluno("$_POST[cadastroNumUsp]", "$_POST[cadastroNome]", "$_POST[cadastroEmail]", "$_POST[cadastroSenha]","$_POST[cadastroCurriculo]","$_POST[cadastroCurso]","$_POST[cadastroCPF]");
     unset($_POST);
-    header("Location: http://localhost/trabalhoESI/public/View/login.php");
+    header("Location:  View/login.php");
 }
 
 if(isset($_POST["cadastroProf"])){
@@ -47,7 +47,7 @@ if(isset($_POST["cadastroProf"])){
     $controller = new ControllerCadastro();
     $_SESSION['result_cad'] = $controller->cadastrarProfessor("$_POST[cadastroCPF]", "$_POST[cadastroNome]", "$_POST[cadastroEmail]", "$_POST[cadastroSenha]");
     unset($_POST);
-    header("Location: http://localhost/trabalhoESI/public/View/login.php");
+    header("Location:  View/login.php");
 }
 
 if(isset($_POST["cadastroCCP"])){
@@ -55,7 +55,7 @@ if(isset($_POST["cadastroCCP"])){
     $controller = new ControllerCadastro();
     $_SESSION['result_cad'] = $controller->cadastrarCCP("$_POST[cadastroCPF]");
     unset($_POST);
-    header("Location: http://localhost/trabalhoESI/public/View/login.php");
+    header("Location:  View/login.php");
 }
 
 if(isset($_POST["formulario"])){
@@ -86,7 +86,7 @@ if(isset($_POST["formulario"])){
     $result = $controller->enviaForm($_SESSION['cod_usuario'],"$_POST[q6]","$_POST[q7]","$_POST[q8]","$q9","$q10","$_POST[q11]","$_POST[q12]","$q13","$_POST[q14]","$_POST[q15]","$_POST[q16]","$_POST[q17]","$q18","$q19","$_POST[q20]","$_POST[q21]","$_POST[q22]","$_POST[q23]","$_POST[q24]","$_POST[q25]","$_POST[q26]","$_POST[q27]");
     
     unset($_POST);
-    header("Location: http://localhost/trabalhoESI/public/index.php");
+    header("Location:  index.php");
 }
 
 if(isset($_GET["revisao_relatorio"])){
