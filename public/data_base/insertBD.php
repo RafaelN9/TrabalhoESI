@@ -103,4 +103,9 @@ class insertBD{
         }
         return $resultNum;
     }
+
+    public function cadastraResp($cpfProf, $nUSP){
+        $query = "INSERT INTO ProfessorResp values('$nUSP', '$cpfProf')";
+        return runSQL($query);
+    }
 }

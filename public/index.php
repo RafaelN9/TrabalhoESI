@@ -38,6 +38,7 @@ if(isset($_POST["cadastroAluno"])){
     require_once 'Controller/ControllerCadastro.php';
     $controller = new ControllerCadastro();
     $_SESSION['result_cad'] = $controller->cadastrarAluno("$_POST[cadastroNumUsp]", "$_POST[cadastroNome]", "$_POST[cadastroEmail]", "$_POST[cadastroSenha]","$_POST[cadastroCurriculo]","$_POST[cadastroCurso]","$_POST[cadastroCPF]");
+    $controller->cadastrarProfResp("$_POST[profResp]","$_POST[cadastroNumUsp]");
     unset($_POST);
     header("Location: http://localhost/trabalhoESI/public/View/login.php");
 }

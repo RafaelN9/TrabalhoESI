@@ -24,4 +24,10 @@ class ControllerCadastro{
         $resultado = $bd->cadastrarCCPDB($cpf);
         return $resultado;
     }
+
+    public function cadastrarProfResp($cpfProf, $nUSP){
+        $bd = new insertBD();
+        $resultado = $bd->cadastraResp($cpfProf, $nUSP);
+        return $resultado;
+    }
 }

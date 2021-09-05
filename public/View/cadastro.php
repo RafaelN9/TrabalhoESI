@@ -6,6 +6,13 @@
     while($rowCurso = mysqli_fetch_assoc($resultCurso)){
         $optionCurso .= '<option value='.$rowCurso['Codigo'].'>'.$rowCurso['Nome'].'</option>';
     }
+
+    $queryProfessor = "SELECT Nome, CPF FROM Professor";
+    $resultProfessor = runSQL($queryProfessor);
+    $optionProfessor = '';
+    while($rowProfessor = mysqli_fetch_assoc($resultProfessor)){
+        $optionProfessor .= '<option value='.$rowProfessor['CPF'].'>'.$rowProfessor['Nome'].'</option>';
+    }
 ?>
     <script type="text/javascript" src="scripts/jquery.mask.js"></script>
 
@@ -45,6 +52,13 @@
                             <?php
                                 echo $optionCurso;
                             ?>
+                            </select>
+
+                            <label for="profResp" class="text-white">Professor responsável</label>
+                            <select name="profResp" class="form-control mb-4" id="profResp">
+                                <?php
+                                echo $optionProfessor;
+                                ?>
                             </select>
 
                             <input type="submit" class="btn btn-primary p-3 float-right" name="cadastroAluno" value="Cadastrar">
