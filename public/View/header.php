@@ -11,7 +11,7 @@ $botaoLogin = '';
 if(isset($_SESSION['tipo_usuario'])){
         $user = $_SESSION['tipo_usuario'];
         $dropNotifica = "<div class='dropdown btn' role='group' aria-label='Notifications'>
-        <button class='btn btn-secondary btn-lg' type='button' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+        <button class='btn btn-secondary btn-lg' type='button' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' disabled>
             <i class='fas fa-bell' width='100' height='100'></i>
         </button>
         <div class='dropdown-menu' aria-labelledby='dropdownMenu2'>
