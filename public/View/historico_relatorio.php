@@ -16,6 +16,8 @@
         $tBody = $_REQUEST["relatorio"]["tBody"];
     }
 
+    $showSearchBox = $_SESSION['tipo_usuario'] == 'aluno' ? 'd-none' : '';
+
     $_SESSION['from'] = 'historico';
 ?>
 
@@ -28,7 +30,7 @@
                         <div class="display-4">
                             Histórico de relatórios
                         </div>
-                        <input type='text' class='form-control col-md-10 mt-3' id='search-box' name='search-box' placeholder="Buscar..."/>
+                        <input type='text' class='form-control col-md-10 mt-3 <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder="Buscar..."/>
                         <div class="col-12 mb-5">
                             <h3><?php echo $errorMessage; ?></h3>
                             <table class="table table-light rounded table-hover" id="tableRelatorio">
