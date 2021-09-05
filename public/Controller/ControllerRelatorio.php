@@ -61,20 +61,6 @@ class ControllerRelatorio{
         
         $relatorio = array();
         switch ($tipo_usuario) {
-            case 'aluno':
-                /*
-                $relatorio = $this->GetRelatoriosA($cpf);
-
-                if ($this->throwError($relatorio)){
-                    break;
-                }
-                $this->tHead[] = $relatorio["head"];
-                foreach($relatorio["body"] as $row){
-                    $this->tBody[] = $row;
-                }
-                */
-                header("Location: http://localhost/trabalhoESI/public");
-                break;
             case 'professor':
                 $relatorio = $this->GetRelatoriosP($cpf);
                 if ($this->throwError($relatorio)){

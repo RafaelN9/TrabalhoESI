@@ -1,13 +1,11 @@
 <?php
 require_once('data_base/functions.php');
-//unset($_SESSION['tipo_usuario']);
-//$_SESSION['tipo_usuario'] = 'aluno';
-//$_SESSION['tipo_usuario'] = 'professor';
-//$_SESSION['tipo_usuario'] = 'ccp';
-//$_SESSION['tipo_usuario'] = 'erro';
+
+
 $dropdown = '<div></div>';
 $dropNotifica ='<div></div>';
 $botaoLogin = '';
+
 if(isset($_SESSION['tipo_usuario'])){
         $user = $_SESSION['tipo_usuario'];
         $dropNotifica = "<div class='dropdown btn' role='group' aria-label='Notifications'>
