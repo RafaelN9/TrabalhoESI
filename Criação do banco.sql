@@ -70,7 +70,6 @@ CREATE TABLE Formulario(
     Questao_25 text NOT NULL,
     Questao_26 text NOT NULL,
     Questao_27 text,
-    Questao_28 text
 );
 
 Create table AvaliacaoProf(
