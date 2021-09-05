@@ -48,14 +48,14 @@
                             <input type="text"  class="form-control mb-4 p-4" name="cadastroCurriculo" id="cadastroCurriculo" placeholder="Link" required>
                             
                             <label for="cadastroCurso" class="text-white">Curso</label>
-                            <select name="cadastroCurso" class="form-control mb-4" id="cadastroCurso">
+                            <select name="cadastroCurso" class="form-control mb-4" id="cadastroCurso" required>
                             <?php
                                 echo $optionCurso;
                             ?>
                             </select>
 
                             <label for="profResp" class="text-white">Professor responsável</label>
-                            <select name="profResp" class="form-control mb-4" id="profResp">
+                            <select name="profResp" class="form-control mb-4" id="profResp" required>
                                 <?php
                                 echo $optionProfessor;
                                 ?>
