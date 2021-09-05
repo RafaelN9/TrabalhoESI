@@ -29,7 +29,7 @@
                         <div class="display-4">
                             Histórico de relatórios
                         </div>
-                        <input type='text' class='form-control col-md-10 mt-5 mb-5 <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder="Buscar..."/>
+                        <input type='text' class='form-control col-md-10 mt-5 mb-5 <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder="Buscar pelo nome do aluno"/>
                         <div class="col-12 mb-5">
                             <?php if($errorMessage != ""){ echo $errorMessage; }
                             else{
