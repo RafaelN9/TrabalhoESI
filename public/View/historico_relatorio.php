@@ -1,6 +1,7 @@
 <?php 
     $search_bar = ""; $tHead = [[]]; $tBody = []; $btn_box = ""; $errorMessage = "";
     $errorMessage = $_REQUEST["relatorio"]["errorMessage"];
+    $showSearchBox = $_SESSION['tipo_usuario'] == 'aluno' ? 'd-none' : '';
     if($errorMessage === ""){
         $search_bar = $_REQUEST["relatorio"]["search_bar"];
         $tHead = $_REQUEST["relatorio"]["tHead"];
@@ -12,10 +13,9 @@
             $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="cortarAluno()">Cortar aluno</button>';
         $btn_box .= $_REQUEST["relatorio"]["btn_box"];
     }else{
-        $errorMessage = "<h3 class='mt-5 mb-5'>" .$errorMessage. "</h3>";
+        $errorMessage = "<h3 class='mt-5 mb-5 text-center'>" .$errorMessage. "</h3>";
+        $showSearchBox = "d-none";
     }
-
-    $showSearchBox = $_SESSION['tipo_usuario'] == 'aluno' ? 'd-none' : '';
 
     $_SESSION['from'] = 'historico';
 ?>
@@ -31,9 +31,9 @@
                         </div>
                         <?php
                             if($_SESSION['tipo_usuario'] == 'ccp')
-                                echo "<input type='text' class='form-control col-md-10 mt-5 mb-5 <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>";
+                                echo "<input type='text' class='form-control col-md-10 mt-5 mb-5 $showSearchBox' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>";
                             elseif($_SESSION['tipo_usuario'] == 'professor')
-                                echo "<input type='text' class='form-control col-md-10 mt-5 mb-5 <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
+                                echo "<input type='text' class='form-control col-md-10 mt-5 mb-5 $showSearchBox' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
                         ?>
 
                         <div class="col-12 mb-5">
