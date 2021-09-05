@@ -29,7 +29,13 @@
                         <div class="display-4">
                             Histórico de relatórios
                         </div>
-                        <input type='text' class='form-control col-md-10 mt-5 mb-5 <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder="Buscar pelo nome do aluno"/>
+                        <?php
+                            if($_SESSION['tipo_usuario'] == 'ccp')
+                                echo "<input type='text' class='form-control col-md-10 mt-5 mb-5 <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>";
+                            elseif($_SESSION['tipo_usuario'] == 'professor')
+                                echo "<input type='text' class='form-control col-md-10 mt-5 mb-5 <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
+                        ?>
+
                         <div class="col-12 mb-5">
                             <?php if($errorMessage != ""){ echo $errorMessage; }
                             else{
