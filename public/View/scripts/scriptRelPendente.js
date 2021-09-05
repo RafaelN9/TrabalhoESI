@@ -16,19 +16,19 @@ function Marcar(elem){
 
 function solicitarRefazer(){
     if(valor != undefined){
-        window.location.href = "http://localhost/trabalhoESI/public/index.php?refazer="+valor;
+        window.location.href = " index.php?refazer="+valor;
     }
 }
 
 function acessarRelatorio(){
     if(valor != undefined){
-        window.location.href = "http://localhost/trabalhoESI/public/index.php?revisao_relatorio="+valor;
+        window.location.href = " index.php?revisao_relatorio="+valor;
     }
 }
 
 function cortarAluno(){
     if(valor != undefined){
-        window.location.href = "http://localhost/trabalhoESI/public/index.php?cortar="+valor;
+        window.location.href = " index.php?cortar="+valor;
     }
 }
 
