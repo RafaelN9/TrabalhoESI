@@ -1,5 +1,5 @@
 <?php 
-    $tHead = [[]]; $tBody = []; $errorMessage = "";
+    $tHead = [[]]; $tBody = []; $errorMessage = ""; $btn_box = ""; $showSearchBox = "";
     $errorMessage = $_REQUEST["relatorio"]["errorMessage"];
     if($errorMessage === "") {
         $search_bar = $_REQUEST["relatorio"]["search_bar"];
@@ -7,9 +7,12 @@
         $tBody = $_REQUEST["relatorio"]["tBody"];
         $btn_box = '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="acessarRelatorio()">Acessar Relatório</button>';
         $btn_box .= $_REQUEST["relatorio"]["btn_box"];
+    }else{
+        $errorMessage = "<h3 class='mt-5 mb-5'>" .$errorMessage. "</h3>";
+        $showSearchBox = "d-none";
     }
 
-$_SESSION['from'] = 'pendente';
+    $_SESSION['from'] = 'pendente';
 ?>
 
     <div class="container-fluid h-100 d-flex" style="min-height: 100vh;">
@@ -20,19 +23,20 @@ $_SESSION['from'] = 'pendente';
                         <div class="display-4">
                             Relatórios Pendentes
                         </div>
-                        <input type='text' class='form-control col-md-10 mt-3' id='search-box' name='search-box' placeholder="Buscar..."/>
+                        <input type='text' class='form-control col-md-10 mt-5 mb-5  <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder="Buscar..."/>
                         <div class="col-12 mb-5">
-                            <h3><?php echo $errorMessage; ?></h3> 
+                            <?php if($errorMessage != ""){ echo $errorMessage; }
+                            else{
+                            ?>
                             <table class="table table-light rounded table-hover" id="tableRelatorio">
                                 <thead class='thead bg-warning'>
                                     <tr id='head'>
                                         <th></th>
-                                    <?php
-                                    foreach($tHead[0] as $name){ ?>
-                                        <th> <?php echo $name ?> </th>
-                                    <?php } ?>
+                                        <?php
+                                        foreach($tHead[0] as $name){ ?>
+                                            <th> <?php echo $name ?> </th>
+                                        <?php } ?>
                                     </tr>
-                                    
                                 </thead>
                                 <tbody>
                                     <?php foreach($tBody as $row){ ?>
@@ -49,6 +53,7 @@ $_SESSION['from'] = 'pendente';
                                     <?php } ?>
                                 <tbody>
                             </table>
+                            <?php } ?>
                         </div>
                         <div class="col-12 justify-content-center">
                             <div class="d-flex justify-content-between flex-wrap">

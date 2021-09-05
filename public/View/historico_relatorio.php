@@ -11,9 +11,8 @@
         if($_SESSION['tipo_usuario'] == 'ccp')
             $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="cortarAluno()">Cortar aluno</button>';
         $btn_box .= $_REQUEST["relatorio"]["btn_box"];
-    }elseif(count($tBody) > 0){
-        $tHead = $_REQUEST["relatorio"]["tHead"];
-        $tBody = $_REQUEST["relatorio"]["tBody"];
+    }else{
+        $errorMessage = "<h3 class='mt-5 mb-5'>" .$errorMessage. "</h3>";
     }
 
     $showSearchBox = $_SESSION['tipo_usuario'] == 'aluno' ? 'd-none' : '';
@@ -30,11 +29,12 @@
                         <div class="display-4">
                             Histórico de relatórios
                         </div>
-                        <input type='text' class='form-control col-md-10 mt-3 <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder="Buscar..."/>
+                        <input type='text' class='form-control col-md-10 mt-5 mb-5 <?php echo $showSearchBox?>' id='search-box' name='search-box' placeholder="Buscar..."/>
                         <div class="col-12 mb-5">
-                            <h3><?php echo $errorMessage; ?></h3>
+                            <?php if($errorMessage != ""){ echo $errorMessage; }
+                            else{
+                            ?>
                             <table class="table table-light rounded table-hover" id="tableRelatorio">
-
                                 <thead class='thead bg-warning'>
                                     <tr id='head'>
                                         <th></th>
@@ -63,6 +63,7 @@
                                     <?php } ?>
                                 <tbody>
                             </table>
+                            <?php } ?>
                         </div>
                         <div class="col-12 justify-content-center">
                             <div class="d-flex justify-content-between flex-wrap">

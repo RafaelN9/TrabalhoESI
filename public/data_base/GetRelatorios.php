@@ -13,7 +13,7 @@ class GetRelatorios{
             formulario.Codigo as codFormulario,
             formulario.Data_Envio as dataEnvioForm
         FROM 
-            formularios 
+            formulario 
         WHERE 
             (formulario.Numero_USP = '$numUSPAluno') $filter ";
 

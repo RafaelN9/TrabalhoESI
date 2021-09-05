@@ -126,13 +126,13 @@ if(isset($_GET["to"])){
 
 if(isset($_GET["getRel"])){
     require_once 'Controller/ControllerRelatorio.php';
-    $controller = new ControllerRelatorio();
-    if($_GET['getRel'] == 'historico')
+    $controller = new ControllerRelatorio;
+    if($_GET["getRel"] == "historico"){
         $controller->HistoricoRelatorios($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
-
-    if($_GET['getRel'] == 'pendente')
-        $controller->ControllerRelatorio($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
-}
+    }elseif($_GET["getRel"] == "pendente"){
+        $controller->RelatoriosPendentes($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
+    }
+}    
 
 if(isset($_GET["refazer"])){
     require_once 'Controller/ControllerRefazer.php';
