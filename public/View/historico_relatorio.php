@@ -40,7 +40,7 @@
                             <?php if($errorMessage != ""){ echo $errorMessage; }
                             else{
                             ?>
-                            <table class="table table-light rounded table-hover" id="tableRelatorio">
+                            <table class="table table-light disable-select rounded table-hover" id="tableRelatorio">
                                 <thead class='thead bg-warning'>
                                     <tr id='head'>
                                         <th></th>

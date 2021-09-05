@@ -64,6 +64,13 @@ html, body{
     width: 0;
 }
 
+.disable-select{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 @media screen and (max-width:320px) {
     
     .brand-pos{
