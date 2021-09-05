@@ -133,17 +133,12 @@ class GetRelatorios{
         $query =
             "SELECT 
             formulario.Codigo as codFormulario,
-            formulario.Data_Envio as dataEnvioForm,
-            avaliacaoccp.Parecer as parecer,
-            nota.Nome as nota
+            formulario.Data_Envio as dataEnvioForm
         FROM 
-            formulario,
-             avaliacaoccp,
-             nota
+            formulario
         WHERE 
-            (formulario.Numero_USP = '$numUSPAluno') and 
-            (formulario.Codigo = avaliacaoccp.Cod_Form) and 
-            (avaliacaoccp.Cod_Nota = nota.Codigo)  $filter ";
+            (formulario.Numero_USP = '$numUSPAluno')  $filter ";
+
         $result = runSQL($query);
         $relatoriosArray = array();
         if ( gettype($result) == "string"){
@@ -152,11 +147,18 @@ class GetRelatorios{
         if(mysqli_num_rows($result) == 0)
             return [];
         while($row = mysqli_fetch_assoc($result)){
+            $queryNota = "SELECT avaliacaoccp.Parecer, nota.Nome as nota FROM avaliacaoccp INNER JOIN nota on nota.Codigo = avaliacaoccp.Cod_Nota WHERE avaliacaoccp.Cod_Form = $row[codFormulario] LIMIT 1";
+            $resultNota = runSQL($queryNota);
+            $nota = ''; $parecer = '';
+            if($rowNota = mysqli_fetch_assoc($resultNota)){
+                $nota = $rowNota['Parecer'];
+                $parecer = $rowNota['nota'];
+            }
             $relatorio = new RelatorioAluno(
                 $row["dataEnvioForm"],
                 $row["codFormulario"],
-                $row["parecer"],
-                $row["nota"]
+                $parecer,
+                $nota
             );
             $relatoriosArray[] = $relatorio->toMap($relatorio);
         }
