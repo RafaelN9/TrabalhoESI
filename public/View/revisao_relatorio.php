@@ -112,7 +112,7 @@ function setModalToUserType($tipoUsuario){
                 
         <div class='container-fluid'>
             <h4>Link para o curriculum Lattes</h4>
-            <p class='text-break'><?php echo $alunoForm->getLink_Curriculo() ?></p>
+            <p class='text-break'><a href='<?php echo $alunoForm->getLink_Curriculo() ?>' style="color:aqua"> <?php echo $alunoForm->getLink_Curriculo() ?> </a></p>
         </div>
         
         <div class='container-fluid'>
