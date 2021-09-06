@@ -52,15 +52,14 @@ class GetRelatorios{
             formulario, 
             professorresp,
             avaliacaoprof,
-            nota,
-            avaliacaoccp
+            nota
         WHERE 
             (formulario.Numero_USP = aluno.Numero_USP) and 
             (formulario.Numero_USP = professorresp.Numero_USP) and 
             (professorresp.CPF_Prof = professor.CPF) AND
             avaliacaoprof.Cod_Form = formulario.Codigo AND
-            nota.Codigo = avaliacaoprof.Cod_Nota and 
-            formulario.Codigo not in (SELECT avaliacaoccp.Cod_Form FROM avaliacaoccp) $filter ";
+            nota.Codigo = avaliacaoprof.Cod_Nota AND
+            NOT EXISTS (SELECT 1 FROM avaliacaoccp WHERE avaliacaoccp.Cod_Form = formulario.Codigo) $filter ";
 
 
         $result = runSQL($query);
@@ -97,14 +96,15 @@ class GetRelatorios{
         aluno, 
         professor, 
         formulario, 
-        professorresp,
-        avaliacaoprof
-    WHERE 
-        (formulario.Numero_USP = aluno.Numero_USP) and 
-        (formulario.Numero_USP = professorresp.Numero_USP) and 
-        (professorresp.CPF_Prof = professor.CPF) and
-        (professor.CPF = '$cpfProf') AND
-        formulario.Codigo NOT IN (SELECT avaliacaoprof.Cod_Form FROM avaliacaoprof) $filter ";
+        professorresp
+    WHERE
+    (formulario.Numero_USP = aluno.Numero_USP) and
+    (formulario.Numero_USP = professorresp.Numero_USP) and
+    (professorresp.CPF_Prof = professor.CPF) and
+    (professor.CPF = '$cpfProf') AND
+    NOT EXISTS (SELECT 1 FROM avaliacaoprof WHERE avaliacaoprof.Cod_Form = formulario.Codigo) $filter ";
+
+
 
         $result = runSQL($query);
         $relatoriosArray = array();
