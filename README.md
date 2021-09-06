@@ -103,6 +103,7 @@ Visão Geral: Desliga o aluno do programa caso ele receba duas avaliações insa
 <h2 align='center'>Pré-requisitos</h2>
 
 Para que possa rodar o projeto localmente é necessário que você possua algumas ferramentas instaladas.
+
 O [PHP 8](https://www.php.net/releases/8.0/en.php), também é recomendado um pacote de servidores web, tal qual o [XAMPP](https://www.apachefriends.org/pt_br/index.html) ou [WampServer](https://www.wampserver.com/en/), uma IDE ou um editor de texto capaz de identar os arquivos de modo a facilitar a leitura, tal qual o [VSCode](https://code.visualstudio.com) ou [Sublime](https://www.sublimetext.com).
 
 <h2 align='center'>Como inicializar a aplicação</h2>
