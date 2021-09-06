@@ -120,6 +120,8 @@ Em seguida acesse o endereço `http://localhost/phpmyadmin/`, e clique no botão
 
 Concluída esta etapa, supondo que os processos tenham sido seguidos corretamente, e que os pré-requisitos tenha sido cumpridos, basta acessar o endereço `http://localhost/trabalhoESI/public/` e então estará no index da aplicação.
 
+Para rodar os casos de teste é necessário a instalação do PHPUnit, recomendo através do composer(https://getcomposer.org/download/). Após instalado o composer execute "composer require --dev phpunit/phpunit" no cmd para instalar o PHPUnit.
+
 <h2 align='center'>🛠 Tecnologias utilizadas</h2>
 
 Utilizamos as seguintes linguagens e ferramentas na construção deste projeto:
@@ -130,5 +132,6 @@ Utilizamos as seguintes linguagens e ferramentas na construção deste projeto:
 - [jQuery](https://jquery.com)
 - [Bootstrap](https://getbootstrap.com)
 - [Font Awesome](https://fontawesome.com)
+- PHPUnit(https://phpunit.readthedocs.io/pt_BR/latest/installation.html)
 
 
