@@ -108,7 +108,7 @@ O [PHP 8](https://www.php.net/releases/8.0/en.php), também é recomendado um pa
 
 <h2 align='center'>Como inicializar a aplicação</h2>
 
-Para esta breve introdução do uso, iremos supor que você esteja utilizando o pacote de servidores  [XAMPP](https://www.apachefriends.org/pt_br/index.html).
+Para esta breve introdução do uso, iremos supor que você esteja utilizando o pacote de servidores [XAMPP](https://www.apachefriends.org/pt_br/index.html).
 
 Primeiro é necessário que você clone o repositório `gh repo clone RafaelN9/trabalhoESI`, diretamente na pasta `htdocs` encontrada dentro da pasta raiz do XAMPP.
 
@@ -120,7 +120,7 @@ Em seguida acesse o endereço `http://localhost/phpmyadmin/`, e clique no botão
 
 Concluída esta etapa, supondo que os processos tenham sido seguidos corretamente, e que os pré-requisitos tenha sido cumpridos, basta acessar o endereço `http://localhost/trabalhoESI/public/` e então estará no index da aplicação.
 
-Para rodar os casos de teste é necessário a instalação do PHPUnit, recomendo através do composer(https://getcomposer.org/download/). Após instalado o composer execute "composer require --dev phpunit/phpunit" no cmd para instalar o PHPUnit.
+Para rodar os casos de teste é necessário a instalação do PHPUnit, recomendasse que seja feita através do [Composer](https://getcomposer.org/download/). Após instalado, execute "composer require --dev phpunit/phpunit" no cmd para instalar o PHPUnit.
 
 <h2 align='center'>🛠 Tecnologias utilizadas</h2>
 
@@ -132,6 +132,6 @@ Utilizamos as seguintes linguagens e ferramentas na construção deste projeto:
 - [jQuery](https://jquery.com)
 - [Bootstrap](https://getbootstrap.com)
 - [Font Awesome](https://fontawesome.com)
-- PHPUnit(https://phpunit.readthedocs.io/pt_BR/latest/installation.html)
+- [PHPUnit](https://phpunit.readthedocs.io/pt_BR/latest/installation.html)
 
 
