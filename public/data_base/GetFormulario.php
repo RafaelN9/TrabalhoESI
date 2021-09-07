@@ -7,28 +7,27 @@ class GetFormulario{
 
     function getFormulario($codigo){
         $query = "SELECT
-        professor.Nome AS nomeProfessor,
-        aluno.Nome,
-        aluno.Email,
-        aluno.Link_Curriculo,
-        formulario.*,
-        cursos.Nome as curso,
-        nota.Nome as nota
-    FROM
-        `formulario`,
-        aluno,
-        professorresp,
-        professor,
-        cursos,
-        nota
-    WHERE
-        formulario.Numero_USP = aluno.Numero_USP AND 
-        aluno.Numero_USP = professorresp.Numero_USP AND 
-        professorresp.CPF_Prof = professor.CPF AND 
-        cursos.Codigo = formulario.Questao_7 AND 
-        nota.Codigo = formulario.Questao_8 AND 
-        formulario.Codigo = '$codigo';";
-
+    professor.Nome AS nomeProfessor,
+    aluno.Nome,
+    aluno.Email,
+    aluno.Link_Curriculo,
+    formulario.*,
+    cursos.Nome AS curso,
+    nota.Nome AS nota
+FROM
+    formulario,
+    aluno,
+    professorresp,
+    professor,
+    cursos,
+    nota
+WHERE
+    formulario.Numero_USP = aluno.Numero_USP AND 
+    aluno.Numero_USP = professorresp.Numero_USP AND 
+    professorresp.CPF_Prof = professor.CPF AND 
+    cursos.Codigo = formulario.Questao_8 AND 
+    nota.Codigo = formulario.Questao_7 AND 
+    formulario.Codigo = '$codigo';";
 
         $result = runSQL($query);
 

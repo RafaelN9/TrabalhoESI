@@ -137,7 +137,7 @@ class GetRelatorios{
         FROM 
             formulario
         WHERE 
-            (formulario.Numero_USP = '$numUSPAluno')  $filter ";
+            (formulario.Numero_USP = '$numUSPAluno') $filter ";
 
         $result = runSQL($query);
         $relatoriosArray = array();
@@ -214,9 +214,33 @@ class GetRelatorios{
 
     function GetHistoricoCCP($filter, $cpfCCP){
         $query =
-            "SELECT aluno.Nome as nomeAluno, formulario.Codigo as codFormulario, professor.Nome as nomeProfessorResp, formulario.Data_Envio as dataEnvioForm, avaliacaoccp.Parecer, nota.Nome as nota 
-            FROM aluno, professor, formulario, professorresp, avaliacaoccp, nota 
-            WHERE (formulario.Numero_USP = aluno.Numero_USP) and (formulario.Numero_USP = professorresp.Numero_USP) and (professorresp.CPF_Prof = professor.CPF) AND avaliacaoccp.Cod_Form = formulario.Codigo AND nota.Codigo = avaliacaoccp.Cod_Nota $filter ";
+            "SELECT
+                aluno.Numero_USP as numUSP, 
+                aluno.Nome AS nomeAluno,
+                formulario.Codigo AS codFormulario,
+                professor.Nome AS nomeProfessorResp,
+                formulario.Data_Envio AS dataEnvioForm,
+                avaliacaoccp.Parecer,
+                nota.Nome AS nota
+            FROM
+                aluno,
+                professor,
+                formulario,
+                professorresp,
+                avaliacaoccp,
+                nota
+            WHERE
+                (
+                    formulario.Numero_USP = aluno.Numero_USP
+                ) AND(
+                    formulario.Numero_USP = professorresp.Numero_USP
+                ) AND(
+                    professorresp.CPF_Prof = professor.CPF
+                ) AND avaliacaoccp.Cod_Form = formulario.Codigo AND nota.Codigo = avaliacaoccp.Cod_Nota
+                AND not EXISTS (SELECT 1 FROM alunodesligado WHERE alunodesligado.Numero_USP = aluno.Numero_USP)
+            ORDER BY
+                aluno.Numero_USP,
+                formulario.Data_Envio $filter ";
 
         $result = runSQL($query);
         $relatoriosArray = array();
@@ -232,7 +256,8 @@ class GetRelatorios{
                 $row["nomeProfessorResp"],
                 $row["dataEnvioForm"],
                 $row["Parecer"],
-                $row["nota"]
+                $row["nota"],
+                $row['numUSP']
             );
             $relatoriosArray[] = $relatorio->toMap($relatorio);
         }

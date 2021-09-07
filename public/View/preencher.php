@@ -82,7 +82,7 @@ while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
                             <input type="date" class="form-control mb-4 p-4" name="q6" required>
                         </div>
 
-                        <label for="resultadoUltimaAvalicao">7. Qual foi o resultado da avaliação do seu último relatório?<span class="text-danger">*</span></label>
+                        <label for="resultadoUltimaAvalicao">7. Qual foi o resultado da <a href=""></a>valiação do seu último relatório?<span class="text-danger">*</span></label>
                         <div class="mb-4" name="resultadoUltimaAvalicao">
                             <?php
                                 echo $optionNota;
