@@ -49,9 +49,8 @@ class RelatorioCCP{
     private $dataEnvioForm;
     private $parecer;
     private $nota;
-    private $numUSP;
 
-    function __construct($nomeAluno, $nomeProfResp, $codFormularioEnviado, $dataEnvioForm, $parecer, $nota, $numUSP){
+    function __construct($nomeAluno, $nomeProfResp, $codFormularioEnviado, $dataEnvioForm, $parecer, $nota){
         $this->nomeAluno = $nomeAluno;
         $this->nomeProfResp = $nomeProfResp;
         $this->codFormularioEnviado = $codFormularioEnviado;

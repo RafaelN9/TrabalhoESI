@@ -112,6 +112,30 @@ Create table aceitoRefazer(
     Primary Key(Cod_Form)
 );
 
+Create table notificacaoAluno(
+    Codigo int(11) NOT NULL auto_increment PRIMARY KEY,
+    nUSP varchar(20),
+    FOREIGN KEY (nUSP) REFERENCES Aluno(Numero_USP),
+    texto varchar(255),
+    link  varchar(255)
+);
+
+Create table notificacaoProf(
+    Codigo int(11) NOT NULL  auto_increment PRIMARY KEY,
+    CPF varchar(14),
+    FOREIGN KEY (CPF) REFERENCES Professor(CPF),
+    texto varchar(255),
+    link  varchar(255)
+);
+
+Create table notificacaoCCP(
+    Codigo int(11) NOT NULL PRIMARY KEY auto_increment,
+    CPF varchar(14),
+    FOREIGN KEY (CPF) REFERENCES CCP(CPF_prof),
+    texto varchar(255),
+    link  varchar(255)
+);
+
 insert into Nota(Nome) values("ADEQUADO"),("ADEQUADO COM RESSALVAS"), ("INSATISFATÓRIO"), ("NÃO SE APLICA");
 
 insert into Cursos(Nome) values("Mestrado"),("Doutorado");
