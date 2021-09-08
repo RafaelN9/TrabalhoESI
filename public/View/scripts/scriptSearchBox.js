@@ -37,5 +37,26 @@ searchboxElement.addEventListener('keyup', ()=>{
         }
 
     }
+});
 
+var checkboxElement = document.querySelector("#searchBarAppendDesliga");
+checkboxElement.addEventListener('change', function() {
+    if (this.checked) {
+        console.log("ligou");
+        let allRows = document.getElementsByTagName('tr');
+        for(element of allRows){
+            if(element.id == 'head') continue;
+            element.style['display'] = 'none';
+
+            if(element.children[1].textContent.includes(...possivelCortarList)){ //lista nome aluno
+                element.style['display'] = 'table-row';
+            }
+        }
+    } else {
+        let allRows = document.getElementsByTagName('tr');
+        for(element of allRows){
+            element.style['display'] = 'table-row';
+        }
+        console.log("Checkbox is not checked..");
+    }
 });

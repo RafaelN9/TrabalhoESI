@@ -8,6 +8,7 @@ class ControllerRelatorio{
     private $tBody;
     private $btn_box = "";
     private $errorMsgTxt = "Nenhum relatório encontrado";
+    private $possivelCortar = [];
 
     function GetRelatoriosP($cpfProf){
         $bd = new GetRelatorios();
@@ -70,6 +71,8 @@ class ControllerRelatorio{
                 foreach($relatorio["body"] as $row){
                     $this->tBody[] = $row;
                 }
+
+                $this->search_bar = "<input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
                 break;
             case 'ccp':
                 $relatorio = $this->GetRelatoriosC($cpf);
@@ -80,6 +83,8 @@ class ControllerRelatorio{
                 foreach($relatorio["body"] as $row){
                     $this->tBody[] = $row;
                 }
+
+                $this->search_bar = "<input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>";
                 break;
             default:
                 header("Location: http://localhost/trabalhoESI/public");
@@ -167,6 +172,8 @@ class ControllerRelatorio{
                 foreach($relatorio["body"] as $row){
                     $this->tBody[] = $row;
                 }
+
+                $this->search_bar = "<input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
                 break;
             case 'ccp':
                 $relatorio = $this->GetRelatoriosHistoricoC($cpf);
@@ -174,9 +181,24 @@ class ControllerRelatorio{
                     break;
                 }
                 $this->tHead[] = $relatorio["head"];
+                $alunoAnterior = ["", ""];
                 foreach($relatorio["body"] as $row){
                     $this->tBody[] = $row;
+                    if($alunoAnterior[0] == $row[0] && $alunoAnterior[1] == $row[5] && $alunoAnterior[1] == "INSATISFATÓRIO")
+                        $this->possivelCortar[] = $row[0];
+                    $alunoAnterior = [$row[0], $row[5]];
                 }
+
+                $this->search_bar = 
+                            "<div class='input-group'>
+                                <input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>
+                                <div class='input-group-append align-self-center' style='height: min-content;'>
+                                    <div class='input-group-text'>
+                                        <input type='checkbox' id='searchBarAppendDesliga' class='mr-3'>
+                                        <label for='searchBarAppendDesliga' class='m-0 disable-select'>Alunos a cancelar</label>
+                                    </div>
+                                </div>
+                            </div>";
                 break;
             default:
                 header("Location: http://localhost/trabalhoESI/public");
@@ -184,7 +206,7 @@ class ControllerRelatorio{
         }
 
         $response = ["errorMessage" => $this->errorMessage, "search_bar" => $this->search_bar,
-            "tHead" => $this->tHead, "tBody" => $this->tBody, "btn_box" => $this->btn_box];
+            "tHead" => $this->tHead, "tBody" => $this->tBody, "btn_box" => $this->btn_box, "possivelCortar" => $this->possivelCortar];
 
         $_REQUEST["relatorio"] = $response;
         require_once 'View/historico_relatorio.php';
