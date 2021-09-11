@@ -9,6 +9,11 @@ if(!isset($_SESSION['tipo_usuario'])){
         if($result){
             $_SESSION['cod_usuario'] = $result;
             $_SESSION['tipo_usuario'] = 'aluno';
+            
+            require_once 'Controller/ControllerNotificacao.php';
+            $controllerNotifica = new ControllerNotificacao;
+            $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesAluno($_SESSION['numero_USP']);
+
             unset($_POST);
             header("Location: http://localhost/trabalhoESI/public/index.php");
         }else{
@@ -16,6 +21,11 @@ if(!isset($_SESSION['tipo_usuario'])){
             if($result){
                 $_SESSION['cod_usuario'] = $result;
                 $_SESSION['tipo_usuario'] = 'ccp';
+
+                require_once 'Controller/ControllerNotificacao.php';
+                $controllerNotifica = new ControllerNotificacao;
+                $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesProfessor($_SESSION['cpf']);
+
                 unset($_POST);
                 header("Location: http://localhost/trabalhoESI/public/index.php");
             }else{
@@ -23,6 +33,11 @@ if(!isset($_SESSION['tipo_usuario'])){
                 if($result){
                     $_SESSION['cod_usuario'] = $result;
                     $_SESSION['tipo_usuario'] = 'professor';
+
+                    require_once 'Controller/ControllerNotificacao.php';
+                    $controllerNotifica = new ControllerNotificacao;
+                    $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesCCP($_SESSION['cpf']);
+
                     unset($_POST);
                     header("Location: http://localhost/trabalhoESI/public/index.php");
                 }else

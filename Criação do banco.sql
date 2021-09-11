@@ -228,3 +228,11 @@ INSERT INTO `avaliacaoccp` (`Cod_Form`, `CPF_CCP`, `Parecer`, `Cod_Nota`) VALUES
 INSERT INTO `avaliacaoprof` (`Cod_Form`, `CPF_Prof`, `Parecer`, `Cod_Nota`) VALUES
 (1, '123.456.789-05', 'Foi bom', 1),
 (5, '123.456.789-01', 'Foi medio', 2);
+
+
+INSERT INTO `notificacaoaluno` (`Codigo`, `nUSP`, `texto`, `link`) VALUES
+(1, '00123456789012345678', 'Boa meu mano', 'index.php'),
+(2, '00123456789012345678', 'Nice', 'index.php'),
+(3, '00123456789012345678', 'Nice 1', 'index.php'),
+(4, '00123456789012345678', 'Nice 2', 'index.php'),
+(5, '00123456789012345678', 'Nice 3', 'index.php');

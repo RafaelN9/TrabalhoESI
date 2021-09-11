@@ -12,7 +12,7 @@ class ControllerLogin{
         $_SESSION['email'] = $aluno->getEmail();
         $_SESSION['curriculo'] = $aluno->getLink_Curriculo();
         $_SESSION['curso'] = $aluno->getCod_Curso();
-        $_SESSION['cpf'] = $aluno->getCPF();
+        $_SESSION['numero_USP'] = $aluno->getNumero_USP();
         return $resultado;
     }
 

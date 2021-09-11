@@ -25,4 +25,23 @@ class ControllerNotificacao
         $resultado = $bd->insereNotificacaoCCP($notificacao);
         return $resultado;
     }
+
+    function getNotificacoesAluno($usuario){
+        require_once 'data_base/GetNotificacoes.php';
+        $bd = new GetNotificacoes();
+        $resultado = $bd->GetNotificacaoAluno($usuario);
+        return $resultado;
+    } 
+    function getNotificacoesProfessor($usuario){
+        require_once 'data_base/GetNotificacoes.php';
+        $bd = new GetNotificacoes();
+        $resultado = $bd->GetNotificacaoProfessor($usuario);
+        return $resultado;
+    } 
+    function getNotificacoesCCP($usuario){
+        require_once 'data_base/GetNotificacoes.php';
+        $bd = new GetNotificacoes();
+        $resultado = $bd->GetNotificacaoCCP($usuario);
+        return $resultado;
+    } 
 }

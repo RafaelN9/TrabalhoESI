@@ -1,5 +1,4 @@
 <?php
-
 class Notificacao
 {
     private $codigo;
