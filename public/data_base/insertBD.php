@@ -2,6 +2,7 @@
 require_once('Model/Aluno.php');
 require_once('Model/Formulario.php');
 require_once('data_base/functions.php');
+
 class insertBD{
 
     public function cadastrarAlunoDB(Aluno $aluno){
@@ -106,6 +107,30 @@ class insertBD{
 
     public function cadastraResp($cpfProf, $nUSP){
         $query = "INSERT INTO ProfessorResp values('$nUSP', '$cpfProf')";
+        return runSQL($query);
+    }
+
+    public function insereNotificacaoAluno(Notificacao $notifica){
+        $nUSP = $notifica->getUsuario();
+        $texto = $notifica->getTexto();
+        $link = $notifica->getLink();
+        $query = "INSERT INTO notificacaoAluno(nUSP,texto,link) values('$nUSP', '$texto', '$link')";
+        return runSQL($query);
+    }
+
+    public function insereNotificacaoProfessor(Notificacao $notifica){
+        $CPF = $notifica->getUsuario();
+        $texto = $notifica->getTexto();
+        $link = $notifica->getLink();
+        $query = "INSERT INTO notificacaoProf(CPF,texto,link) values('$CPF', '$texto', '$link')";
+        return runSQL($query);
+    }
+
+    public function insereNotificacaoCCP(Notificacao $notifica){
+        $CPF = $notifica->getUsuario();
+        $texto = $notifica->getTexto();
+        $link = $notifica->getLink();
+        $query = "INSERT INTO notificacaoCCP(CPF,texto,link) values('$CPF', '$texto', '$link')";
         return runSQL($query);
     }
 }
