@@ -55,6 +55,8 @@ if (isset($_SESSION['tipo_usuario'])) {
 <input type="submit" class="btn-lg btn-primary btn-bg-color text-white" name="submit" value="Login">
 </form>';
 
+//-------------- Sistema de Notificações ------------------
+
 $notifications = [];
 abstract class Colors{
     const Danger = 'alert-danger';
@@ -77,33 +79,34 @@ class Notification{
 }
 
 
-function addNotification(Notification $notification){
+function addNotification(Notification $notification, $index){
     $link = "";
     if($notification->link != '')
-        $link = "<a href='localhost/trabalhoESI/public/$notification->link' </a>";
-    return "<div class='alert $notification->color alert-dismissible fade show' role='alert'>
-        <strong>$notification->title</strong> $notification->text 
-        $link
-        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+        $link = "<a href='$notification->link'> Acesse esse link </a>";
+    return "<div class='alert $notification->color alert-dismissible fade show' role='alert' id='$index'>
+        <strong>$notification->title</strong> $notification->text  $link
+        
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick='deleteNotify($index)'>
             <span aria-hidden='true'>&times;</span>
         </button>
     </div>";
 }
 
-require_once 'Model/Notificacao.php';
-
 $emptyPlaceholder = "<p class='text-white p-5 mx-auto my-auto'>Sem notificações</p>";
 
-$notifications = $_SESSION['notificacoes'];
+$notificationsContent = '';
 
-foreach($notifications as $elem){
-    $notif = new Notification("New Notif", $elem["texto"], $elem["link"], Colors::Danger); 
-    $noificationsContent[] = addNotification($notif);
+$notifications = isset($_SESSION['notificacoes']) ? $_SESSION['notificacoes'] : NULL;
+//$notification = null;
+if($notifications != NULL){
+    foreach($notifications as $elem){
+        $notif = new Notification("New Notif", $elem["texto"], $elem["link"], Colors::Warning); 
+        $notificationsContent .= addNotification($notif, $elem['codigo']);
+    }
 }
 
-if(empty($notifications)){
-    $noificationsContent = $emptyPlaceholder; 
-}
+
+
 
 ?>
 
@@ -118,7 +121,7 @@ if(empty($notifications)){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="View/styles/main.css?v=<?php echo time(); ?>">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="View/scripts/scriptNotify.js"></script>
+    <script src="View/scripts/scriptNotify.js?v=<?php echo time(); ?>"></script>
     <title></title>
 </head>
 
@@ -134,10 +137,9 @@ if(empty($notifications)){
             </a>
             <div class="float-right d-flex">
                 <?php
-                echo $dropNotifica;
-                echo $botaoLogin;
+                    echo $dropNotifica;
+                    echo $botaoLogin;
                 ?>
-
             </div>
         </nav>
 
@@ -153,12 +155,8 @@ if(empty($notifications)){
                         </div>
                         <div class="card-body bg-dark">
                             <div class="d-flex flex-column" id="notifications">
-                                
-                                <?php foreach($noificationsContent as $notifica){
-                                    echo $notifica;
-                                } ?>
+                                <?php echo $notificationsContent ?>
                             </div>
-
                         </div>
                     </div>
                 </div>

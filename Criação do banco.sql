@@ -114,6 +114,7 @@ Create table aceitoRefazer(
 
 Create table notificacaoAluno(
     Codigo int(11) NOT NULL auto_increment PRIMARY KEY,
+    
     nUSP varchar(20),
     FOREIGN KEY (nUSP) REFERENCES Aluno(Numero_USP),
     texto varchar(255),

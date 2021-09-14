@@ -43,5 +43,7 @@ class ControllerNotificacao
         $bd = new GetNotificacoes();
         $resultado = $bd->GetNotificacaoCCP($usuario);
         return $resultado;
-    } 
+    }
+
+    //function 
 }
