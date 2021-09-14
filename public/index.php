@@ -109,7 +109,7 @@ if(isset($_POST["formulario"])){
         else{
             require_once 'Controller/ControllerNotificacao.php';
             $controllNotifica = new ControllerNotificacao();
-            $controllNotifica->adicionaNotificacaoProfessor($dados[0], 'Formulário enviado pelo aluno '.$_SESSION['nome'], 'index.php?revisao_relatorio='.$dados[1]);
+            $controllNotifica->adicionaNotificacaoProfessor($dados[0], 'Formulário enviado pelo aluno '.$_SESSION['nome'], 'index.php?revisao_relatorio='.$dados[1], "warning");
             echo '<script>setTimeout(()=>{alert("Formulário enviado com sucesso! e Professor notificado.")}, 100)</script>';
         }
 
@@ -139,7 +139,7 @@ if(isset($_POST["avaliacaoProfessor"])){
             require_once 'Controller/ControllerNotificacao.php';
             $controllNotifica = new ControllerNotificacao();
             foreach ($cpf as $value){
-                $controllNotifica->adicionaNotificacaoCCP($value, 'Nota atribuida ao formulário '.$_POST['codigo_form'], 'index.php?revisao_relatorio='.$_POST['codigo_form']);
+                $controllNotifica->adicionaNotificacaoCCP($value, 'Nota atribuida ao formulário '.$_POST['codigo_form'], 'index.php?revisao_relatorio='.$_POST['codigo_form'], "success");
             }
             echo '<script>setTimeout(()=>{alert("Avaliação adicionada com sucesso! e CCP notificada.")}, 100)</script>';
         }
@@ -164,7 +164,7 @@ if(isset($_POST["avaliacaoCCP"])){
         else{
             require_once 'Controller/ControllerNotificacao.php';
             $controllNotifica = new ControllerNotificacao();
-            $controllNotifica->adicionaNotificacaoAluno($nUSP, 'Nota atribuida ao formulário '.$_POST['codigo_form'], 'index.php?revisao_relatorio='.$_POST['codigo_form']);
+            $controllNotifica->adicionaNotificacaoAluno($nUSP, 'Nota atribuida ao formulário '.$_POST['codigo_form'], 'index.php?revisao_relatorio='.$_POST['codigo_form'], "success");
             echo '<script>setTimeout(()=>{alert("Avaliação adicionada com sucesso! e Aluno notificado.")}, 100)</script>';
         }
     }else{
@@ -201,7 +201,7 @@ if(isset($_GET["refazer"])){
             require_once 'Controller/ControllerNotificacao.php';
             $controllNotifica = new ControllerNotificacao();
             foreach ($cpf as $value) {
-                $controllNotifica->adicionaNotificacaoCCP($value, 'Aluno '.$_SESSION['nome'].' solicitou para refazer o formulario '.$_GET["refazer"], 'index.php?revisao_relatorio='.$_GET["refazer"]);
+                $controllNotifica->adicionaNotificacaoCCP($value, 'Aluno '.$_SESSION['nome'].' solicitou para refazer o formulario '.$_GET["refazer"], 'index.php?revisao_relatorio='.$_GET["refazer"], "warning");
             }
             echo '<script>setTimeout(()=>{alert("Solicitação feita com sucesso! e CCP notificado.")}, 100)</script>';
         }
@@ -216,7 +216,7 @@ if(isset($_GET["cortar"])){
         $nUSP = $_GET["cortar"];
         require_once 'Controller/ControllerNotificacao.php';
         $controllNotifica = new ControllerNotificacao();
-        $controllNotifica->adicionaNotificacaoAluno($nUSP, 'Você foi desligado do programa', '');
+        $controllNotifica->adicionaNotificacaoAluno($nUSP, 'Você foi desligado do programa', '', "danger");
         echo '<script>setTimeout(()=>{alert("Aluno desligado do programa com sucesso! e notificado.")}, 100)</script>';
     }else echo "<h1 class='text-center text-danger'>$result</h1>";
 }

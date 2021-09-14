@@ -114,7 +114,8 @@ Create table aceitoRefazer(
 
 Create table notificacaoAluno(
     Codigo int(11) NOT NULL auto_increment PRIMARY KEY,
-    
+    Data_Envio datetime DEFAULT CURRENT_TIMESTAMP,
+    cor varchar(20),
     nUSP varchar(20),
     FOREIGN KEY (nUSP) REFERENCES Aluno(Numero_USP),
     texto varchar(255),
@@ -123,7 +124,9 @@ Create table notificacaoAluno(
 
 Create table notificacaoProf(
     Codigo int(11) NOT NULL  auto_increment PRIMARY KEY,
+    Data_Envio datetime DEFAULT CURRENT_TIMESTAMP,
     CPF varchar(14),
+    cor varchar(20),
     FOREIGN KEY (CPF) REFERENCES Professor(CPF),
     texto varchar(255),
     link  varchar(255)
@@ -132,6 +135,8 @@ Create table notificacaoProf(
 Create table notificacaoCCP(
     Codigo int(11) NOT NULL PRIMARY KEY auto_increment,
     CPF varchar(14),
+    Data_Envio datetime DEFAULT CURRENT_TIMESTAMP,
+    cor varchar(20),
     FOREIGN KEY (CPF) REFERENCES CCP(CPF_prof),
     texto varchar(255),
     link  varchar(255)

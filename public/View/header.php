@@ -1,5 +1,6 @@
 <?php
 require_once('data_base/functions.php');
+require_once 'Model/Notificacao.php';
 
 
 $dropdown = '<div></div>';
@@ -63,49 +64,35 @@ abstract class Colors{
     const Success = 'alert-success';
     const Warning = 'alert-warning';
 }
-class Notification{
-    public $title;
-    public $text;
-    public $link;
-    public $color;
-    
-    function __construct($title, $text, $link, $color){
-        $this->title = $title;
-        $this->text = $text;
-        $this->link = $link;
-        $this->color = $color;
-    }
-
-}
 
 
-function addNotification(Notification $notification, $index){
+function addNotification(Notificacao $notification, $index){
     $link = "";
-    if($notification->link != '')
-        $link = "<a href='$notification->link'> Acesse esse link </a>";
-    return "<div class='alert $notification->color alert-dismissible fade show' role='alert' id='$index'>
-        <strong>$notification->title</strong> $notification->text  $link
-        
+    $notificaLink = $notification->getLink();
+    $notificaTexto = $notification->getTexto();
+    if($notificaLink != '')
+        $link = "<a href='$notificaLink'> Acesse esse link </a>";
+    return "<div class='dropdown-item' id='$index'> $notificaTexto
+          $link
         <button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick='deleteNotify($index)'>
             <span aria-hidden='true'>&times;</span>
         </button>
     </div>";
 }
 
-$emptyPlaceholder = "<p class='text-white p-5 mx-auto my-auto'>Sem notificações</p>";
+//$emptyPlaceholder = "<p class='text-white p-5 mx-auto my-auto'>Sem notificações</p>";
 
-$notificationsContent = '';
+$notificationsContent = "<p class='p-5 mx-auto my-auto'>Sem notificações</p>";
 
-$notifications = isset($_SESSION['notificacoes']) ? $_SESSION['notificacoes'] : NULL;
-//$notification = null;
-if($notifications != NULL){
+$notifications = $_SESSION['notificacoes'];
+
+if($notifications != "erro"){
+    $notificationsContent = '';
     foreach($notifications as $elem){
-        $notif = new Notification("New Notif", $elem["texto"], $elem["link"], Colors::Warning); 
+        $notif = new Notificacao($elem['codigo'], $elem["texto"], $elem["link"], Colors::Warning); 
         $notificationsContent .= addNotification($notif, $elem['codigo']);
     }
 }
-
-
 
 
 ?>
@@ -145,7 +132,7 @@ if($notifications != NULL){
 
         <div class="container-fluid" style="display: none;" id="notificationsCard">
             <div class="row justify-content-end p-3">
-                <div class="col-sm-12 col-md-6 p-0">
+                <div class="col-sm-12 col-md-4 p-0">
                     <div class="card">
                         <div class="card-header">
                             Notificações
@@ -153,7 +140,7 @@ if($notifications != NULL){
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="card-body bg-dark">
+                        <div class="card-body p-0 py-2">
                             <div class="d-flex flex-column" id="notifications">
                                 <?php echo $notificationsContent ?>
                             </div>

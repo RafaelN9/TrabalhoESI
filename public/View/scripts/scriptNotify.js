@@ -8,9 +8,11 @@ function dismissNotificationCard(){
 }
 
 function deleteNotify(id){
-    
-    var parent = document.querySelector('#notifications');
-    if(parent.children.length == 1){
-        parent.innerHTML = '<p class="text-white p-5 mx-auto my-auto">Sem notificações</p>';
+
+    let parent = document.querySelector('#notifications');
+    $(`#${id}`).remove();
+    if(parent.children.length == 0){
+        parent.innerHTML = '<p class="p-5 mx-auto my-auto">Sem notificações</p>';
     }
+    
 }
