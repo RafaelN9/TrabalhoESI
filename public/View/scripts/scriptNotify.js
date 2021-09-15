@@ -16,3 +16,7 @@ function deleteNotify(id){
     }
     
 }
+
+function Redireciona(link){
+    window.location.href = "http://localhost/trabalhoESI/public/"+link;
+}

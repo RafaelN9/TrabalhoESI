@@ -10,10 +10,9 @@ $botaoLogin = '';
 if (isset($_SESSION['tipo_usuario'])) {
     $user = $_SESSION['tipo_usuario'];
     $dropNotifica = "<div class='dropdown btn' role='group' aria-label='Notifications'>
-        <button class='btn btn-secondary btn-lg' type='button' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' onClick='toggleDisplayNotifications()'>
+        <button class='btn btn-secondary btn-lg d-flex' type='button' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' onClick='toggleDisplayNotifications()'>
             <i class='fas fa-bell' width='100' height='100'></i>
-        </button>
-        </div>";
+        ";
     $botaoLogin = "
         <div class='d-flex align-items-center'>
         <a style='min-width: 35px; min-height: 35px;' href='View/logout.php' class='btn btn-danger p-2 w-100 align-content-center'>
@@ -59,41 +58,49 @@ if (isset($_SESSION['tipo_usuario'])) {
 //-------------- Sistema de Notificações ------------------
 
 $notifications = [];
-abstract class Colors{
-    const Danger = 'alert-danger';
-    const Success = 'alert-success';
-    const Warning = 'alert-warning';
-}
-
+$numNotifications = 0;
 
 function addNotification(Notificacao $notification, $index){
-    $link = "";
+    global $numNotifications;
+    $numNotifications++;
     $notificaLink = $notification->getLink();
     $notificaTexto = $notification->getTexto();
-    if($notificaLink != '')
-        $link = "<a href='$notificaLink'> Acesse esse link </a>";
-    return "<div class='dropdown-item' id='$index'> $notificaTexto
-          $link
-        <button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick='deleteNotify($index)'>
+    $notificaData = $notification->getData();
+    $cor = 'alert-'.$notification->getCor();
+    return "<div class='d-flex flex-colunm $cor' id='$index'>
+<div class='dropdown-item'  onclick='Redireciona(`$notificaLink`)'> $notificaTexto
+        
+        <br>
+        <span class='text-muted' style='font-size: 12px;'>$notificaData</span>
+    </div>
+    <button type='button' class='close pr-1' data-dismiss='alert' aria-label='Close' onclick='deleteNotify($index)'>
             <span aria-hidden='true'>&times;</span>
-        </button>
-    </div>";
-}
+     </button>
+     </div>";
 
-//$emptyPlaceholder = "<p class='text-white p-5 mx-auto my-auto'>Sem notificações</p>";
+}
 
 $notificationsContent = "<p class='p-5 mx-auto my-auto'>Sem notificações</p>";
 
-$notifications = $_SESSION['notificacoes'];
+if(isset($_SESSION['notificacoes'])) {
+    $notifications = $_SESSION['notificacoes'];
+}
 
 if($notifications != "erro"){
     $notificationsContent = '';
     foreach($notifications as $elem){
-        $notif = new Notificacao($elem['codigo'], $elem["texto"], $elem["link"], Colors::Warning); 
+        $notif = new Notificacao($elem['usuario'], $elem["texto"], $elem["link"], $elem['cor']);
+        $notif->setCodigo($elem['codigo']);
+        $notif->setData($elem['data']);
         $notificationsContent .= addNotification($notif, $elem['codigo']);
     }
 }
 
+
+if (isset($_SESSION['tipo_usuario']))
+    if($numNotifications > 0)
+        $dropNotifica .= "<div class='rounded-circle bg-danger mt-1 ml-1' style='width: 20px; height: 20px; font-size: 12px;'>$numNotifications</div></button></div>";
+    else $dropNotifica .= "</button></div>";
 
 ?>
 
@@ -130,7 +137,7 @@ if($notifications != "erro"){
             </div>
         </nav>
 
-        <div class="container-fluid" style="display: none;" id="notificationsCard">
+        <div class="container-fluid" style="display: none; position:fixed; z-index: 100;" id="notificationsCard">
             <div class="row justify-content-end p-3">
                 <div class="col-sm-12 col-md-4 p-0">
                     <div class="card">
@@ -140,7 +147,7 @@ if($notifications != "erro"){
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="card-body p-0 py-2">
+                        <div class="card-body p-0">
                             <div class="d-flex flex-column" id="notifications">
                                 <?php echo $notificationsContent ?>
                             </div>

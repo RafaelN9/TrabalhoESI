@@ -60,6 +60,11 @@ class Notificacao
         return $this->cor;
     }
 
+    public function setData($data): void
+    {
+        $this->data = $data;
+    }
+
     public function getData(){
         return $this->data;
     }

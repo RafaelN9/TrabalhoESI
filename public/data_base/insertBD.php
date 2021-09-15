@@ -115,7 +115,7 @@ class insertBD{
         $texto = $notifica->getTexto();
         $link = $notifica->getLink();
         $cor = $notifica->getCor();
-        $query = "INSERT INTO notificacaoAluno(nUSP,texto,link) values('$nUSP', '$texto', '$link', '$cor')";
+        $query = "INSERT INTO notificacaoAluno(nUSP,texto,link, cor) values('$nUSP', '$texto', '$link', '$cor')";
         return runSQL($query);
     }
 
@@ -124,7 +124,7 @@ class insertBD{
         $texto = $notifica->getTexto();
         $link = $notifica->getLink();
         $cor = $notifica->getCor();
-        $query = "INSERT INTO notificacaoProf(CPF,texto,link) values('$CPF', '$texto', '$link', '$cor')";
+        $query = "INSERT INTO notificacaoProf(CPF,texto,link,cor) values('$CPF', '$texto', '$link', '$cor')";
         return runSQL($query);
     }
 
@@ -133,7 +133,7 @@ class insertBD{
         $texto = $notifica->getTexto();
         $link = $notifica->getLink();
         $cor = $notifica->getCor();
-        $query = "INSERT INTO notificacaoCCP(CPF,texto,link) values('$CPF', '$texto', '$link', '$cor')";
+        $query = "INSERT INTO notificacaoCCP(CPF,texto,link,cor) values('$CPF', '$texto', '$link', '$cor')";
         return runSQL($query);
     }
 }

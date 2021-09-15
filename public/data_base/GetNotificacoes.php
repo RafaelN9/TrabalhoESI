@@ -8,7 +8,7 @@ class GetNotificacoes{
         $notificacoes = [];
         $result = runSQL($query);
         while($row = mysqli_fetch_assoc($result)){
-            $notificacoes[] = ["codigo"=> $row['Codigo'], "usuario" => $row['nUSP'], "texto" => $row['texto'], "link" => $row['link'], "data" => $row['data'], "cor" => $row['cor']];
+            $notificacoes[] = ["codigo"=> $row['Codigo'], "usuario" => $row['nUSP'], "texto" => $row['texto'], "link" => $row['link'], "data" => $row['Data_Envio'], "cor" => $row['cor']];
         }
         if(empty($notificacoes)){
             return "erro";
@@ -20,7 +20,7 @@ class GetNotificacoes{
         $notificacoes = [];
         $result = runSQL($query);
         while($row = mysqli_fetch_assoc($result)){
-            $notificacoes[] = ["codigo"=> $row['Codigo'], "usuario" => $row['CPF'], "texto" => $row['texto'], "link" => $row['link'], "data" => $row['data'], "cor" => $row['cor']];
+            $notificacoes[] = ["codigo"=> $row['Codigo'], "usuario" => $row['CPF'], "texto" => $row['texto'], "link" => $row['link'], "data" => $row['Data_Envio'], "cor" => $row['cor']];
         }
         if(empty($notificacoes)){
             return "erro";
@@ -32,7 +32,7 @@ class GetNotificacoes{
         $notificacoes = [];
         $result = runSQL($query);
         while($row = mysqli_fetch_assoc($result)){
-            $notificacoes[] = ["codigo"=> $row['Codigo'], "usuario" => $row['CPF'], "texto" => $row['texto'], "link" => $row['link'], "data" => $row['data'], "cor" => $row['cor']];
+            $notificacoes[] = ["codigo"=> $row['Codigo'], "usuario" => $row['CPF'], "texto" => $row['texto'], "link" => $row['link'], "data" => $row['Data_Envio'], "cor" => $row['cor']];
         }
         if(empty($notificacoes)){
             return "erro";

@@ -24,8 +24,7 @@ if(!isset($_SESSION['tipo_usuario'])){
 
                 require_once 'Controller/ControllerNotificacao.php';
                 $controllerNotifica = new ControllerNotificacao;
-                $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesProfessor($_SESSION['cpf']);
-
+                $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesCCP($_SESSION['cod_usuario']);
                 unset($_POST);
                 header("Location: http://localhost/trabalhoESI/public/index.php");
             }else{
@@ -36,7 +35,7 @@ if(!isset($_SESSION['tipo_usuario'])){
 
                     require_once 'Controller/ControllerNotificacao.php';
                     $controllerNotifica = new ControllerNotificacao;
-                    $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesCCP($_SESSION['cpf']);
+                    $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesProfessor($_SESSION['cod_usuario']);
 
                     unset($_POST);
                     header("Location: http://localhost/trabalhoESI/public/index.php");
@@ -109,14 +108,14 @@ if(isset($_POST["formulario"])){
         else{
             require_once 'Controller/ControllerNotificacao.php';
             $controllNotifica = new ControllerNotificacao();
-            $controllNotifica->adicionaNotificacaoProfessor($dados[0], 'Formulário enviado pelo aluno '.$_SESSION['nome'], 'index.php?revisao_relatorio='.$dados[1], "warning");
+            $result = $controllNotifica->adicionaNotificacaoProfessor($dados[0], 'Formulário enviado pelo aluno '.$_SESSION['nome'], 'index.php?revisao_relatorio='.$dados[1], "warning");
             echo '<script>setTimeout(()=>{alert("Formulário enviado com sucesso! e Professor notificado.")}, 100)</script>';
         }
 
     }
 
     unset($_POST);
-    header("Location: http://localhost/trabalhoESI/public/index.php");
+    //header("Location: http://localhost/trabalhoESI/public/index.php");
 }
 
 if(isset($_GET["revisao_relatorio"])){
