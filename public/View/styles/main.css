@@ -76,11 +76,31 @@ html, body{
     user-select: none;
 }
 
+.dropdown-menu-notify{
+    width: 450px;
+}
+
 @media screen and (max-width:320px) {
     
     .brand-pos{
         display: none;
     }
+
+    .dropdown-menu-notify{
+        position: absolute;
+        left:-186;
+    }
+
+
+}
+
+@media screen and (max-width:375px) {
+
+    .dropdown-menu-notify{
+        position: absolute;
+        left:-186;
+    }
+
 }
 
 @media screen and (max-width:425px) {
@@ -88,4 +108,9 @@ html, body{
     .brand-pos{
         display: none;
     }
+
+    .dropdown-menu-notify{
+        width: 320px;
+    }
+
 }

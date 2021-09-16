@@ -9,10 +9,6 @@ $botaoLogin = '';
 
 if (isset($_SESSION['tipo_usuario'])) {
     $user = $_SESSION['tipo_usuario'];
-    $dropNotifica = "<div class='dropdown btn' role='group' aria-label='Notifications'>
-        <button class='btn btn-secondary btn-lg d-flex' type='button' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' onClick='toggleDisplayNotifications()'>
-            <i class='fas fa-bell' width='100' height='100'></i>
-        ";
     $botaoLogin = "
         <div class='d-flex align-items-center'>
         <a style='min-width: 35px; min-height: 35px;' href='View/logout.php' class='btn btn-danger p-2 w-100 align-content-center'>
@@ -97,10 +93,28 @@ if($notifications != "erro"){
 }
 
 
-if (isset($_SESSION['tipo_usuario']))
-    if($numNotifications > 0)
-        $dropNotifica .= "<div class='rounded-circle bg-danger mt-1 ml-1' style='width: 20px; height: 20px; font-size: 12px;'>$numNotifications</div></button></div>";
-    else $dropNotifica .= "</button></div>";
+if (isset($_SESSION['tipo_usuario'])){
+    $dropNotifica = "<div class='dropdown mr-2' role='group' aria-label='Notifications'>
+                <button class='btn btn-secondary btn-lg d-flex' type='button' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                    <i class='fas fa-bell' width='100' height='100'></i>
+                    <div class='rounded-circle bg-danger mt-1 ml-1' style='width: 20px; height: 20px; font-size: 12px;'>$numNotifications</div>
+                    </button>
+                    <div class='dropdown-menu dropdown-menu-right dropdown-menu-notify p-0' aria-labelledby='dropdownMenu2'>
+                    <div class='card'>
+                        <div class='card-header text-center'>
+                            Notificações
+                        </div>
+                        <div class='card-body p-0'>
+                            <div class='d-flex flex-column' id='notifications'>
+                                $notificationsContent
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+        ";
+}
 
 ?>
 
@@ -137,23 +151,4 @@ if (isset($_SESSION['tipo_usuario']))
             </div>
         </nav>
 
-        <div class="container-fluid" style="display: none; position:fixed; z-index: 100;" id="notificationsCard">
-            <div class="row justify-content-end p-3">
-                <div class="col-sm-12 col-md-4 p-0">
-                    <div class="card">
-                        <div class="card-header">
-                            Notificações
-                            <button type="button" class="close" aria-label="Close" onclick="dismissNotificationCard()">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="d-flex flex-column" id="notifications">
-                                <?php echo $notificationsContent ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="bg-secundaria h-100 pb-5" style="overflow: auto;">
