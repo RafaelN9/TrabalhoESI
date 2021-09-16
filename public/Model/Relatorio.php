@@ -1,5 +1,5 @@
 <?php
-
+//FIXME tranformar relatorio em Abstract e os tipo de relatorios em childs
 class RelatorioProfessor{
     private $nomeAluno;
     private $codFormularioEnviado;

@@ -1,5 +1,5 @@
 <?php
-require_once('data_base/functions.php');
+require_once('DBServices/DataBaseService.php');
 require_once 'Model/Notificacao.php';
 
 
@@ -26,7 +26,7 @@ if (isset($_SESSION['tipo_usuario'])) {
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <a class="dropdown-item" href="index.php?to=preencher" type="button">Preencher formulário</a>
+                    <a class="dropdown-item" href="index.php?to=preencher_relatorio" type="button">Preencher formulário</a>
                     <a class="dropdown-item" href="index.php?getRel=historico" type="button">Histórico de relatórios</a>
                 </div>
             </div>';

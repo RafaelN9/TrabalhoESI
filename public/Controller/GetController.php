@@ -1,7 +1,7 @@
 <?php
-require_once 'data_base/GetBanco.php';
+require_once 'DBServices/GetBanco.php';
 
-class ControllerGet
+class GetController //FIXME Nome muito ambiguo, o que esse controller fazer exatamente?
 {
 
     public function getAlunoFormulario($codigo){

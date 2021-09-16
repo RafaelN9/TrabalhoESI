@@ -1,5 +1,5 @@
 <?php
-require_once('../data_base/functions.php');
+require_once('../DBServices/DataBaseService.php');
 
 ?>
 <!DOCTYPE html>

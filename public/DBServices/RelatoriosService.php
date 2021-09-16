@@ -1,13 +1,13 @@
 <?php
 
 use function PHPUnit\Framework\isType;
-require_once 'data_base/functions.php';
+require_once 'DBServices/DataBaseService.php';
 require_once 'Model/Relatorio.php';
 
 
-class GetRelatorios{
-    
-    function GetRelatoriosPendentesAluno($filter, $numUSPAluno){
+class RelatoriosService{
+
+    function getRelatoriosPendentesAluno($filter, $numUSPAluno){
         $query = 
         "SELECT 
             formulario.Codigo as codFormulario,
@@ -37,7 +37,7 @@ class GetRelatorios{
         return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
     }
 
-    function GetRelatoriosPendentesCCP($filter, $cpfCCP){
+    function getRelatoriosPendentesCCP($filter, $cpfCCP){
         $query = 
         "SELECT DISTINCT 
             aluno.Nome as nomeAluno, 
@@ -86,7 +86,7 @@ class GetRelatorios{
         return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
     }
 
-    function GetRelatoriosPendentesProfessor($filter, $cpfProf){
+    function getRelatoriosPendentesProfessor($filter, $cpfProf){
         $query = 
         "SELECT DISTINCT 
         aluno.Nome as nomeAluno, 
@@ -129,7 +129,7 @@ class GetRelatorios{
     }
 
 
-    function GetHistoricoAluno($filter, $numUSPAluno){
+    function getHistoricoRelatoriosAluno($filter, $numUSPAluno){
         $query =
             "SELECT 
             formulario.Codigo as codFormulario,
@@ -166,7 +166,7 @@ class GetRelatorios{
         return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
     }
 
-    function GetHistoricoProfessor($filter, $cpfProf){
+    function getHistoricoRelatoriosProfessor($filter, $cpfProf){
         $query =
             "SELECT 
         aluno.Nome as nomeAluno, 
@@ -212,7 +212,7 @@ class GetRelatorios{
     }
 
 
-    function GetHistoricoCCP($filter, $cpfCCP){
+    function getHistoricoRelatoriosCCP($filter, $cpfCCP){
         $query =
             "SELECT
                 aluno.Numero_USP as numUSP, 

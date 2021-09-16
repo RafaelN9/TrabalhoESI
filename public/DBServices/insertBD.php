@@ -1,9 +1,9 @@
 <?php
 require_once('Model/Aluno.php');
 require_once('Model/Formulario.php');
-require_once('data_base/functions.php');
+require_once('DBServices/DataBaseService.php');
 
-class insertBD{
+class insertBD{ //FIXME REFATORAR ESSE SERVICE
 
     public function cadastrarAlunoDB(Aluno $aluno){
         $numUsp = $aluno->getNumero_USP();

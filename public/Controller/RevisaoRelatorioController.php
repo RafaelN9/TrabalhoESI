@@ -2,15 +2,15 @@
 
 use PHPUnit\TextUI\ResultPrinter;
 
-require_once 'data_base/GetFormulario.php';
-require_once 'data_base/insertBD.php';
+require_once 'DBServices/RevisaoService.php';
+require_once 'DBServices/insertBD.php';
 
-class ControllerRevisao{
+class RevisaoRelatorioController{
 
 
     function adquireRelatorioFromDB($codigo){
-        $bd = new GetFormulario();
-        $responseForm = $bd->getFormulario($codigo);
+        $bd = new RevisaoService();
+        $responseForm = $bd->getFormularioParaRevisar($codigo);
         if($responseForm !== NULL){
             $responseAlunoForm = $bd->getInformacoesDoAluno($responseForm->getCodigoAluno());
                 $_REQUEST["aluno_form"] = $responseAlunoForm;

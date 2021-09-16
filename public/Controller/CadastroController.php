@@ -1,9 +1,9 @@
 <?php
 require_once 'Model/Aluno.php';
 require_once 'Model/Professor.php';
-require_once 'data_base/insertBD.php';
+require_once 'DBServices/insertBD.php';
 
-class ControllerCadastro{
+class CadastroController{
 
     public function cadastrarAluno($nUSP, $nome, $email, $senha, $link, $Cod_Curso, $cpf){
         $aluno = new Aluno($nUSP, $nome, $email, $senha, $link, $Cod_Curso, $cpf);

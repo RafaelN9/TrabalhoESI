@@ -1,7 +1,7 @@
 <?php
-require_once('data_base/insertBD.php');
+require_once('DBServices/insertBD.php');
 
-class ControllerRefazer
+class RefazerRelatorioController//TODO Não da pra inserir isso no RelatorioController?
 {
     public function solicitaRefazer($cod){
         $bd = new insertBD();

@@ -1,2 +1,4 @@
 # Ignore Composer Install
 vendor
+.idea/php.xml
+.idea/TrabalhoESI.iml

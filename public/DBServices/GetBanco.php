@@ -1,7 +1,7 @@
 <?php
-require_once('data_base/functions.php');
+require_once('DBServices/DataBaseService.php');
 
-class GetBanco
+class GetBanco //FIXME Esse getBanco ta muito ambiguo, o que é q isso faz exatamente?
 {
 
     public function getAlunoFromFormulario($codigo){

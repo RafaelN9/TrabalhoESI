@@ -1,11 +1,11 @@
 <?php 
 
-require_once 'data_base/functions.php';
+require_once 'DBServices/DataBaseService.php';
 require_once 'Model/Formulario.php';
 
-class GetFormulario{
+class RevisaoService{
 
-    function getFormulario($codigo){
+    function getFormularioParaRevisar($codigo){
         $query = "SELECT
     professor.Nome AS nomeProfessor,
     aluno.Nome,

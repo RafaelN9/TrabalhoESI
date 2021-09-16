@@ -1,7 +1,7 @@
 <?php
-require_once 'data_base/GetRelatorios.php';
+require_once 'DBServices/RelatoriosService.php';
 
-class ControllerRelatorio{
+class RelatorioController{
     private $search_bar = "";
     private $errorMessage = "";
     private $tHead;
@@ -11,8 +11,8 @@ class ControllerRelatorio{
     private $possivelCortar = [];
 
     function GetRelatoriosP($cpfProf){
-        $bd = new GetRelatorios();
-        $response = $bd->GetRelatoriosPendentesProfessor("", $cpfProf);
+        $bd = new RelatoriosService();
+        $response = $bd->getRelatoriosPendentesProfessor("", $cpfProf);
         if(gettype($response) == "string"){
             return $response;
         }
@@ -22,8 +22,8 @@ class ControllerRelatorio{
         return $response;
     }
     function GetRelatoriosC($cpfCCP){
-        $bd = new GetRelatorios();
-        $response = $bd->GetRelatoriosPendentesCCP("", $cpfCCP);
+        $bd = new RelatoriosService();
+        $response = $bd->getRelatoriosPendentesCCP("", $cpfCCP);
         if(gettype($response) == "string"){
             return $response;
         }
@@ -35,8 +35,8 @@ class ControllerRelatorio{
         return $response;
     }
     function GetRelatoriosA($cpfAluno){
-        $bd = new GetRelatorios();
-        $response = $bd->GetRelatoriosPendentesAluno("", $cpfAluno);
+        $bd = new RelatoriosService();
+        $response = $bd->getRelatoriosPendentesAluno("", $cpfAluno);
         if(gettype($response) == "string"){
             return $response;
         }
@@ -102,8 +102,8 @@ class ControllerRelatorio{
     /* HISTORICO */
 
     function GetRelatoriosHistoricoP($cpfProf){
-        $bd = new GetRelatorios();
-        $response = $bd->GetHistoricoProfessor("", $cpfProf);
+        $bd = new RelatoriosService();
+        $response = $bd->getHistoricoRelatoriosProfessor("", $cpfProf);
         if(gettype($response) == "string"){
             return $response;
         }
@@ -113,8 +113,8 @@ class ControllerRelatorio{
         return $response;
     }
     function GetRelatoriosHistoricoC($cpfCCP){
-        $bd = new GetRelatorios();
-        $response = $bd->GetHistoricoCCP("", $cpfCCP);
+        $bd = new RelatoriosService();
+        $response = $bd->getHistoricoRelatoriosCCP("", $cpfCCP);
         if(gettype($response) == "string"){
             return $response;
         }
@@ -124,8 +124,8 @@ class ControllerRelatorio{
         return $response;
     }
     function GetRelatoriosHistoricoA($cpfAluno){
-        $bd = new GetRelatorios();
-        $response = $bd->GetHistoricoAluno("", $cpfAluno);
+        $bd = new RelatoriosService();
+        $response = $bd->getHistoricoRelatoriosAluno("", $cpfAluno);
         if(gettype($response) == "string"){
             return $response;
         }

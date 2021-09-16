@@ -1,7 +1,7 @@
 <?php
-require_once('data_base/functions.php');
+require_once('DBServices/DataBaseService.php');
 
-class ConsultaLogin{
+class LoginService{
 
     public function consultaAluno(Aluno $aluno){
         $email = $aluno->getEmail();

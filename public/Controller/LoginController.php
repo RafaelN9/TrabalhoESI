@@ -1,12 +1,12 @@
 <?php
-require_once 'data_base/ConsultaLogin.php';
+require_once 'DBServices/LoginService.php';
 
-class ControllerLogin{
+class LoginController{
 
     public function verificaAluno($email, $senha){
         require_once 'Model/Aluno.php';
         $aluno = new Aluno('', '', $email, $senha, '', '', '');
-        $bd = new ConsultaLogin();
+        $bd = new LoginService();
         $resultado = $bd->consultaAluno($aluno);
         $_SESSION['nome'] = $aluno->getNome();
         $_SESSION['email'] = $aluno->getEmail();
@@ -19,7 +19,7 @@ class ControllerLogin{
     public function verificaCCP($email, $senha){
         require_once 'Model/Professor.php';
         $prof = new Professor('', '', $email, $senha);
-        $bd = new ConsultaLogin();
+        $bd = new LoginService();
         $resultado = $bd->consultaCCP($prof);
         $_SESSION['nome'] = $prof->getNome();
         $_SESSION['email'] = $prof->getEmail();
@@ -30,7 +30,7 @@ class ControllerLogin{
     public function verificaProfessor($email, $senha){
         require_once 'Model/Professor.php';
         $prof = new Professor('', '', $email, $senha);
-        $bd = new ConsultaLogin();
+        $bd = new LoginService();
         $resultado = $bd->consultaProfessor($prof);
         return $resultado;
     }

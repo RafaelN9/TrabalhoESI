@@ -1,7 +1,7 @@
 <?php
-require_once 'data_base/insertBD.php';
+require_once 'DBServices/insertBD.php';
 
-class ControllerDesligaAluno
+class AlunoEstadoController
 {
     public function desliga($cod){
         $bd = new insertBD();

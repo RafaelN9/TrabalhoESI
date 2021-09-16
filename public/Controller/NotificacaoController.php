@@ -1,8 +1,8 @@
 <?php
 require_once 'Model/Notificacao.php';
-require_once 'data_base/insertBD.php';
+require_once 'DBServices/insertBD.php';
 
-class ControllerNotificacao
+class NotificacaoController
 {
 
     public function adicionaNotificacaoAluno($usuario, $texto, $link , $cor){
@@ -27,21 +27,21 @@ class ControllerNotificacao
     }
 
     function getNotificacoesAluno($usuario){
-        require_once 'data_base/GetNotificacoes.php';
-        $bd = new GetNotificacoes();
-        $resultado = $bd->GetNotificacaoAluno($usuario);
+        require_once 'DBServices/NotificacoesService.php';
+        $bd = new NotificacoesService();
+        $resultado = $bd->getNotificacaoAluno($usuario);
         return $resultado;
     } 
     function getNotificacoesProfessor($usuario){
-        require_once 'data_base/GetNotificacoes.php';
-        $bd = new GetNotificacoes();
-        $resultado = $bd->GetNotificacaoProfessor($usuario);
+        require_once 'DBServices/NotificacoesService.php';
+        $bd = new NotificacoesService();
+        $resultado = $bd->getNotificacaoProfessor($usuario);
         return $resultado;
     } 
     function getNotificacoesCCP($usuario){
-        require_once 'data_base/GetNotificacoes.php';
-        $bd = new GetNotificacoes();
-        $resultado = $bd->GetNotificacaoCCP($usuario);
+        require_once 'DBServices/NotificacoesService.php';
+        $bd = new NotificacoesService();
+        $resultado = $bd->getNotificacaoCCP($usuario);
         return $resultado;
     }
 

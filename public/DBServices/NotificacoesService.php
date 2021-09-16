@@ -1,9 +1,9 @@
 <?php
-require_once 'data_base/functions.php';
+require_once 'DBServices/DataBaseService.php';
 require_once 'Model/Notificacao.php';
 
-class GetNotificacoes{
-    function GetNotificacaoAluno($n_usp){
+class NotificacoesService{
+    function getNotificacaoAluno($n_usp){
         $query = "SELECT * FROM `notificacaoaluno` WHERE `nUSP` = '$n_usp' ORDER BY Codigo ASC;";
         $notificacoes = [];
         $result = runSQL($query);
@@ -15,7 +15,7 @@ class GetNotificacoes{
         }
         return $notificacoes;
     }
-    function GetNotificacaoProfessor($cpf){
+    function getNotificacaoProfessor($cpf){
         $query = "SELECT * FROM `notificacaoprof` WHERE `CPF` = '$cpf' ORDER BY Codigo ASC";
         $notificacoes = [];
         $result = runSQL($query);
@@ -27,7 +27,7 @@ class GetNotificacoes{
         }
         return $notificacoes;
     }
-    function GetNotificacaoCCP($cpf){
+    function getNotificacaoCCP($cpf){
         $query = "SELECT * FROM `notificacaoccp` WHERE `CPF` = '$cpf' ORDER BY Codigo ASC";
         $notificacoes = [];
         $result = runSQL($query);

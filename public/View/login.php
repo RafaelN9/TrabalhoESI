@@ -35,7 +35,7 @@ if (isset($_SESSION['result_cad'])){
                     <form style="width: 80%;" action="../index.php" method="POST">
                         <h4 class="form-group text-danger" id="error" style="transition-duration: 1s";>
                             <?php
-                                require_once ('../data_base/functions.php');
+                                require_once('../DBServices/DataBaseService.php');
                                 if(isset($_GET['erroLogin'])){
                                     showError('error', 'Usuário e/ou senha incorretos');
                                 }
