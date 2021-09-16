@@ -120,7 +120,7 @@ if (isset($_SESSION['tipo_usuario']))
 </head>
 
 <body>
-    <div class="container-fluid bg-img p-0" style="min-height: 100vh">
+    <div class="container-fluid bg-img p-0" style="overflow: auto;">
 
         <nav class="navbar navbar-light bg-princ-escuro sticky-top">
             <?php
