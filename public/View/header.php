@@ -156,4 +156,4 @@ if (isset($_SESSION['tipo_usuario']))
                 </div>
             </div>
         </div>
-        <div class="bg-secundaria h-100">
+        <div class="bg-secundaria h-100 pb-5" style="overflow: auto;">

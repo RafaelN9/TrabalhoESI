@@ -33,7 +33,7 @@ $_SESSION['from'] = 'historico';
 ?>
 
 
-<div class="container-fluid h-100 d-flex" style="min-height: 100vh;">
+<div class="container-fluid h-100 d-flex">
     <div class="container-fluid ">
         <div class="row h-100 p-md-5 justify-content-center">
 
