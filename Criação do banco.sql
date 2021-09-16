@@ -236,9 +236,5 @@ INSERT INTO `avaliacaoprof` (`Cod_Form`, `CPF_Prof`, `Parecer`, `Cod_Nota`) VALU
 (5, '123.456.789-01', 'Foi medio', 2);
 
 
-INSERT INTO `notificacaoaluno` (`Codigo`, `nUSP`, `texto`, `link`) VALUES
-(1, '00123456789012345678', 'Boa meu mano', 'index.php'),
-(2, '00123456789012345678', 'Nice', 'index.php'),
-(3, '00123456789012345678', 'Nice 1', 'index.php'),
-(4, '00123456789012345678', 'Nice 2', 'index.php'),
-(5, '00123456789012345678', 'Nice 3', 'index.php');
+INSERT INTO `notificacaoaluno` (`nUSP`, `texto`, `link`, `cor`) VALUES
+('00123456789012345678', 'Boa meu mano', 'index.php?revisao_relatorio=1', 'success');

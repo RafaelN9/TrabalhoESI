@@ -116,7 +116,7 @@ if (isset($_SESSION['tipo_usuario']))
     <link rel="stylesheet" href="View/styles/main.css?v=<?php echo time(); ?>">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="View/scripts/scriptNotify.js?v=<?php echo time(); ?>"></script>
-    <title></title>
+    <title>Sistema PPgSI</title>
 </head>
 
 <body>

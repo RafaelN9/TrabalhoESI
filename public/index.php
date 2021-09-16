@@ -1,4 +1,5 @@
 <?php
+echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>';
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
 if(!isset($_SESSION['tipo_usuario'])){
@@ -104,12 +105,12 @@ if(isset($_POST["formulario"])){
         $dados = $controllerGet->getProfFromAluno($_SESSION['cod_usuario']);
 
         if($dados == 'erro')
-            echo '<script>setTimeout(()=>{alert("Formulário enviado com sucesso! e Professor não notificado.")}, 100)</script>';
+            echo '<script>setTimeout(()=>{Swal.fire("Erro no envio!","Ninguem foi notificado!", "error")}, 100)</script>';
         else{
             require_once 'Controller/NotificacaoController.php';
             $controllNotifica = new NotificacaoController();
             $result = $controllNotifica->adicionaNotificacaoProfessor($dados[0], 'Formulário enviado pelo aluno '.$_SESSION['nome'], 'index.php?revisao_relatorio='.$dados[1], "warning");
-            echo '<script>setTimeout(()=>{alert("Formulário enviado com sucesso! e Professor notificado.")}, 100)</script>';
+            echo '<script>setTimeout(()=>{Swal.fire("Relatorio enviado!","O responsavel foi notificiado!", "success")}, 100)</script>';
         }
 
     }
@@ -133,14 +134,14 @@ if(isset($_POST["avaliacaoProfessor"])){
         $controllerGet = new GetController();
         $cpf = $controllerGet->getCCP();
         if(empty($cpf))
-            echo '<script>setTimeout(()=>{alert("Avaliação adicionada com sucesso! e CCP não notificada.")}, 100)</script>';
+            echo '<script>setTimeout(()=>{Swal.fire("Erro no envio!","Ninguem foi notificado!", "error")}, 100)</script>';
         else{
             require_once 'Controller/NotificacaoController.php';
             $controllNotifica = new NotificacaoController();
             foreach ($cpf as $value){
                 $controllNotifica->adicionaNotificacaoCCP($value, 'Nota atribuida ao formulário '.$_POST['codigo_form'], 'index.php?revisao_relatorio='.$_POST['codigo_form'], "success");
             }
-            echo '<script>setTimeout(()=>{alert("Avaliação adicionada com sucesso! e CCP notificada.")}, 100)</script>';
+            echo '<script>setTimeout(()=>{Swal.fire("Avaliacao enviada!","O responsavel foi notificiado!", "success")}, 100)</script>';
         }
 
     }else{
@@ -159,12 +160,12 @@ if(isset($_POST["avaliacaoCCP"])){
         $controllerGet = new GetController();
         $nUSP = $controllerGet->getAlunoFormulario($_POST['codigo_form']);
         if(empty($nUSP))
-            echo '<script>setTimeout(()=>{alert("Avaliação adicionada com sucesso! e Aluno não notificado.")}, 100)</script>';
+            echo '<script>setTimeout(()=>{Swal.fire("Erro no envio!","Ninguem foi notificado!", "error")}, 100)</script>';
         else{
             require_once 'Controller/NotificacaoController.php';
             $controllNotifica = new NotificacaoController();
             $controllNotifica->adicionaNotificacaoAluno($nUSP, 'Nota atribuida ao formulário '.$_POST['codigo_form'], 'index.php?revisao_relatorio='.$_POST['codigo_form'], "success");
-            echo '<script>setTimeout(()=>{alert("Avaliação adicionada com sucesso! e Aluno notificado.")}, 100)</script>';
+            echo '<script>setTimeout(()=>{Swal.fire("Avaliacao enviada!","O aluno foi notificiado!", "success")}, 100)</script>';
         }
     }else{
         echo "<script>setTimeout(()=>{alert(`ERROR : $result`)}, 150)</script>";
@@ -195,14 +196,14 @@ if(isset($_GET["refazer"])){
         $controllerGet = new GetController();
         $cpf = $controllerGet->getCCP();
         if(empty($cpf))
-            echo '<script>setTimeout(()=>{alert("Solicitação feita com sucesso! e CCP não notificado.")}, 100)</script>';
+            echo '<script>setTimeout(()=>{Swal.fire("Erro na solicitação!","Tente novamente, ou contate um responsavel!", "error")}, 100)</script>';
         else{
             require_once 'Controller/NotificacaoController.php';
             $controllNotifica = new NotificacaoController();
             foreach ($cpf as $value) {
                 $controllNotifica->adicionaNotificacaoCCP($value, 'Aluno '.$_SESSION['nome'].' solicitou para refazer o formulario '.$_GET["refazer"], 'index.php?revisao_relatorio='.$_GET["refazer"], "warning");
             }
-            echo '<script>setTimeout(()=>{alert("Solicitação feita com sucesso! e CCP notificado.")}, 100)</script>';
+            echo '<script>setTimeout(()=>{Swal.fire("Solicitação enviada!","O CCP foi notificiado!", "success")}, 100)</script>';
         }
     }else echo "<h1 class='text-center text-danger'>$result</h1>";
 }
@@ -216,7 +217,7 @@ if(isset($_GET["cortar"])){
         require_once 'Controller/NotificacaoController.php';
         $controllNotifica = new NotificacaoController();
         $controllNotifica->adicionaNotificacaoAluno($nUSP, 'Você foi desligado do programa', '', "danger");
-        echo '<script>setTimeout(()=>{alert("Aluno desligado do programa com sucesso! e notificado.")}, 100)</script>';
+        echo '<script>setTimeout(()=>{Swal.fire("Aluno desligado com sucesso!","O mesmo foi notificiado!", "success")}, 100)</script>';
     }else echo "<h1 class='text-center text-danger'>$result</h1>";
 }
 
