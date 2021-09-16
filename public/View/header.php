@@ -68,7 +68,7 @@ function addNotification(Notificacao $notification, $index){
     $notificaData = $notification->getData();
     $cor = 'alert-'.$notification->getCor();
     return "<div class='d-flex flex-colunm dropdown-item $cor' id='$index'>
-<div class='dropdown-item'  onclick='Redireciona(`$notificaLink`)'> $notificaTexto
+<div class='dropdown-item px-0'  onclick='Redireciona(`$notificaLink`)'> $notificaTexto
         
         <br>
         <span class='text-muted' style='font-size: 12px;'>$notificaData</span>
