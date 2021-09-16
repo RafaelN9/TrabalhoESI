@@ -18,12 +18,11 @@ if ($errorMessage === "") {
         $btn_cortar = '<button class="btn btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="cortarAluno()">Cortar aluno</button>';
     $btn_box .= $_REQUEST["relatorio"]["btn_box"];
     $possivelCortar = $_REQUEST["relatorio"]["possivelCortar"];
-    if($possivelCortar != []){
-        $possivelCortar = json_encode($possivelCortar);
-        echo "<script>
-            let possivelCortarList = $possivelCortar;
-        </script>";
-    }
+    
+    $possivelCortar = json_encode($possivelCortar);
+    echo "<script>
+        var possivelCortarList = $possivelCortar;
+    </script>";
     
 } else {
     $errorMessage = "<h3 class='mt-5 mb-5 text-center'>" . $errorMessage . "</h3>";

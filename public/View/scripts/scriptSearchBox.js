@@ -1,17 +1,17 @@
 var ehCCP = false;
+var allRows = document.getElementsByTagName('tr');
+var checkboxElement = document.querySelector("#searchBarAppendDesliga");
+var searchboxElement = document.querySelector("#search-box");
 
 if(document.querySelector('#head').children[3] != undefined){
     ehCCP = true;
 }
 
-var searchboxElement = document.querySelector("#search-box");
 searchboxElement.addEventListener('keyup', ()=>{
-
+    
     let value = searchboxElement.value;
     value = value.toUpperCase();
-
-    let allRows = document.getElementsByTagName('tr');
-
+    
     for(element of allRows){
         if(element.id == 'head') continue;
         element.style['display'] = 'none';
@@ -23,9 +23,16 @@ searchboxElement.addEventListener('keyup', ()=>{
             case true:
                 let nomeProfessor = element.children[3].textContent;
                 nomeProfessor = nomeProfessor.toUpperCase();
-
-                if(nomeAluno.includes(value) || nomeProfessor.includes(value)){
-                    element.style['display'] = 'table-row';
+                if(checkboxElement.checked){
+                    possivelCortarList.forEach(function (possivelCortar) {
+                        if((nomeAluno.includes(value) && nomeAluno.includes(possivelCortar.toUpperCase())) || nomeProfessor.includes(value)){
+                            element.style['display'] = 'table-row';
+                        }
+                    })
+                }else{
+                    if(nomeAluno.includes(value) || nomeProfessor.includes(value)){
+                        element.style['display'] = 'table-row';
+                    }
                 }
                 break;
         
@@ -35,28 +42,28 @@ searchboxElement.addEventListener('keyup', ()=>{
                 }
                 break;
         }
-
     }
 });
 
-var checkboxElement = document.querySelector("#searchBarAppendDesliga");
+
 checkboxElement.addEventListener('change', function() {
-    if (this.checked) {
-        console.log("ligou");
-        let allRows = document.getElementsByTagName('tr');
+    if (this.checked){
+        var saveRows = [];
         for(element of allRows){
             if(element.id == 'head') continue;
             element.style['display'] = 'none';
-
-            if(element.children[1].textContent.includes(...possivelCortarList)){ //lista nome aluno
-                element.style['display'] = 'table-row';
-            }
+            possivelCortarList.forEach(possivelCortar => {
+                if(element.children[1].textContent.includes(possivelCortar)){ //lista nome aluno
+                    saveRows.push(element);
+                    element.style['display'] = 'table-row';
+                }
+            });
         }
+        allRows = saveRows;
     } else {
-        let allRows = document.getElementsByTagName('tr');
+        allRows = document.getElementsByTagName('tr');
         for(element of allRows){
             element.style['display'] = 'table-row';
         }
-        console.log("Checkbox is not checked..");
     }
 });
