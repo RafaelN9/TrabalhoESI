@@ -47,6 +47,7 @@ searchboxElement.addEventListener('keyup', ()=>{
 
 
 checkboxElement.addEventListener('change', function() {
+    $("#buttonCortar").toggle();
     if (this.checked){
         var saveRows = [];
         for(element of allRows){
@@ -61,6 +62,7 @@ checkboxElement.addEventListener('change', function() {
         }
         allRows = saveRows;
     } else {
+        cortar = undefined;
         allRows = document.getElementsByTagName('tr');
         for(element of allRows){
             element.style['display'] = 'table-row';

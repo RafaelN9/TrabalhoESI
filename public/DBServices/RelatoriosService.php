@@ -259,8 +259,7 @@ class RelatoriosService{
                 $row["nomeProfessorResp"],
                 $row["dataEnvioForm"],
                 $row["Parecer"],
-                $row["nota"],
-                $row['numUSP']
+                $row["nota"]
             );
             $relatoriosArray[] = $relatorio->toMap($relatorio);
         }

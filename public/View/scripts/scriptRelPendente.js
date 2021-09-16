@@ -1,32 +1,20 @@
 let acessar;
 let cortar;
+var checkboxElement = document.querySelector("#searchBarAppendDesliga");
 
 function Marcar(elem){
     console.log(elem)
-    $("#"+elem)[0].checked = true;
+    $("#elem"+elem)[0].checked = true;
     $("#linha"+elem).addClass('table-active');
     acessar = $("input[name='relatorio']:checked").val();
+    if(checkboxElement.checked){
+        cortar = acessar;
+    }
     $('input:radio[name="relatorio"]').each(function() {
         //Verifica qual está selecionado
         if (!$(this).is(':checked')){
             remove = $(this).val();
             $("#linha"+remove).removeClass("table-active");
-        }
-    })
-}
-
-function MarcarCortar(elem){
-    console.log(elem)
-    $("#c_"+elem)[0].checked = true;
-    $("#cortar"+elem).addClass('table-active');
-    cortar = $("input[name='cortar']:checked").val();
-    $('input:radio[name="cortar"]').each(function() {
-        //Verifica qual está selecionado
-        if (!$(this).is(':checked')){
-
-            remove = $(this).val();
-            console.log(remove);
-            $("#cortar"+remove).removeClass("table-active");
         }
     })
 }

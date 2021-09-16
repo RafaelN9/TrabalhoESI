@@ -15,7 +15,7 @@ if ($errorMessage === "") {
     if ($_SESSION['tipo_usuario'] == 'aluno')
         $btn_box .= '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="solicitarRefazer()">Solicitar refazer relatório</button>';
     if ($_SESSION['tipo_usuario'] == 'ccp')
-        $btn_cortar = '<button class="btn btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="cortarAluno()">Cortar aluno</button>';
+        $btn_cortar = '<button class="btn btn-lg btn-primary pl-3 pr-3 p-2 mb-2" id="buttonCortar" style="display: none;" onclick="cortarAluno()">Cortar aluno</button>';
     $btn_box .= $_REQUEST["relatorio"]["btn_box"];
     $possivelCortar = $_REQUEST["relatorio"]["possivelCortar"];
     
@@ -68,13 +68,11 @@ $_SESSION['from'] = 'historico';
                                     <tbody>
 
                                         <?php
-                                        $possivelCortar = [];
-                                        //$aux = ['', ''];
 
                                         foreach ($tBody as $row) { ?>
                                             <tr id="linha<?php echo $row[1]; ?>" onclick="Marcar('<?php echo $row[1]; ?>')">
                                                 <td>
-                                                    <input type="radio" onclick="Marcar('<?php echo $row[1]; ?>')" name="relatorio" id="<?php echo $row[1]; ?>" value="<?php echo $row[1]; ?>" />
+                                                    <input type="radio" onclick="Marcar('<?php echo $row[1]; ?>')" name="relatorio" id="elem<?php echo $row[1]; ?>" value="<?php echo $row[1]; ?>" />
                                                 </td>
                                                 <?php foreach ($row as $key => $value) { ?>
                                                     <td>
@@ -86,76 +84,26 @@ $_SESSION['from'] = 'historico';
                                                 <?php } ?>
                                             </tr>
                                         <?php
-                                        /*
-                                        if($aux[0] == $row[0] && $aux[1] == $row[5])
-                                            $possivelCortar[$row[1]] = $row[0];
-                                        $aux = [$row[0], $row[5]];
-                                        */
 
                                         }
                                         ?>
                                     <tbody>
                                 </table>
                             <?php
-                                //  $possivelCortar = array_unique($possivelCortar);
                             }
                             ?>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12 justify-content-center">
-                        <div class="d-flex justify-content-between flex-wrap">
-                            <?php
-                            echo $btn_box;
-                            ?>
-                        </div>
-                    </div>
-
-                    <?php
-                            if (!empty($possivelCortar)) {
-                    ?>
-                        <div class="col-6 mb-5 mt-5">
-                            <h2>Possível desligar alunos do programa</h2>
-                            <table class="table table-light disable-select rounded table-hover mt-5" id="tableCortar">
-                                <thead class='thead bg-warning'>
-                                    <tr>
-                                        <th></th>
-                                        <th>
-                                            Aluno
-                                        </th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-
-                                    <?php
-                                    foreach ($possivelCortar as $key => $value) { ?>
-                                        <tr id="cortar<?php echo $key; ?>" onclick="MarcarCortar('<?php echo $key; ?>')">
-                                            <td>
-                                                <input type="radio" name="cortar" onclick="MarcarCortar('<?php echo $key; ?>')" id="c_<?php echo $key; ?>" value="<?php echo $key; ?>" />
-                                            </td>
-                                            <td>
-                                                <?php echo $value ?>
-                                            </td>
-                                        </tr>
-                                    <?php
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-
-                            <div class="col-12 justify-content-center">
-                                <div class="d-flex justify-content-between flex-wrap">
-                                    <?php
-                                    echo $btn_cortar;
-                                    ?>
-                                </div>
+                        <div class="col-12 justify-content-center">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <?php
+                                echo $btn_box;
+                                echo $btn_cortar;
+                                ?>
                             </div>
                         </div>
-                        <?php
-                            }
-                        ?>
                 </div>
             </div>
         </div>
