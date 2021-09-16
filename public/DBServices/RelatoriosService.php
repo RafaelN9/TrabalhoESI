@@ -3,6 +3,9 @@
 use function PHPUnit\Framework\isType;
 require_once 'DBServices/DataBaseService.php';
 require_once 'Model/Relatorio.php';
+require_once 'Model/RelatorioAluno.php';
+require_once 'Model/RelatorioProfessor.php';
+require_once 'Model/RelatorioCCP.php';
 
 
 class RelatoriosService{

@@ -1,4 +1,5 @@
 # Ignore Composer Install
 vendor
-.idea/php.xml
-.idea/TrabalhoESI.iml
+
+#Ignore PHPStorm config
+.idea
