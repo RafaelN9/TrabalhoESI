@@ -140,5 +140,6 @@
     </div>
 
     <script type="text/javascript" src="scripts/scritpCadastro.js?<?php echo time(); ?>"></script>
+    <script type="text/javascript" src="scripts/scriptSenhaShowHide.js?<?php echo time(); ?>"></script>
     
 <?php include_once('footer.php');?>
