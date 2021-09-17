@@ -42,8 +42,28 @@
                             <input type="text"  class="form-control mb-4 p-4" name="cadastroCPF" id="cadastroCPF" minlength="14" maxlength="14" placeholder="CPF" required >
                             
                             <label for="cadastroSenha" class="text-white">Senha</label>
-                            <input type="password" class="form-control mb-4 p-4" name="cadastroSenha" id="cadastroSenha" minlength="8" maxlength="16" aria-describedby="pwdHelp" placeholder="Senha" required>
-                            
+                            <div class="input-group mb-4">
+                                <input type="password" class="form-control p-4" name="cadastroSenha" id="cadastroSenha" minlength="8" maxlength="16" aria-describedby="pwdHelp" placeholder="Senha" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" style="height: 50px;" onclick="senha_mostra_esconde(this)">
+                                        <i class="fas fa-eye" id="show_eye"></i>
+                                        <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <label for="confirmaSenha" class="text-white">Confirme a senha</label>
+                            <div class="input-group mb-1">
+                                <input type="password" class="form-control p-4" id="confirmaSenha" minlength="8" maxlength="16" aria-describedby="pwdHelp" placeholder="Repita a senha" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" style="height: 50px;" onclick="senha_mostra_esconde(this)">
+                                        <i class="fas fa-eye" id="show_eye"></i>
+                                        <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <p id="pass_hint" style="color: #FFFFFF;"></p>
+
                             <label for="cadastroCurriculo" class="text-white">Link do currículo</label>
                             <input type="text"  class="form-control mb-4 p-4" name="cadastroCurriculo" id="cadastroCurriculo" placeholder="Link" required>
                             
@@ -78,7 +98,27 @@
                             <input type="text"  class="form-control mb-4 p-4" name="cadastroCPF" id="cadastroCPFProf" minlength="14" maxlength="14" placeholder="CPF" required>
                             
                             <label for="cadastroSenha" class="text-white">Senha</label>
-                            <input type="password" class="form-control mb-4 p-4" name="cadastroSenha" id="cadastroSenhaProf" minlength="8" maxlength="16" aria-describedby="pwdHelp" placeholder="Senha" required>
+                            <div class="input-group mb-4">
+                                <input type="password" class="form-control p-4" name="cadastroSenha" id="cadastroSenha" minlength="8" maxlength="16" aria-describedby="pwdHelp" placeholder="Senha" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" style="height: 50px;" onclick="senha_mostra_esconde(this)">
+                                        <i class="fas fa-eye" id="show_eye"></i>
+                                        <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <label for="confirmaSenha" class="text-white">Confirme a senha</label>
+                            <div class="input-group mb-4">
+                                <input type="password" class="form-control p-4" id="confirmaSenha" minlength="8" maxlength="16" aria-describedby="pwdHelp" placeholder="Repita a senha" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" style="height: 50px;" onclick="senha_mostra_esconde(this)">
+                                        <i class="fas fa-eye" id="show_eye"></i>
+                                        <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <p id="pass_hint" style="color: #FFFFFF;"></p>
                             
                             <input type="submit" class="btn btn-primary p-3 float-right" name="cadastroProf" value="Cadastrar">
                         </form>
