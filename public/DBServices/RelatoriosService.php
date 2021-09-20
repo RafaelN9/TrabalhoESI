@@ -265,4 +265,59 @@ class RelatoriosService{
         }
         return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
     }
+
+
+    function getRelaroriosRefazer($filter){
+        $query =
+            "SELECT
+                aluno.Numero_USP as numUSP, 
+                aluno.Nome AS nomeAluno,
+                formulario.Codigo AS codFormulario,
+                professor.Nome AS nomeProfessorResp,
+                formulario.Data_Envio AS dataEnvioForm,
+                avaliacaoccp.Parecer,
+                nota.Nome AS nota
+            FROM
+                aluno,
+                professor,
+                formulario,
+                professorresp,
+                avaliacaoccp,
+                nota,
+                solicitarefazer
+            WHERE
+                (
+                    formulario.Numero_USP = aluno.Numero_USP
+                ) AND(
+                    formulario.Numero_USP = professorresp.Numero_USP
+                ) AND(
+                    professorresp.CPF_Prof = professor.CPF
+                ) AND(
+                    formulario.Codigo = solicitarefazer.Cod_Form
+                ) AND avaliacaoccp.Cod_Form = formulario.Codigo AND nota.Codigo = avaliacaoccp.Cod_Nota
+                AND not EXISTS (SELECT 1 FROM alunodesligado WHERE alunodesligado.Numero_USP = aluno.Numero_USP)
+            ORDER BY
+                aluno.Numero_USP,
+                formulario.Data_Envio $filter ";
+
+        $result = runSQL($query);
+        $relatoriosArray = array();
+        if ( gettype($result) == "string"){
+            return $result;
+        }
+        if(mysqli_num_rows($result) == 0)
+            return [];
+        while($row = mysqli_fetch_assoc($result)){
+            $relatorio = new RelatorioCCP(
+                $row["nomeAluno"],
+                $row["codFormulario"],
+                $row["nomeProfessorResp"],
+                $row["dataEnvioForm"],
+                $row["Parecer"],
+                $row["nota"]
+            );
+            $relatoriosArray[] = $relatorio->toMap($relatorio);
+        }
+        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
+    }
 }

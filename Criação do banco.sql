@@ -108,7 +108,7 @@ Create table alunoDesligado(
 
 Create table aceitoRefazer(
     Cod_Form int(11) NOT NULL,
-    FOREIGN KEY (Cod_Form) REFERENCES solicitaRefazer(Cod_Form),
+    FOREIGN KEY (Cod_Form) REFERENCES Formulario(Codigo),
     Primary Key(Cod_Form)
 );
 

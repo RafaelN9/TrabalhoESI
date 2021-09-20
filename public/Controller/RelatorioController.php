@@ -34,17 +34,6 @@ class RelatorioController{
         }
         return $response;
     }
-    function GetRelatoriosA($cpfAluno){
-        $bd = new RelatoriosService();
-        $response = $bd->getRelatoriosPendentesAluno("", $cpfAluno);
-        if(gettype($response) == "string"){
-            return $response;
-        }
-        if(count($response) == 0){
-            return $this->errorMsgTxt;
-        }
-        return $response;
-    }
 
     function throwError($dbResponse){
         if(gettype($dbResponse) == "string"){
@@ -211,5 +200,62 @@ class RelatorioController{
         $_REQUEST["relatorio"] = $response;
         require_once 'View/historico_relatorio.php';
         return;
+    }
+
+    /* Solicitações para refazer o relatório */
+
+    function GetRelatoriosRefazer(){
+        $bd = new RelatoriosService();
+        $response = $bd->getRelaroriosRefazer("");
+        if(gettype($response) == "string"){
+            return $response;
+        }
+        if(count($response) == 0){
+            return $this->errorMsgTxt;
+        }
+        return $response;
+    }
+
+    function throwErrorRefazer($dbResponse){
+        if(gettype($dbResponse) == "string"){
+            $_REQUEST["relatorio"]["errorMessage"] = $dbResponse;
+            require_once 'View/solicitacao_reenvio.php';
+            $this->errorMessage = $dbResponse;
+            $this->tHead = [];
+            $this->tBody = [];
+            return true;
+        }
+        return false;
+    }
+
+    function SolicitaRefazerRelatorios(){
+
+        $relatorio = array();
+
+                $relatorio = $this->GetRelatoriosRefazer();
+                if (!$this->throwErrorRefazer($relatorio)){
+
+                $this->tHead[] = $relatorio["head"];
+                foreach($relatorio["body"] as $row){
+                    $this->tBody[] = $row;
+                }
+                $this->search_bar =
+                    "<div class='input-group'>
+                                <input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>
+                                <div class='input-group-append align-self-center' style='height: min-content;'>
+                                    <div class='input-group-text d-none'>
+                                        <input type='checkbox' id='searchBarAppendDesliga' class='mr-3'>
+                                        <label for='searchBarAppendDesliga' class='m-0 disable-select'>Alunos a cancelar</label>
+                                    </div>
+                                </div>
+                            </div>";
+
+
+        $response = ["errorMessage" => $this->errorMessage, "search_bar" => $this->search_bar,
+            "tHead" => $this->tHead, "tBody" => $this->tBody, "btn_box" => $this->btn_box];
+
+        $_REQUEST["relatorio"] = $response;
+        require_once 'View/solicitacao_reenvio.php';
+                }
     }
 }

@@ -267,6 +267,8 @@ if(isset($_GET["getRel"])){
         $controller->HistoricoRelatorios($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
     }elseif($_GET["getRel"] == "pendente"){
         $controller->RelatoriosPendentes($_SESSION['tipo_usuario'], $_SESSION['cod_usuario']);
+    }elseif($_GET["getRel"] == "solicitacoes"){
+        $controller->SolicitaRefazerRelatorios();
     }
 }    
 
@@ -304,6 +306,51 @@ if(isset($_GET["refazer"])){
                     Swal.fire({
                         title:"Solicitação enviada!",
                         text: "O CCP foi notificiado!", 
+                        confirmButtonText: "OK"
+                    }).then((result) => {
+                      if (result.isConfirmed)
+                        window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                    })
+                }, 100)
+            </script>';
+        }
+    }else echo "<h1 class='text-center text-danger'>$result</h1>";
+}
+
+
+if(isset($_GET["aceitaRefazer"])){
+    require_once 'Controller/RefazerRelatorioController.php';
+    $controller = new RefazerRelatorioController();
+    $result = $controller->aceitaRefazer($_GET["aceitaRefazer"]);
+    if($result == 1){
+        require_once 'Controller/GetController.php';
+        $controllerGet = new GetController();
+        $nUSP = $controllerGet->getAlunoFormulario($_GET["aceitaRefazer"]);
+        if(empty($nUSP))
+            echo
+            '<script>
+                setTimeout(()=>{
+                    Swal.fire({
+                        title:"Erro na aceitação!",
+                        text: "Tente novamente, ou contate um responsavel!", 
+                        confirmButtonText: "OK"
+                    }).then((result) => {
+                      if (result.isConfirmed)
+                        window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                    })
+                }, 100)
+            </script>';
+        else{
+            require_once 'Controller/NotificacaoController.php';
+            $controllNotifica = new NotificacaoController();
+            $controllNotifica->adicionaNotificacaoAluno($nUSP, 'A CCP aceitou a solicitação para refazer o relatório '.$_GET["aceitaRefazer"], 'index.php?revisao_relatorio='.$_GET["aceitaRefazer"], "warning");
+
+            echo
+            '<script>
+                setTimeout(()=>{
+                    Swal.fire({
+                        title:"Aceitado com sucesso!",
+                        text: "O aluno foi notificiado!", 
                         confirmButtonText: "OK"
                     }).then((result) => {
                       if (result.isConfirmed)

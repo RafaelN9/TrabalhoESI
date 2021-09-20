@@ -95,6 +95,13 @@ class insertBD{ //FIXME REFATORAR ESSE SERVICE
         return runSQL($query);
     }
 
+    public function aceitaRefazer($cod){
+        $query = "DELETE FROM solicitaRefazer WHERE Cod_Form = '$cod'";
+        runSQL($query);
+        $query = "INSERT INTO aceitoRefazer values('$cod')";
+        return runSQL($query);
+    }
+
     public function desligaAluno($cod){
         $queryNum = "SELECT Numero_USP from formulario WHERE Codigo = $cod";
         $resultNum = runSQL($queryNum);

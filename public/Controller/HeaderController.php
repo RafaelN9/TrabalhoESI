@@ -53,6 +53,7 @@ class HeaderController{
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <a class="dropdown-item" href="index.php?getRel=pendente">Relatórios Pendentes</a>
                         <a class="dropdown-item" href="index.php?getRel=historico">Histórico de relatórios</a>
+                        <a class="dropdown-item" href="index.php?getRel=solicitacoes">Solicitações de reenvio de relatório</a>
                     </div>
                 </div>';
                 break;

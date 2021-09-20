@@ -37,6 +37,12 @@ function cortarAluno(){
     }
 }
 
+function aceitarRefazer(){
+    if(acessar != undefined){
+        window.location.href = "http://localhost/trabalhoESI/public/index.php?aceitaRefazer="+acessar;
+    }
+}
+
 
 
 
