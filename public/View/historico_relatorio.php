@@ -35,7 +35,6 @@ $_SESSION['from'] = 'historico';
 <div class="container-fluid h-100 d-flex">
     <div class="container-fluid ">
         <div class="row h-100 p-md-5 justify-content-center">
-
             <div class="col-sm-12 col-md-10 h-100">
                 <div class="row justify-content-center">
                     <div class="display-4">
@@ -43,9 +42,7 @@ $_SESSION['from'] = 'historico';
                     </div>
                     <div class="col-md-10 d-flex justify-content-center" >
                         <?php echo $search_bar; ?>
-                        
-                    </div>                   
-
+                    </div>
                     <div class="col-12 mb-5">
                         <?php if ($errorMessage != "") {
                             echo $errorMessage;
@@ -66,9 +63,7 @@ $_SESSION['from'] = 'historico';
 
                                     </thead>
                                     <tbody>
-
-                                        <?php
-
+                                    <?php
                                         foreach ($tBody as $row) { ?>
                                             <tr id="linha<?php echo $row[1]; ?>" onclick="Marcar('<?php echo $row[1]; ?>')">
                                                 <td>
@@ -83,10 +78,7 @@ $_SESSION['from'] = 'historico';
                                                     </td>
                                                 <?php } ?>
                                             </tr>
-                                        <?php
-
-                                        }
-                                        ?>
+                                    <?php } ?>
                                     <tbody>
                                 </table>
                             <?php
@@ -96,14 +88,14 @@ $_SESSION['from'] = 'historico';
                         </div>
                     </div>
 
-                        <div class="col-12 justify-content-center">
-                            <div class="d-flex justify-content-between flex-wrap">
-                                <?php
-                                echo $btn_box;
-                                echo $btn_cortar;
-                                ?>
-                            </div>
+                    <div class="col-12 justify-content-center">
+                        <div class="d-flex justify-content-between flex-wrap">
+                        <?php
+                            echo $btn_box;
+                            echo $btn_cortar;
+                        ?>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

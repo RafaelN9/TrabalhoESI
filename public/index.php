@@ -249,7 +249,15 @@ if(isset($_POST["avaliacaoCCP"])){
 }
 
 if(isset($_GET["to"])){
-    require_once "View/$_GET[to].php";
+    switch ($_GET["to"]) {
+        case 'preencher_relatorio':
+            require_once 'Controller/PreencherRelatorioController.php';
+            new PreencherRelatorioController($_SESSION['cod_usuario']);
+            break;
+        default:
+            # code...
+            break;
+    }
 }
 
 if(isset($_GET["getRel"])){

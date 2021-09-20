@@ -16,12 +16,9 @@ if (isset($_SESSION['result_cad'])){
     unset($_SESSION['result_cad']);
 }
 
-
-
-
 ?>
 
-    <script type="text/javascript" src="scripts/jquery.mask.js"></script>
+<script type="text/javascript" src="scripts/jquery.mask.js"></script>
 
 <div class="container-fluid h-100 pt-5 d-flex align-items-center">
     <div class="container-fluid">

@@ -1,37 +1,5 @@
-<?php
-$queryCurso = "SELECT * FROM Cursos";
-$resultCurso = runSQL($queryCurso);
-$optionCurso = '';
-while ($rowCurso = mysqli_fetch_assoc($resultCurso)) {
-    if($rowCurso['Codigo'] == $_SESSION['curso'])
-    $optionCurso .= '<div class="form-check">
-                        <input class="form-check-input" type="radio" name="q8" id="q8_'.$rowCurso['Codigo'].'" value="'.$rowCurso['Codigo'].'" checked >
-                        <label class="form-check-label" for="q8_'.$rowCurso['Codigo'].'">
-                        '.$rowCurso['Nome'].'
-                        </label>
-                     </div>';
-}
-
-$queryNota = "SELECT * FROM Nota";
-$resultNota = runSQL($queryNota);
-$optionNota = '';
-while ($rowNota = mysqli_fetch_assoc($resultNota)) {
-    $optionNota .= '<div class="form-check">
-                        <input class="form-check-input" type="radio" name="q7" id="q7_'.$rowNota['Codigo'].'" value="'.$rowNota['Codigo'].'" required>
-                        <label class="form-check-label" for="q7_'.$rowNota['Codigo'].'">
-                        '.$rowNota['Nome'].'
-                        </label>
-                     </div>';
-}
-
-$queryOrientador = "SELECT professor.Nome as Orientador FROM professor INNER JOIN professorresp on professor.CPF = professorresp.CPF_Prof WHERE professorresp.Numero_USP = '$_SESSION[cod_usuario]'";
-
-$resultOrientador = runSQL($queryOrientador);
-$optionOrientador = '';
-while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
-    $orientador = $rowOrientador['Orientador'];
-}
-
+<?php 
+    $request = $_REQUEST['request'];
 ?>
 <title>Formulário</title>
 <style>
@@ -54,8 +22,8 @@ while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
 </style>
 <div class="container-fluid h-100 d-flex">
     <div class="container-fluid ">
-        <div class="row h-100 w-100 mx-auto justify-content-center mt-2 mb-2">
-            <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8 bg-white h-100 rounded">
+        <div class="row w-100 mx-auto justify-content-center mt-2 mb-2" style="height: 90%;">
+            <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8 bg-white h-100 rounded"style="overflow: auto;">
                 <div id="formulario" class="d-flex justify-content-center pt-5 pb-5 h-100 p-sm-3 p-md-5">
                     <form class="w-100 needs-validation" id="formularioRel" method="POST" action="index.php">
                         <div class="col-xl-7 col-lg-7 col-md-8 col-sm-8 m-0 p-0">
@@ -70,7 +38,7 @@ while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
                             <input type="text" class="form-control mb-4 p-4" name="nome" id="nome" value="<?php echo $_SESSION['nome']; ?>" required readonly>
 
                             <label for="orientador">3. Nome do orientador<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control mb-4 p-4" name="orientador" id="orientador" value="<?php echo $orientador; ?>" required readonly>
+                            <input type="text" class="form-control mb-4 p-4" name="orientador" id="orientador" value="<?php echo $request['orientador']; ?>" required readonly>
 
                             <label for="NumUsp">4. Número USP<span class="text-danger">*</span></label>
                             <input type="text" class="form-control mb-4 p-4" name="NumUsp" id="NumUsp" value="<?php echo $_SESSION['cod_usuario']; ?>" required readonly>
@@ -85,14 +53,14 @@ while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
                         <label for="resultadoUltimaAvalicao">7. Qual foi o resultado da <a href=""></a>valiação do seu último relatório?<span class="text-danger">*</span></label>
                         <div class="mb-4" name="resultadoUltimaAvalicao">
                             <?php
-                                echo $optionNota;
+                                echo $request['nota'];
                             ?>
                         </div>
 
                         <label for="curso">8. Qual é o seu curso?<span class="text-danger">*</span></label>
                         <div class="mb-4" name="curso">
                             <?php
-                            echo $optionCurso;
+                                echo $request['curso'];
                             ?>
                         </div>
 
@@ -421,7 +389,7 @@ while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
                         <label for="q27">27. Comentários finais do ORIENTANDO sobre seu desempenho no último
                             semestre, considerando o relatório reapresentado:</label>
                         <textarea class="form-control mb-4 p-1" rows="5" name="q27" id="q27"></textarea>
-                        <button type="button" class="btn btn-primary p-3 float-right" id="confirmar">
+                        <button type="button" class="btn btn-primary p-3 mb-3 float-right" id="confirmar">
                             Enviar
                         </button>
 
@@ -444,7 +412,6 @@ while ($rowOrientador = mysqli_fetch_assoc($resultOrientador)) {
                                 </div>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
