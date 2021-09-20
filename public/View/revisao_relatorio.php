@@ -239,7 +239,7 @@ function setModalToUserType($tipoUsuario){
         </div>
 
         <?php
-            if($_SESSION['from'] == 'pendente')
+            if(isset($_SESSION['from']) && $_SESSION['from'] == 'pendente')
                 echo '<button class="btn-lg btn-primary float-right pl-4 pr-4" data-toggle="modal" data-target="#modalAvaliacao">Avaliar</button>';
         ?>
 

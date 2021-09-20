@@ -11,9 +11,7 @@ if(!isset($_SESSION['tipo_usuario'])){
             $_SESSION['cod_usuario'] = $result;
             $_SESSION['tipo_usuario'] = 'aluno';
             
-            require_once 'Controller/NotificacaoController.php';
-            $controllerNotifica = new NotificacaoController;
-            $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesAluno($_SESSION['numero_USP']);
+
 
             unset($_POST);
             header("Location: http://localhost/trabalhoESI/public/index.php");
@@ -23,9 +21,7 @@ if(!isset($_SESSION['tipo_usuario'])){
                 $_SESSION['cod_usuario'] = $result;
                 $_SESSION['tipo_usuario'] = 'ccp';
 
-                require_once 'Controller/NotificacaoController.php';
-                $controllerNotifica = new NotificacaoController;
-                $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesCCP($_SESSION['cod_usuario']);
+
                 unset($_POST);
                 header("Location: http://localhost/trabalhoESI/public/index.php");
             }else{
@@ -34,9 +30,6 @@ if(!isset($_SESSION['tipo_usuario'])){
                     $_SESSION['cod_usuario'] = $result;
                     $_SESSION['tipo_usuario'] = 'professor';
 
-                    require_once 'Controller/NotificacaoController.php';
-                    $controllerNotifica = new NotificacaoController;
-                    $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesProfessor($_SESSION['cod_usuario']);
 
                     unset($_POST);
                     header("Location: http://localhost/trabalhoESI/public/index.php");
@@ -44,6 +37,24 @@ if(!isset($_SESSION['tipo_usuario'])){
                     header("Location: http://localhost/trabalhoESI/public/View/login.php?erroLogin=S");
             }
         }
+    }
+}else{
+    require_once 'Controller/NotificacaoController.php';
+    $controllerNotifica = new NotificacaoController;
+    switch ($_SESSION['tipo_usuario']){
+        case 'aluno':
+            $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesAluno($_SESSION['numero_USP']);
+            break;
+
+        case 'professor':
+            $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesProfessor($_SESSION['cod_usuario']);
+            break;
+
+        case 'ccp':
+            $_SESSION['notificacoes'] = $controllerNotifica->getNotificacoesCCP($_SESSION['cod_usuario']);
+            break;
+
+        default: break;
     }
 }
 
@@ -99,7 +110,11 @@ if(isset($_POST["formulario"])){
     if(isset($_POST['q19']))
         $q19 = $_POST['q19'];
 
-    $result = $controller->enviaForm($_SESSION['cod_usuario'],"$_POST[q6]","$_POST[q7]","$_POST[q8]","$q9","$q10","$_POST[q11]","$_POST[q12]","$q13","$_POST[q14]","$_POST[q15]","$_POST[q16]","$_POST[q17]","$q18","$q19","$_POST[q20]","$_POST[q21]","$_POST[q22]","$_POST[q23]","$_POST[q24]","$_POST[q25]","$_POST[q26]","$_POST[q27]");
+    $reenvia = '';
+    if(isset($_POST['reenvia']))
+        $reenvia = $_POST['reenvia'];
+
+    $result = $controller->enviaForm($_SESSION['cod_usuario'],"$_POST[q6]","$_POST[q7]","$_POST[q8]","$q9","$q10","$_POST[q11]","$_POST[q12]","$q13","$_POST[q14]","$_POST[q15]","$_POST[q16]","$_POST[q17]","$q18","$q19","$_POST[q20]","$_POST[q21]","$_POST[q22]","$_POST[q23]","$_POST[q24]","$_POST[q25]","$_POST[q26]","$_POST[q27]", $reenvia);
     if($result == 1){
         require_once 'Controller/GetController.php';
         $controllerGet = new GetController();
@@ -343,7 +358,7 @@ if(isset($_GET["aceitaRefazer"])){
         else{
             require_once 'Controller/NotificacaoController.php';
             $controllNotifica = new NotificacaoController();
-            $controllNotifica->adicionaNotificacaoAluno($nUSP, 'A CCP aceitou a solicitação para refazer o relatório '.$_GET["aceitaRefazer"], 'index.php?revisao_relatorio='.$_GET["aceitaRefazer"], "warning");
+            $controllNotifica->adicionaNotificacaoAluno($nUSP, 'A CCP aceitou a solicitação para refazer o relatório '.$_GET["aceitaRefazer"], 'index.php?to=preencher_relatorio&a='.$_GET["aceitaRefazer"], "warning");
 
             echo
             '<script>

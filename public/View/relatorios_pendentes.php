@@ -47,7 +47,7 @@
                                     <?php foreach($tBody as $row){ ?>
                                         <tr id="linha<?php echo $row[1]; ?>" onclick="Marcar('<?php echo $row[1]; ?>')">
                                             <td>
-                                                <input type="radio" onclick="Marcar('<?php echo $row[1]; ?>')" name="relatorio" id="<?php echo $row[1]; ?>" value="<?php echo $row[1]; ?>"/>
+                                                <input type="radio" onclick="Marcar('<?php echo $row[1]; ?>')" name="relatorio" id="elem<?php echo $row[1]; ?>" value="<?php echo $row[1]; ?>"/>
                                             </td>
                                             <?php foreach($row as $key => $value){ ?>
                                             <td>
@@ -71,5 +71,5 @@
         </div>
     </div>
 
-<script type="text/javascript" src="View/scripts/scriptRelPendente.js"></script>
+<script type="text/javascript" src="View/scripts/scriptRelPendente.js?<?php echo time(); ?>"></script>
 <script type="text/javascript" src="View/scripts/scriptSearchBox.js?<?php echo time(); ?>"></script>
