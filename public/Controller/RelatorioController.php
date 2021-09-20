@@ -28,8 +28,6 @@ class RelatorioController{
             return $response;
         }
         if(count($response) == 0){
-            //var_dump($response);
-            //exit();
             return $this->errorMsgTxt;
         }
         return $response;

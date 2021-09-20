@@ -9,7 +9,7 @@ switch ($_SESSION['tipo_usuario']){
         break;
 
     case 'professor':
-        $table = 'notificacaoProfessor';
+        $table = 'notificacaoProf';
         break;
 
     case 'ccp':

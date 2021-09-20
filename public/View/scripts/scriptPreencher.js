@@ -15,7 +15,6 @@ $(document).ready(function () {
     }
 
     let curso = $('input[name="q8"]:checked').val();
-    console.log(curso);
         if (curso == '1') {
             $("#semestre").html('');
             for(i = 1; i <= 5 ; i++){
