@@ -3,11 +3,10 @@ let cortar;
 var checkboxElement = document.querySelector("#searchBarAppendDesliga");
 
 function Marcar(elem){
-    console.log(elem)
     $("#elem"+elem)[0].checked = true;
     $("#linha"+elem).addClass('table-active');
     acessar = $("input[name='relatorio']:checked").val();
-    if(checkboxElement.checked){
+    if(checkboxElement != null && checkboxElement.checked){
         cortar = acessar;
     }
     $('input:radio[name="relatorio"]').each(function() {

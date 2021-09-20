@@ -7,15 +7,16 @@ if(document.querySelector('#head').children[3] != undefined){
     ehCCP = true;
 }
 
+if(searchboxElement != null){
 searchboxElement.addEventListener('keyup', ()=>{
-    
+
     let value = searchboxElement.value;
     value = value.toUpperCase();
-    
+
     for(element of allRows){
         if(element.id == 'head') continue;
         element.style['display'] = 'none';
-        
+
         let nomeAluno = element.children[1].textContent;
         nomeAluno = nomeAluno.toUpperCase();
 
@@ -35,7 +36,7 @@ searchboxElement.addEventListener('keyup', ()=>{
                     }
                 }
                 break;
-        
+
             default:
                 if(nomeAluno.includes(value)){
                     element.style['display'] = 'table-row';
@@ -44,8 +45,9 @@ searchboxElement.addEventListener('keyup', ()=>{
         }
     }
 });
+}
 
-
+if(checkboxElement != null){
 checkboxElement.addEventListener('change', function() {
     $("#buttonCortar").toggle();
     if (this.checked){
@@ -69,3 +71,4 @@ checkboxElement.addEventListener('change', function() {
         }
     }
 });
+}

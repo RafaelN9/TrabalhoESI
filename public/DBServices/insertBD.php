@@ -44,6 +44,20 @@ class insertBD{ //FIXME REFATORAR ESSE SERVICE
         return $result;
     }
 
+    public function reenviaFormulario(Formulario $form){
+        $aluno = $form->getCodigoAluno();
+        $questoes = $form->getQuestoes();
+        $data = $form->getDataEnvio();
+        $codigo = $form->getCodigo();
+        $query = "UPDATE Formulario SET Numero_USP = '$aluno',Data_Envio ='$data',Questao_6='$questoes[0]',Questao_7='$questoes[1]',Questao_8='$questoes[2]',Questao_9='$questoes[3]',Questao_10='$questoes[4]',Questao_11='$questoes[5]',Questao_12='$questoes[6]',Questao_13='$questoes[7]',Questao_14='$questoes[8]',Questao_15='$questoes[9]',Questao_16='$questoes[10]',Questao_17='$questoes[11]',Questao_18='$questoes[12]',Questao_19='$questoes[13]',Questao_20='$questoes[14]',Questao_21='$questoes[15]',Questao_22='$questoes[16]',Questao_23='$questoes[17]',Questao_24='$questoes[18]',Questao_25='$questoes[19]',Questao_26='$questoes[20]',Questao_27='$questoes[21]' WHERE Codigo = $codigo";
+        $result = runSQL($query);
+
+        runSQL("DELETE FROM AvaliacaoProf WHERE Cod_Form = $codigo");
+
+        runSQL("DELETE FROM AvaliacaoCCP WHERE Cod_Form = $codigo");
+        return $result;
+    }
+
     public function adicionaAvaliacaoDoProfessor($nota, $parecer, $codForm){
         $query = "INSERT INTO avaliacaoprof(
             Cod_Form,

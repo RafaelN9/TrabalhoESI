@@ -1,5 +1,8 @@
 <?php 
     $request = $_REQUEST['request'];
+    $refazer = '';
+    if(isset($_GET['a']))
+        $refazer = $_GET['a'];
 ?>
 <title>Formulário</title>
 <style>
@@ -26,6 +29,8 @@
             <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8 bg-white h-100 rounded"style="overflow: auto;">
                 <div id="formulario" class="d-flex justify-content-center pt-5 pb-5 h-100 p-sm-3 p-md-5">
                     <form class="w-100 needs-validation" id="formularioRel" method="POST" action="index.php">
+                        <input type="hidden" name="reenvia" value="<?php echo $refazer; ?>">
+
                         <div class="col-xl-7 col-lg-7 col-md-8 col-sm-8 m-0 p-0">
                             <label for="email">1. Email <span class="text-danger">*</span></label>
                             <input type="email" class="form-control mb-4 p-4 " name="email" value="<?php echo $_SESSION['email']; ?>" required readonly>

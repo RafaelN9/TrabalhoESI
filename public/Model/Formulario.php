@@ -6,6 +6,7 @@ class Formulario{
     private $data_envio;
     private $professor_resp;
     private $questoes;
+    private $codigo;
 
     function __construct($codigo_aluno, $data_envio, $q6, $q7, $q8, $q9, $q10,
             $q11, $q12, $q13, $q14, $q15, $q16, 
@@ -52,5 +53,9 @@ class Formulario{
     public function setDataEnvio($dataEnvio): void{ $this->data_envio = $dataEnvio;}
 
     public function getProfessorResp(){return $this->professor_resp;}
+
+    public function getCodigo(){return $this->codigo;}
+
+    public function setCodigo($codigo): void{ $this->codigo = $codigo;}
 
 }
