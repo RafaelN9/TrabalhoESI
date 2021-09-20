@@ -47,7 +47,8 @@ if(!isset($_SESSION['tipo_usuario'])){
     }
 }
 
-require_once('View/header.php');
+require_once('Controller/HeaderController.php');
+new HeaderController(isset($_SESSION['tipo_usuario']) ? $_SESSION['tipo_usuario'] : null, isset($_SESSION['notificacoes']) ? $_SESSION['notificacoes'] : null);
 
 if(isset($_POST["cadastroAluno"])){
     require_once 'Controller/CadastroController.php';

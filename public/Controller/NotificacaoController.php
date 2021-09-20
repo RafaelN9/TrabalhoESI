@@ -45,5 +45,55 @@ class NotificacaoController
         return $resultado;
     }
 
-    //function 
+    
+
+}
+
+class MostraNotificaController{
+    //Exibição das notificações
+
+    private $notifications = [];
+    private $numNotifications = 0;
+    private $notificationsContent = "<p class='p-5 mx-auto my-auto'>Sem notificações</p>";
+
+    function __construct($notificacoes){
+        $this->notifications = $notificacoes;
+
+        function addNotification(Notificacao $notification, $index){
+            global $numNotifications;
+            $numNotifications++;
+            $notificaLink = $notification->getLink();
+            $notificaTexto = $notification->getTexto();
+            $notificaData = $notification->getData();
+            $cor = 'alert-'.$notification->getCor();
+            return "
+                <div class='d-flex flex-colunm dropdown-item $cor' id='$index'>
+                    <div class='dropdown-item px-0'  onclick='Redireciona(`$notificaLink`)'> $notificaTexto
+                        <br>
+                        <span class='text-muted' style='font-size: 12px;'>$notificaData</span>
+                    </div>
+                    <button type='button' class='close pr-1' data-dismiss='alert' aria-label='Close' onclick='deleteNotify($index)'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>";
+    
+        }
+
+        if($this->notifications != "erro"){
+            $this->notificationsContent = '';
+            foreach($this->notifications as $elem){
+                $notif = new Notificacao($elem['usuario'], $elem["texto"], $elem["link"], $elem['cor']);
+                $notif->setCodigo($elem['codigo']);
+                $notif->setData($elem['data']);
+                $this->notificationsContent .= addNotification($notif, $elem['codigo']);
+            }
+        }
+    }
+
+    function getNotificationsContent(){
+        return $this->notificationsContent;
+    }
+    function getNumNotifications(){
+        return $this->numNotifications;
+    }
 }

@@ -1,121 +1,5 @@
 <?php
-require_once('DBServices/DataBaseService.php');
-require_once 'Model/Notificacao.php';
-
-
-$dropdown = '<div></div>';
-$dropNotifica = '<div></div>';
-$botaoLogin = '';
-
-if (isset($_SESSION['tipo_usuario'])) {
-    $user = $_SESSION['tipo_usuario'];
-    $botaoLogin = "
-        <div class='d-flex align-items-center'>
-        <a style='min-width: 35px; min-height: 35px;' href='View/logout.php' class='btn btn-danger p-2 w-100 align-content-center'>
-            <i class='fas fa-sign-out-alt'></i>
-        </a>
-        </div>";
-
-    if ($_SESSION['tipo_usuario'] == 'aluno')
-        $dropdown = '<div class="dropdown">
-                <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <a class="dropdown-item" href="index.php?to=preencher_relatorio" type="button">Preencher formulário</a>
-                    <a class="dropdown-item" href="index.php?getRel=historico" type="button">Histórico de relatórios</a>
-                </div>
-            </div>';
-    elseif ($_SESSION['tipo_usuario'] == 'professor')
-        $dropdown = '<div class="dropdown">
-    <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-bars"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <a class="dropdown-item" href="index.php?getRel=pendente">Relatórios Pendentes</a>
-        <a class="dropdown-item" href="index.php?getRel=historico">Histórico de relatórios</a>
-    </div>
-    </div>';
-    elseif ($_SESSION['tipo_usuario'] == 'ccp')
-
-        $dropdown = '<div class="dropdown">
-    <button class="btn btn-primary btn-lg btn-bg-color" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-bars"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <a class="dropdown-item" href="index.php?getRel=pendente">Relatórios Pendentes</a>
-        <a class="dropdown-item" href="index.php?getRel=historico">Histórico de relatórios</a>
-    </div>
-    </div>';
-} else  $botaoLogin = '<form action="View/login.php" class="align-self-center">
-<input type="submit" class="btn-lg btn-primary btn-bg-color text-white" name="submit" value="Login">
-</form>';
-
-//-------------- Sistema de Notificações ------------------
-
-$notifications = [];
-$numNotifications = 0;
-
-function addNotification(Notificacao $notification, $index){
-    global $numNotifications;
-    $numNotifications++;
-    $notificaLink = $notification->getLink();
-    $notificaTexto = $notification->getTexto();
-    $notificaData = $notification->getData();
-    $cor = 'alert-'.$notification->getCor();
-    return "<div class='d-flex flex-colunm dropdown-item $cor' id='$index'>
-<div class='dropdown-item px-0'  onclick='Redireciona(`$notificaLink`)'> $notificaTexto
-        
-        <br>
-        <span class='text-muted' style='font-size: 12px;'>$notificaData</span>
-    </div>
-    <button type='button' class='close pr-1' data-dismiss='alert' aria-label='Close' onclick='deleteNotify($index)'>
-            <span aria-hidden='true'>&times;</span>
-     </button>
-     </div>";
-
-}
-
-$notificationsContent = "<p class='p-5 mx-auto my-auto'>Sem notificações</p>";
-
-if(isset($_SESSION['notificacoes'])) {
-    $notifications = $_SESSION['notificacoes'];
-}
-
-if($notifications != "erro"){
-    $notificationsContent = '';
-    foreach($notifications as $elem){
-        $notif = new Notificacao($elem['usuario'], $elem["texto"], $elem["link"], $elem['cor']);
-        $notif->setCodigo($elem['codigo']);
-        $notif->setData($elem['data']);
-        $notificationsContent .= addNotification($notif, $elem['codigo']);
-    }
-}
-
-
-if (isset($_SESSION['tipo_usuario'])){
-    $dropNotifica = "<div class='dropdown mr-2' role='group' aria-label='Notifications'>
-                <button class='btn btn-secondary btn-lg d-flex' type='button' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                    <i class='fas fa-bell' width='100' height='100'></i>
-                    <div class='rounded-circle bg-danger mt-1 ml-1' style='width: 20px; height: 20px; font-size: 12px;'>$numNotifications</div>
-                    </button>
-                    <div class='dropdown-menu dropdown-menu-right dropdown-menu-notify p-0' aria-labelledby='dropdownMenu2'>
-                    <div class='card'>
-                        <div class='card-header text-center'>
-                            Notificações
-                        </div>
-                        <div class='card-body p-0'>
-                            <div class='d-flex flex-column' id='notifications'>
-                                $notificationsContent
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-                    
-        ";
-}
-
+    $response = $_REQUEST['request'];
 ?>
 
 
@@ -135,17 +19,17 @@ if (isset($_SESSION['tipo_usuario'])){
 <body>
     <div class="container-fluid bg-img p-0" style="overflow: auto;">
 
-        <nav class="navbar navbar-light bg-princ-escuro sticky-top">
+        <nav class="navbar navbar-light bg-princ-escuro sticky-top py-3">
             <?php
-            echo $dropdown;
+            echo $response['dropdown'];
             ?>
-            <a class="navbar-brand brand-pos" href="index.php">
+            <a class="navbar-brand brand-pos" href="index.php" >
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Webysther_20160310_-_Logo_USP.svg" width="106" height="auto" class="rounded mx-auto d-block" alt="">
             </a>
             <div class="float-right d-flex">
                 <?php
-                    echo $dropNotifica;
-                    echo $botaoLogin;
+                    echo $response['dropNotifica'];
+                    echo $response['botaoLogin'];
                 ?>
             </div>
         </nav>
