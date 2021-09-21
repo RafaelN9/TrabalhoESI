@@ -31,8 +31,8 @@ class NotificacaoController
             $notificaData = $notification->getData();
             $cor = 'alert-'.$notification->getCor();
             return "
-                <div class='d-flex flex-colunm dropdown-item $cor' id='$index'>
-                    <div class='dropdown-item px-0 text-wrap'  onclick='Redireciona(`$notificaLink`)' > $notificaTexto
+                <div class='d-flex dropdown-item $cor' id='$index'>
+                    <div class='dropdown-item px-0 text-wrap'  onclick='Redireciona(`$notificaLink`,`$index`, this)'> $notificaTexto
                         <br>
                         <span class='text-muted' style='font-size: 12px;'>$notificaData</span>
                     </div>

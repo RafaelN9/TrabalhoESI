@@ -19,6 +19,10 @@ function deleteNotify(id){
     });
 }
 
-function Redireciona(link){
+function Redireciona(link, codNotificacao, elem){
+    $.post("View/changeNotify.php", { codNotifica: codNotificacao}, function (data){
+        elem.parentElement.className= 'd-flex dropdown-item alert-secondary';
+    });
+
     window.location.href = "http://localhost/trabalhoESI/public/"+link;
 }
