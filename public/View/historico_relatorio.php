@@ -40,7 +40,7 @@ $_SESSION['from'] = 'historico';
                     <div class="display-4">
                         Histórico de relatórios
                     </div>
-                    <div class="col-md-10 d-flex justify-content-center" >
+                    <div class="col-md-10 mt-5 mb-5 d-flex justify-content-center" >
                         <?php echo $search_bar; ?>
                     </div>
                     <div class="col-12 mb-5">

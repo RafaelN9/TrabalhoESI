@@ -1,4 +1,6 @@
 <?php
     session_start();
-    unset($_SESSION["tipo_usuario"]);
+    $_SESSION = array();
+    $_POST = array();
+    $_REQUEST = array();
     header("Location: ../index.php");

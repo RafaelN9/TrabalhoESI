@@ -80,10 +80,10 @@ $("#cadastroCCP").click(function(){
 
 function validaSenhas(){
 
-    let passHint = this.parentElement.parentElement.parentElement;
-    passHint = passHint.querySelector("#pass_hint");
+    let form = this.parentElement.parentElement.parentElement;
+    let passHint = form.querySelector("#pass_hint");
 
-    if ( $('#cadastroSenha').val() === $(this).val()) {
+    if ( form.querySelector('#cadastroSenha').value === $(this).val()) {
         $(passHint).html('');
         $(passHint).removeClass('d-block');
         $(passHint).addClass('d-none');

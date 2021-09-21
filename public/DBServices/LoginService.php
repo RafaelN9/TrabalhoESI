@@ -7,7 +7,26 @@ class LoginService{
         $email = $aluno->getEmail();
         $senha = $aluno->getSenha();
 
-        $query = "SELECT Numero_USP, Nome, Link_Curriculo, CPF, Cod_Curso as curso FROM aluno WHERE Email = '$email' AND Senha = MD5('$senha') LIMIT 1";
+        $query = "SELECT 
+            Numero_USP, 
+            Nome, 
+            Link_Curriculo, 
+            CPF, 
+            Cod_Curso as curso 
+        FROM 
+            aluno 
+        WHERE 
+            Email = '$email' AND 
+            Senha = MD5('$senha') AND 
+            NOT EXISTS(
+                SELECT 
+                    * 
+                FROM 
+                    alunodesligado 
+                WHERE 
+                    alunodesligado.Numero_USP = aluno.Numero_USP
+            )
+        LIMIT 1";
         $result = runSQL($query);
         if($row = mysqli_fetch_assoc($result)){
             $aluno->setCod_Curso($row['curso']);

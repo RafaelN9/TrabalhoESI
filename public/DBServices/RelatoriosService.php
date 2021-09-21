@@ -10,36 +10,7 @@ require_once 'Model/RelatorioCCP.php';
 
 class RelatoriosService{
 
-    function getRelatoriosPendentesAluno($filter, $numUSPAluno){
-        $query = 
-        "SELECT 
-            formulario.Codigo as codFormulario,
-            formulario.Data_Envio as dataEnvioForm
-        FROM 
-            formulario 
-        WHERE 
-            (formulario.Numero_USP = '$numUSPAluno') $filter ";
-
-        $result = runSQL($query);
-        $relatoriosArray = array();
-        if ( gettype($result) == "string"){
-            return $result;
-        }
-        if(mysqli_num_rows($result) == 0)
-            return [];
-        while($row = mysqli_fetch_assoc($result)){
-            $relatorio = new RelatorioAluno(
-                $row["dataEnvioForm"],
-                $row["codFormulario"],
-                '',
-                ''
-            );
-            $relatoriosArray[] = $relatorio->toMap($relatorio);
-        }
-        
-        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
-    }
-
+    
     function getRelatoriosPendentesCCP($filter, $cpfCCP){
         $query = 
         "SELECT DISTINCT 
@@ -86,7 +57,7 @@ class RelatoriosService{
             }
         }
 
-        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
+        return ["head" => $relatorio->getHead(), "body" => array_reverse($relatoriosArray)];
     }
 
     function getRelatoriosPendentesProfessor($filter, $cpfProf){
@@ -101,10 +72,10 @@ class RelatoriosService{
         formulario, 
         professorresp
     WHERE
-    (formulario.Numero_USP = aluno.Numero_USP) and
-    (formulario.Numero_USP = professorresp.Numero_USP) and
-    (professorresp.CPF_Prof = professor.CPF) and
-    (professor.CPF = '$cpfProf') AND
+        (formulario.Numero_USP = aluno.Numero_USP) and
+        (formulario.Numero_USP = professorresp.Numero_USP) and
+        (professorresp.CPF_Prof = professor.CPF) and
+        (professor.CPF = '$cpfProf') AND
     NOT EXISTS (SELECT 1 FROM avaliacaoprof WHERE avaliacaoprof.Cod_Form = formulario.Codigo) $filter ";
 
 
@@ -128,7 +99,7 @@ class RelatoriosService{
                 $relatoriosArray[] = $relatorio->toMap($relatorio);
             }
         }
-        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
+        return ["head" => $relatorio->getHead(), "body" => array_reverse($relatoriosArray)];
     }
 
 
@@ -166,7 +137,7 @@ class RelatoriosService{
             $relatoriosArray[] = $relatorio->toMap($relatorio);
         }
 
-        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
+        return ["head" => $relatorio->getHead(), "body" => array_reverse($relatoriosArray)];
     }
 
     function getHistoricoRelatoriosProfessor($filter, $cpfProf){
@@ -211,7 +182,7 @@ class RelatoriosService{
                 $relatoriosArray[] = $relatorio->toMap($relatorio);
             }
         }
-        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
+        return ["head" => $relatorio->getHead(), "body" => array_reverse($relatoriosArray)];
     }
 
 
@@ -263,7 +234,7 @@ class RelatoriosService{
             );
             $relatoriosArray[] = $relatorio->toMap($relatorio);
         }
-        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
+        return ["head" => $relatorio->getHead(), "body" =>array_reverse($relatoriosArray)];
     }
 
 
@@ -318,6 +289,6 @@ class RelatoriosService{
             );
             $relatoriosArray[] = $relatorio->toMap($relatorio);
         }
-        return ["head" => $relatorio->getHead(), "body" => $relatoriosArray];
+        return ["head" => $relatorio->getHead(), "body" => array_reverse($relatoriosArray)];
     }
 }

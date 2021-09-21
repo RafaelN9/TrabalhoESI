@@ -59,7 +59,7 @@ class RelatorioController{
                     $this->tBody[] = $row;
                 }
 
-                $this->search_bar = "<input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
+                $this->search_bar = "<input type='text' class='form-control' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
                 break;
             case 'ccp':
                 $relatorio = $this->GetRelatoriosC($cpf);
@@ -71,7 +71,7 @@ class RelatorioController{
                     $this->tBody[] = $row;
                 }
 
-                $this->search_bar = "<input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>";
+                $this->search_bar = "<input type='text' class='form-control' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>";
                 break;
             default:
                 header("Location: index.php");
@@ -160,7 +160,7 @@ class RelatorioController{
                     $this->tBody[] = $row;
                 }
 
-                $this->search_bar = "<input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
+                $this->search_bar = "<input type='text' class='form-control' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
                 break;
             case 'ccp':
                 $relatorio = $this->GetRelatoriosHistoricoC($cpf);
@@ -178,7 +178,7 @@ class RelatorioController{
 
                 $this->search_bar = 
                             "<div class='input-group'>
-                                <input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>
+                                <input type='text' class='form-control' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>
                                 <div class='input-group-append align-self-center' style='height: min-content;'>
                                     <div class='input-group-text'>
                                         <input type='checkbox' id='searchBarAppendDesliga' class='mr-3'>
@@ -239,7 +239,7 @@ class RelatorioController{
                 }
                 $this->search_bar =
                     "<div class='input-group'>
-                                <input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>
+                                <input type='text' class='form-control' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>
                                 <div class='input-group-append align-self-center' style='height: min-content;'>
                                     <div class='input-group-text d-none'>
                                         <input type='checkbox' id='searchBarAppendDesliga' class='mr-3'>
