@@ -10,7 +10,9 @@ class NotificacaoController
 
     function addNotification(Notificacao $notification, $index){
             
-        $this->numNotifications++;
+        if($notification->getCor() != 'secondary'){
+            $this->numNotifications++;
+        }
         $notificaLink = $notification->getLink();
         $notificaTexto = $notification->getTexto();
         $notificaData = $notification->getData();

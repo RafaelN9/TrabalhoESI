@@ -80,6 +80,12 @@ html, body{
     width: 450px;
 }
 
+.alert-notify{
+    position: absolute;
+    bottom: 20;
+    left: 30;
+}
+
 @media screen and (max-width:320px) {
     
     .brand-pos{
