@@ -67,7 +67,7 @@ class HeaderController{
         }
 
         if($this->dropNotifica == ''){
-            $notificaController = new MostraNotificaController($notificacoes);
+            $notificaController = new NotificacaoController($notificacoes);
             $numNotifica = $notificaController->getNumNotifications();
             $notificaContent = $notificaController->getNotificationsContent();
             $numNotificaContent = $numNotifica > 0 ? "<div class='rounded-circle bg-danger mt-1 ml-1' style='width: 20px; height: 20px; font-size: 12px;'>$numNotifica</div>" :
