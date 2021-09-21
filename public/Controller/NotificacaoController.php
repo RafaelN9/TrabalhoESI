@@ -8,6 +8,26 @@ class NotificacaoController
     private $numNotifications = 0;
     private $notificationsContent = "<p class='p-5 mx-auto my-auto'>Sem notificações</p>";
 
+    function addNotification(Notificacao $notification, $index){
+            
+        $this->numNotifications++;
+        $notificaLink = $notification->getLink();
+        $notificaTexto = $notification->getTexto();
+        $notificaData = $notification->getData();
+        $cor = 'alert-'.$notification->getCor();
+        return "
+            <div class='d-flex dropdown-item $cor' id='$index'>
+                <div class='dropdown-item px-0 text-wrap'  onclick='Redireciona(`$notificaLink`,`$index`, this)'> $notificaTexto
+                    <br>
+                    <span class='text-muted' style='font-size: 12px;'>$notificaData</span>
+                </div>
+                <button type='button' class='close pr-1' data-dismiss='alert' aria-label='Close' onclick='deleteNotify($index)'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>";
+
+    }
+
     public function __construct()
     {
         $arguments = func_get_args();
@@ -22,26 +42,8 @@ class NotificacaoController
 
     function __construct1($notificacoes){
         $this->notifications = $notificacoes;
-
-        function addNotification(Notificacao $notification, $index){
-            global $numNotifications;
-            $numNotifications++;
-            $notificaLink = $notification->getLink();
-            $notificaTexto = $notification->getTexto();
-            $notificaData = $notification->getData();
-            $cor = 'alert-'.$notification->getCor();
-            return "
-                <div class='d-flex dropdown-item $cor' id='$index'>
-                    <div class='dropdown-item px-0 text-wrap'  onclick='Redireciona(`$notificaLink`,`$index`, this)'> $notificaTexto
-                        <br>
-                        <span class='text-muted' style='font-size: 12px;'>$notificaData</span>
-                    </div>
-                    <button type='button' class='close pr-1' data-dismiss='alert' aria-label='Close' onclick='deleteNotify($index)'>
-                        <span aria-hidden='true'>&times;</span>
-                    </button>
-                </div>";
-
-        }
+        
+        
 
         if($this->notifications != "erro"){
             $this->notificationsContent = '';
@@ -49,7 +51,7 @@ class NotificacaoController
                 $notif = new Notificacao($elem['usuario'], $elem["texto"], $elem["link"], $elem['cor']);
                 $notif->setCodigo($elem['codigo']);
                 $notif->setData($elem['data']);
-                $this->notificationsContent .= addNotification($notif, $elem['codigo']);
+                $this->notificationsContent .= $this->addNotification($notif, $elem['codigo']);
             }
         }
     }
