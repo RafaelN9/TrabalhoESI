@@ -17,7 +17,6 @@ $("#cadastroAluno").click(function(){
     $("#formCCP").addClass('d-none'); 
 
     document.querySelector("#formAluno").querySelector("#confirmaSenha").addEventListener('keyup', validaSenhas);
-
 });
 
 $("#cadastroProf").click(function(){

@@ -2,7 +2,6 @@
     $response = $_REQUEST['request'];
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 

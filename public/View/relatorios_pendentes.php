@@ -3,7 +3,7 @@
     $errorMessage = $_REQUEST["relatorio"]["errorMessage"];
     if($errorMessage === "") {
         $search_bar = $_REQUEST["relatorio"]["search_bar"];
-        $tHead = $_REQUEST["relatorio"]["tHead"];
+        $tHead = $_REQUEST["relatorio"]["tHead"][0];
         $tBody = $_REQUEST["relatorio"]["tBody"];
         $btn_box = '<button class="btn-lg btn-primary pl-3 pr-3 p-2 mb-2" onclick="acessarRelatorio()">Acessar Relatório</button>';
         $btn_box .= $_REQUEST["relatorio"]["btn_box"];
@@ -24,10 +24,16 @@
                             Relatórios Pendentes
                         </div>
                         <?php
-                        if($_SESSION['tipo_usuario'] == 'ccp')
-                            echo "<input type='text' class='form-control col-md-10 mt-5 mb-5 $showSearchBox' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>";
-                        elseif($_SESSION['tipo_usuario'] == 'professor')
-                            echo "<input type='text' class='form-control col-md-10 mt-5 mb-5 $showSearchBox' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
+                        switch ($_SESSION['tipo_usuario']) {
+                            case 'ccp':
+                                echo "<input type='text' class='form-control col-md-10 mt-5 mb-5 $showSearchBox' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>";
+                                break;
+                            case 'professor':
+                                echo "<input type='text' class='form-control col-md-10 mt-5 mb-5 $showSearchBox' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno'>";
+                                break;
+                            default:
+                                break;
+                        }                            
                         ?>
                         <div class="col-12 mb-5">
                             <?php if($errorMessage != ""){ echo $errorMessage; }
@@ -38,16 +44,17 @@
                                     <tr id='head'>
                                         <th></th>
                                         <?php
-                                        foreach($tHead[0] as $name){ ?>
+                                        foreach($tHead as $name){ ?>
                                             <th> <?php echo $name ?> </th>
                                         <?php } ?>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($tBody as $row){ ?>
-                                        <tr id="linha<?php echo $row[1]; ?>" onclick="Marcar('<?php echo $row[1]; ?>')">
+                                    <?php foreach($tBody as $row){ 
+                                        $codigo = $row[1];   ?>
+                                        <tr id="linha<?php echo $codigo; ?>" onclick="Marcar('<?php echo $codigo; ?>')">
                                             <td>
-                                                <input type="radio" onclick="Marcar('<?php echo $row[1]; ?>')" name="relatorio" id="elem<?php echo $row[1]; ?>" value="<?php echo $row[1]; ?>"/>
+                                                <input type="radio" onclick="Marcar('<?php echo $codigo; ?>')" name="relatorio" id="<?php echo $row[1]; ?>" value="<?php echo $row[1]; ?>"/>
                                             </td>
                                             <?php foreach($row as $key => $value){ ?>
                                             <td>
