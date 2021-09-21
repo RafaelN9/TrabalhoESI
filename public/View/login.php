@@ -44,12 +44,11 @@ if (isset($_SESSION['result_cad'])){
                             <input type="email" class="form-control" id="loginEmail" name="loginEmail" aria-describedby="emailHelp" placeholder="exemplo@gmail.com" required>
                         </div>
                         <div class="form-group">
-
                             <label for="loginPwd" class="text-white">Senha</label>
                             <div class="input-group mb-4">
-                                <input type="password" class="form-control p-4" name="loginPwd" id="cadastroSenha" minlength="8" maxlength="16" aria-describedby="pwdHelp" placeholder="********" required>
+                                <input type="password" class="form-control" name="loginPwd" id="cadastroSenha" minlength="8" maxlength="16" aria-describedby="pwdHelp" placeholder="********" required>
                                 <div class="input-group-append">
-                                    <span class="input-group-text" style="height: 50px;" onclick="senha_mostra_esconde(this)">
+                                    <span class="input-group-text" onclick="senha_mostra_esconde(this)">
                                         <i class="fas fa-eye" id="show_eye"></i>
                                         <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
                                     </span>
