@@ -20,25 +20,25 @@ function Marcar(elem){
 
 function solicitarRefazer(){
     if(acessar != undefined){
-        window.location.href = "http://localhost/trabalhoESI/public/index.php?refazer="+acessar;
+        window.location.href = "index.php?refazer="+acessar;
     }
 }
 
 function acessarRelatorio(){
     if(acessar != undefined){
-        window.location.href = "http://localhost/trabalhoESI/public/index.php?revisao_relatorio="+acessar;
+        window.location.href = "index.php?revisao_relatorio="+acessar;
     }
 }
 
 function cortarAluno(){
     if(cortar != undefined){
-        window.location.href = "http://localhost/trabalhoESI/public/index.php?cortar="+cortar;
+        window.location.href = "index.php?cortar="+cortar;
     }
 }
 
 function aceitarRefazer(){
     if(acessar != undefined){
-        window.location.href = "http://localhost/trabalhoESI/public/index.php?aceitaRefazer="+acessar;
+        window.location.href = "index.php?aceitaRefazer="+acessar;
     }
 }
 

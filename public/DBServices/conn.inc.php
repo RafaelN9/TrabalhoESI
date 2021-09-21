@@ -1,7 +1,4 @@
 <?php
-    if(!isset($_SESSION["from_code"]) and $_SESSION["from_code"]){
-        header("Location: http://localhost/trabalhoESI/view/");
-    }
     $dbServername = "localhost";
     $dbUsername = "root";
     $dbPassword = "";

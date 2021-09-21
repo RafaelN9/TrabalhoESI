@@ -24,5 +24,5 @@ function Redireciona(link, codNotificacao, elem){
         elem.parentElement.className= 'd-flex dropdown-item alert-secondary';
     });
 
-    window.location.href = "http://localhost/trabalhoESI/public/"+link;
+    window.location.href = ""+link;
 }

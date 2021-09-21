@@ -74,7 +74,7 @@ class RelatorioController{
                 $this->search_bar = "<input type='text' class='form-control mt-5 mb-5' id='search-box' name='search-box' placeholder='Buscar pelo nome do aluno ou nome do professor'/>";
                 break;
             default:
-                header("Location: http://localhost/trabalhoESI/public");
+                header("Location: index.php");
                 break;
         }
         
@@ -188,7 +188,7 @@ class RelatorioController{
                             </div>";
                 break;
             default:
-                header("Location: http://localhost/trabalhoESI/public");
+                header("Location: index.php");
                 break;
         }
 

@@ -4,7 +4,7 @@ use PharIo\Manifest\Email;
 
 include_once('View/header.php');
 
-if($_REQUEST['formulario'] == NULL){header("Location: http://localhost/trabalhoESI/public/index.php");}
+if($_REQUEST['formulario'] == NULL){header("Location: index.php");}
 
 $form = $_REQUEST["formulario"];
 $questoes = $form->getQuestoes();

@@ -2,6 +2,9 @@
 echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>';
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
+
+$indexHref = "http://localhost/trabalhoESI/";
+
 if(!isset($_SESSION['tipo_usuario'])){
     if(isset($_POST["login"])) if(isset($_POST["loginEmail"]) && isset($_POST["loginPwd"])){
         require_once('Controller/LoginController.php');
@@ -14,7 +17,7 @@ if(!isset($_SESSION['tipo_usuario'])){
 
 
             unset($_POST);
-            header("Location: http://localhost/trabalhoESI/public/index.php");
+            header("Location: index.php");
         }else{
             $result = $controller->verificaCCP($_POST["loginEmail"],$_POST["loginPwd"]);
             if($result){
@@ -23,7 +26,7 @@ if(!isset($_SESSION['tipo_usuario'])){
 
 
                 unset($_POST);
-                header("Location: http://localhost/trabalhoESI/public/index.php");
+                header("Location: index.php");
             }else{
                 $result = $controller->verificaProfessor($_POST["loginEmail"],$_POST["loginPwd"]);
                 if($result){
@@ -32,9 +35,9 @@ if(!isset($_SESSION['tipo_usuario'])){
 
 
                     unset($_POST);
-                    header("Location: http://localhost/trabalhoESI/public/index.php");
+                    header("Location: index.php");
                 }else
-                    header("Location: http://localhost/trabalhoESI/public/View/login.php?erroLogin=S");
+                    header("Location: View/login.php?erroLogin=S");
             }
         }
     }
@@ -67,7 +70,7 @@ if(isset($_POST["cadastroAluno"])){
     $_SESSION['result_cad'] = $controller->cadastrarAluno("$_POST[cadastroNumUsp]", "$_POST[cadastroNome]", "$_POST[cadastroEmail]", "$_POST[cadastroSenha]","$_POST[cadastroCurriculo]","$_POST[cadastroCurso]","$_POST[cadastroCPF]");
     $controller->cadastrarProfResp("$_POST[profResp]","$_POST[cadastroNumUsp]");
     unset($_POST);
-    header("Location: http://localhost/trabalhoESI/public/View/login.php");
+    header("Location: View/login.php");
 }
 
 if(isset($_POST["cadastroProf"])){
@@ -75,7 +78,7 @@ if(isset($_POST["cadastroProf"])){
     $controller = new CadastroController();
     $_SESSION['result_cad'] = $controller->cadastrarProfessor("$_POST[cadastroCPF]", "$_POST[cadastroNome]", "$_POST[cadastroEmail]", "$_POST[cadastroSenha]");
     unset($_POST);
-    header("Location: http://localhost/trabalhoESI/public/View/login.php");
+    header("Location: View/login.php");
 }
 
 if(isset($_POST["cadastroCCP"])){
@@ -83,7 +86,7 @@ if(isset($_POST["cadastroCCP"])){
     $controller = new CadastroController();
     $_SESSION['result_cad'] = $controller->cadastrarCCP("$_POST[cadastroCPF]");
     unset($_POST);
-    header("Location: http://localhost/trabalhoESI/public/View/login.php");
+    header("Location: View/login.php");
 }
 
 if(isset($_POST["formulario"])){
@@ -130,7 +133,7 @@ if(isset($_POST["formulario"])){
                             confirmButtonText: "OK"
                         }).then((result) => {
                           if (result.isConfirmed)
-                            window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                            window.location.href = "index.php";
                         })
                     }, 100)
                 </script>';
@@ -147,7 +150,7 @@ if(isset($_POST["formulario"])){
                         confirmButtonText: "OK"
                     }).then((result) => {
                     if (result.isConfirmed)
-                        window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                        window.location.href = "index.php";
                 })
                 }, 100)
             </script>';
@@ -158,7 +161,7 @@ if(isset($_POST["formulario"])){
     }
 
     unset($_POST);
-    //header("Location: http://localhost/trabalhoESI/public/index.php");
+    //header("Location: index.php");
 }
 
 if(isset($_GET["revisao_relatorio"])){
@@ -185,7 +188,7 @@ if(isset($_POST["avaliacaoProfessor"])){
                             confirmButtonText: "OK"
                         }).then((result) => {
                           if (result.isConfirmed)
-                            window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                            window.location.href = "index.php";
                         })
                     }, 100)
                 </script>';
@@ -204,7 +207,7 @@ if(isset($_POST["avaliacaoProfessor"])){
                             confirmButtonText: "OK"
                         }).then((result) => {
                           if (result.isConfirmed)
-                            window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                            window.location.href = "index.php";
                         })
                     }, 100)
                 </script>';
@@ -235,7 +238,7 @@ if(isset($_POST["avaliacaoCCP"])){
                             confirmButtonText: "OK"
                         }).then((result) => {
                           if (result.isConfirmed)
-                            window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                            window.location.href = "index.php";
                         })
                     }, 100)
                 </script>';
@@ -252,7 +255,7 @@ if(isset($_POST["avaliacaoCCP"])){
                         confirmButtonText: "OK"
                     }).then((result) => {
                       if (result.isConfirmed)
-                        window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                        window.location.href = "index.php";
                     })
                 }, 100)
             </script>';
@@ -305,7 +308,7 @@ if(isset($_GET["refazer"])){
                         confirmButtonText: "OK"
                     }).then((result) => {
                       if (result.isConfirmed)
-                        window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                        window.location.href = "index.php";
                     })
                 }, 100)
             </script>';
@@ -324,7 +327,7 @@ if(isset($_GET["refazer"])){
                         confirmButtonText: "OK"
                     }).then((result) => {
                       if (result.isConfirmed)
-                        window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                        window.location.href = "index.php";
                     })
                 }, 100)
             </script>';
@@ -351,7 +354,7 @@ if(isset($_GET["aceitaRefazer"])){
                         confirmButtonText: "OK"
                     }).then((result) => {
                       if (result.isConfirmed)
-                        window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                        window.location.href = "index.php";
                     })
                 }, 100)
             </script>';
@@ -369,7 +372,7 @@ if(isset($_GET["aceitaRefazer"])){
                         confirmButtonText: "OK"
                     }).then((result) => {
                       if (result.isConfirmed)
-                        window.location.href = "http://localhost/trabalhoESI/public/index.php";
+                        window.location.href = "index.php";
                     })
                 }, 100)
             </script>';
@@ -395,7 +398,7 @@ if(isset($_GET["cortar"])){
                     confirmButtonText: "OK"
                 }).then((result) => {
                   if (result.isConfirmed)
-                    window.location.href = "http://localhost/trabalhoESI/public/index.php?getRel=historico";
+                    window.location.href = "index.php?getRel=historico";
                 })
             }, 100)
         </script>';

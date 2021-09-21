@@ -1,7 +1,5 @@
 <?php
-    $_SESSION["from_code"] = false; //TODO esse arquivo é usado para que?
     function runSQL($sql){
-        $_SESSION["from_code"] = true;
         require('conn.inc.php');
         $result = $conn->query($sql); 
         if ($result != true) 
